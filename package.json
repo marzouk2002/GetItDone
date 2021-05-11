@@ -1,0 +1,23 @@
+{
+  "name": "getitdone",
+  "version": "1.0.0",
+  "description": "'project manager'",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "client-start": "npm run start --prefix client",
+    "client-build": "npm run build --prefix client"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.8",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
+  }
+}
