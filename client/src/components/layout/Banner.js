@@ -6,7 +6,7 @@ function Banner({ status }) {
         <section id="banner" className="major">
             <div className="inner">
                 <header className="major">
-                    <h1>Hi, my name is GetItDone</h1>
+                    <h1>Hi, my name is Get It Done</h1>
                 </header>
                 <div className="content">
                     <p>The one and all productivenis platform.</p>

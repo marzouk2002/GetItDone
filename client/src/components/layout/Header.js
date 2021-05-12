@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Header() {
     return (
         <header id="header" className="alt">
-            <Link to="/" className="logo"><strong>Forty</strong> <span>by HTML5 UP</span></Link>
+            <Link to="/" className="logo"><strong>Get</strong> <span>It done</span></Link>
             <nav>
                 <a href="#menu">Menu</a>
             </nav>

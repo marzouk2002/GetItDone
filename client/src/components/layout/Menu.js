@@ -11,8 +11,8 @@ function Menu() {
                 <li><Link to="elements.html">Elements</Link></li>
             </ul>
             <ul className="actions stacked">
-                <li><Link to="#" className="button primary fit">Get Started</Link></li>
-                <li><Link to="#" className="button fit">Log In</Link></li>
+                <li><Link to="/register" className="button primary fit">Get Started</Link></li>
+                <li><Link to="/options" className="button fit">Log In</Link></li>
             </ul>
         </nav>
     )
