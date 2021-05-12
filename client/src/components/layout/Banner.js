@@ -6,11 +6,10 @@ function Banner({ status }) {
         <section id="banner" className="major">
             <div className="inner">
                 <header className="major">
-                    <h1>Hi, my name is Forty</h1>
+                    <h1>Hi, my name is GetItDone</h1>
                 </header>
                 <div className="content">
-                    <p>A responsive site template designed by HTML5 UP<br />
-                    and released under the Creative Commons.</p>
+                    <p>The one and all productivenis platform.</p>
                     <ul className="actions">
                         <li><Link to="#one" className="button next scrolly">Get Started</Link></li>
                     </ul>
@@ -21,14 +20,10 @@ function Banner({ status }) {
         <section id="banner" className="major">
             <div className="inner">
                 <header className="major">
-                    <h1>Hi, my name is Forty</h1>
+                    <h1>Error 404!</h1>
                 </header>
                 <div className="content">
-                    <p>A responsive site template designed by HTML5 UP<br />
-                    and released under the Creative Commons.</p>
-                    <ul className="actions">
-                        <li><Link to="#one" className="button next scrolly">Get Started</Link></li>
-                    </ul>
+                    <p>Sorry, page not found.</p>
                 </div>
             </div>
         </section>
