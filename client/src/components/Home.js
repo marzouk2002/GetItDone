@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Banner from './layout/Banner'
 import Footer from './layout/Footer'
 import Header from './layout/Header'
 import Menu from './layout/Menu'
@@ -14,20 +15,7 @@ function Home() {
             <Menu/>
 
         {/* <!-- Banner --> */}
-            <section id="banner" className="major">
-                <div className="inner">
-                    <header className="major">
-                        <h1>Hi, my name is Forty</h1>
-                    </header>
-                    <div className="content">
-                        <p>A responsive site template designed by HTML5 UP<br />
-                        and released under the Creative Commons.</p>
-                        <ul className="actions">
-                            <li><Link to="#one" className="button next scrolly">Get Started</Link></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <Banner status={true}/>
 
         {/* <!-- Main --> */}
             <div id="main">
