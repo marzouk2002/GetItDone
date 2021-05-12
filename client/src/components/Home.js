@@ -1,25 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from './layout/Header'
+import Menu from './layout/Menu'
 
 function Home() {
     return (
         <>
         {/* <!-- Header --> */}
             <Header/>
+
         {/* <!-- Menu --> */}
-            <nav id="menu">
-                <ul className="links">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="landing.html">Landing</Link></li>
-                    <li><Link to="generic.html">Generic</Link></li>
-                    <li><Link to="elements.html">Elements</Link></li>
-                </ul>
-                <ul className="actions stacked">
-                    <li><Link to="#" className="button primary fit">Get Started</Link></li>
-                    <li><Link to="#" className="button fit">Log In</Link></li>
-                </ul>
-            </nav>
+            <Menu/>
 
         {/* <!-- Banner --> */}
             <section id="banner" className="major">
