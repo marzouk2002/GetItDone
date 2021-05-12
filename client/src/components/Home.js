@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Home() {
     return (
         <>
         {/* <!-- Header --> */}
 					<header id="header" className="alt">
-						<a href="index.html" className="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
+						<Link to="/" className="logo"><strong>Forty</strong> <span>by HTML5 UP</span></Link>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -14,14 +15,14 @@ function Home() {
 				{/* <!-- Menu --> */}
 					<nav id="menu">
 						<ul className="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="landing.html">Landing</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><Link to="/">Home</Link></li>
+							<li><Link to="landing.html">Landing</Link></li>
+							<li><Link to="generic.html">Generic</Link></li>
+							<li><Link to="elements.html">Elements</Link></li>
 						</ul>
 						<ul className="actions stacked">
-							<li><a href="#" className="button primary fit">Get Started</a></li>
-							<li><a href="#" className="button fit">Log In</a></li>
+							<li><Link to="#" className="button primary fit">Get Started</Link></li>
+							<li><Link to="#" className="button fit">Log In</Link></li>
 						</ul>
 					</nav>
 
@@ -35,7 +36,7 @@ function Home() {
 								<p>A responsive site template designed by HTML5 UP<br />
 								and released under the Creative Commons.</p>
 								<ul className="actions">
-									<li><a href="#one" className="button next scrolly">Get Started</a></li>
+									<li><Link to="#one" className="button next scrolly">Get Started</Link></li>
 								</ul>
 							</div>
 						</div>
@@ -51,7 +52,7 @@ function Home() {
 										<img src="images/pic01.jpg" alt="" />
 									</span>
 									<header className="major">
-										<h3><a href="landing.html" className="link">Aliquam</a></h3>
+										<h3><Link to="landing.html" className="link">Aliquam</Link></h3>
 										<p>Ipsum dolor sit amet</p>
 									</header>
 								</article>
@@ -60,7 +61,7 @@ function Home() {
 										<img src="images/pic02.jpg" alt="" />
 									</span>
 									<header className="major">
-										<h3><a href="landing.html" className="link">Tempus</a></h3>
+										<h3><Link to="landing.html" className="link">Tempus</Link></h3>
 										<p>feugiat amet tempus</p>
 									</header>
 								</article>
@@ -69,7 +70,7 @@ function Home() {
 										<img src="images/pic03.jpg" alt="" />
 									</span>
 									<header className="major">
-										<h3><a href="landing.html" className="link">Magna</a></h3>
+										<h3><Link to="landing.html" className="link">Magna</Link></h3>
 										<p>Lorem etiam nullam</p>
 									</header>
 								</article>
@@ -78,7 +79,7 @@ function Home() {
 										<img src="images/pic04.jpg" alt="" />
 									</span>
 									<header className="major">
-										<h3><a href="landing.html" className="link">Ipsum</a></h3>
+										<h3><Link to="landing.html" className="link">Ipsum</Link></h3>
 										<p>Nisl sed aliquam</p>
 									</header>
 								</article>
@@ -87,7 +88,7 @@ function Home() {
 										<img src="images/pic05.jpg" alt="" />
 									</span>
 									<header className="major">
-										<h3><a href="landing.html" className="link">Consequat</a></h3>
+										<h3><Link to="landing.html" className="link">Consequat</Link></h3>
 										<p>Ipsum dolor sit amet</p>
 									</header>
 								</article>
@@ -96,7 +97,7 @@ function Home() {
 										<img src="images/pic06.jpg" alt="" />
 									</span>
 									<header className="major">
-										<h3><a href="landing.html" className="link">Etiam</a></h3>
+										<h3><Link to="landing.html" className="link">Etiam</Link></h3>
 										<p>Feugiat amet tempus</p>
 									</header>
 								</article>
@@ -110,7 +111,7 @@ function Home() {
 									</header>
 									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
 									<ul className="actions">
-										<li><a href="landing.html" className="button next">Get Started</a></li>
+										<li><Link to="landing.html" className="button next">Get Started</Link></li>
 									</ul>
 								</div>
 							</section>
@@ -124,15 +125,15 @@ function Home() {
 								<form method="post" action="#">
 									<div className="fields">
 										<div className="field half">
-											<label for="name">Name</label>
+											<label htmlFor="name">Name</label>
 											<input type="text" name="name" id="name" />
 										</div>
 										<div className="field half">
-											<label for="email">Email</label>
+											<label htmlFor="email">Email</label>
 											<input type="text" name="email" id="email" />
 										</div>
 										<div className="field">
-											<label for="message">Message</label>
+											<label htmlFor="message">Message</label>
 											<textarea name="message" id="message" rows="6"></textarea>
 										</div>
 									</div>
@@ -147,7 +148,7 @@ function Home() {
 									<div className="contact-method">
 										<span className="icon solid alt fa-envelope"></span>
 										<h3>Email</h3>
-										<a href="#">information@untitled.tld</a>
+										<Link to="#">information@untitled.tld</Link>
 									</div>
 								</section>
 								<section>
@@ -174,14 +175,14 @@ function Home() {
 					<footer id="footer">
 						<div className="inner">
 							<ul className="icons">
-								<li><a href="#" className="icon brands alt fa-twitter"><span className="label">Twitter</span></a></li>
-								<li><a href="#" className="icon brands alt fa-facebook-f"><span className="label">Facebook</span></a></li>
-								<li><a href="#" className="icon brands alt fa-instagram"><span className="label">Instagram</span></a></li>
-								<li><a href="#" className="icon brands alt fa-github"><span className="label">GitHub</span></a></li>
-								<li><a href="#" className="icon brands alt fa-linkedin-in"><span className="label">LinkedIn</span></a></li>
+								<li><Link to="#" className="icon brands alt fa-twitter"><span className="label">Twitter</span></Link></li>
+								<li><Link to="#" className="icon brands alt fa-facebook-f"><span className="label">Facebook</span></Link></li>
+								<li><Link to="#" className="icon brands alt fa-instagram"><span className="label">Instagram</span></Link></li>
+								<li><Link to="#" className="icon brands alt fa-github"><span className="label">GitHub</span></Link></li>
+								<li><Link to="#" className="icon brands alt fa-linkedin-in"><span className="label">LinkedIn</span></Link></li>
 							</ul>
 							<ul className="copyright">
-								<li>&copy; Untitled</li><li>Design & Development: <a target="_blank" href="https://html5up.net">HTML5 UP</a> & <a target="_blank" href="https://github.com/marzouk2002">Youssouf MARZOUK</a></li>
+								<li>&copy; Untitled</li><li>Design & Development: <Link to="https://html5up.net" target="_blank">HTML5 UP</Link> & <Link to="https://github.com/marzouk2002" target="_blank">Youssouf MARZOUK</Link></li>
 							</ul>
 						</div>
 					</footer>
