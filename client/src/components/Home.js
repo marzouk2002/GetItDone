@@ -24,7 +24,7 @@ function Home() {
                             <img src="images/pic01.jpg" alt="" />
                         </span>
                         <header className="major">
-                            <h3><Link to="landing.html" className="link">Goals</Link></h3>
+                            <h3><Link to="/about" className="link">Goals</Link></h3>
                             <p>Set goals and track Progress</p>
                         </header>
                     </article>
@@ -33,7 +33,7 @@ function Home() {
                             <img src="images/pic02.jpg" alt="" />
                         </span>
                         <header className="major">
-                            <h3><Link to="landing.html" className="link">Managment</Link></h3>
+                            <h3><Link to="/about" className="link">Managment</Link></h3>
                             <p>manage all of your projects from one place</p>
                         </header>
                     </article>
@@ -42,7 +42,7 @@ function Home() {
                             <img src="images/pic03.jpg" alt="" />
                         </span>
                         <header className="major">
-                            <h3><Link to="landing.html" className="link">Comments & Chats</Link></h3>
+                            <h3><Link to="/about" className="link">Comments & Chats</Link></h3>
                             <p>communicate and add comments in real-time.</p>
                         </header>
                     </article>
@@ -51,7 +51,7 @@ function Home() {
                             <img src="images/pic04.jpg" alt="" />
                         </span>
                         <header className="major">
-                            <h3><Link to="landing.html" className="link">Docs</Link></h3>
+                            <h3><Link to="/about" className="link">Docs</Link></h3>
                             <p>organize all documents needed</p>
                         </header>
                     </article>
@@ -65,7 +65,7 @@ function Home() {
                         </header>
                         <p>Get It Done is a project management system. Its goal is to help teams getting work done as fast and effectively as possible. And it does that by letting each member know what he should do and when to do it. By giving employers and project managers the ability to assign tasks to developers and track their progress.</p>
                         <ul className="actions">
-                            <li><Link to="/register" className="button next">Get Started</Link></li>
+                            <li><a href="/register" className="button next">Get Started</a></li>
                         </ul>
                     </div>
                 </section>

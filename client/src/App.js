@@ -40,7 +40,7 @@ function App() {
             <Route exact path="/" component={Home}/>
             <Route path="/register" component={Register}/>
             <Route path="/contact" component={Contact}/>
-            <Route path="/" component={Error}/>
+            <Route component={Error}/>
         </Switch>
       </Router>
     </ErrorBoundary>
