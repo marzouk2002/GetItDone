@@ -6,7 +6,7 @@ import Menu from './layout/Menu'
 export default function Error() {
     return (
         <>
-           <Header/>
+           <Header classes="alt"/>
            <Menu/>
            <Banner status={false}/>
         </>

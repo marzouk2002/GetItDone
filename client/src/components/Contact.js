@@ -46,11 +46,11 @@ function Contact() {
 
     return (
         <>
-            <Header/>
+            <Header classes='alt'/>
             <Menu/>
-                    <header className="major" style={titleStyle}>
-                        <h1>Reach out to us</h1>
-                    </header>
+            <header className="major" style={titleStyle}>
+                <h1>Reach out to us</h1>
+            </header>
             <section id="contact">
                 <div className="inner">
                     <section>
