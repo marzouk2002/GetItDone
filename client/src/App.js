@@ -34,13 +34,13 @@ class ErrorBoundary extends React.Component {
 function App() {
   return (
     <Router>
-      <Switch>
-        <ErrorBoundary>
-          <Route exact path="/" component={Home}/>
-          <Route path="/contact" component={Contact}/>
-          <Route path="/" component={Error}/>
-        </ErrorBoundary>
-      </Switch>
+          <ErrorBoundary>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/contact" component={Contact}/>
+                <Route path="/" component={Error}/>
+            </Switch>
+          </ErrorBoundary>
     </Router>
   );
 }
