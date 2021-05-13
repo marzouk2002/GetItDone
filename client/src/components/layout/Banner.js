@@ -11,7 +11,7 @@ function Banner({ status }) {
                 <div className="content">
                     <p>The one and all productivenis platform.</p>
                     <ul className="actions">
-                        <li><Link to="/register" className="button next scrolly">Get Started</Link></li>
+                        <li><Link to="/contact" className="button next scrolly">Get Started</Link></li>
                     </ul>
                 </div>
             </div>
