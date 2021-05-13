@@ -1,10 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './layout/Footer'
 import Header from './layout/Header'
 import Menu from './layout/Menu'
+import emailjs from 'emailjs-com';
+
+// initialise emailjs
+emailjs.init("user_5nTxtNAdZq42NuLR5cyjP")
 
 function Contact() {
+    const [state, setState] = useState({
+        name: '',
+        email: '',
+        message: ''
+    })
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setState({
+            ...state,
+            [e.target.name]: value
+        })
+    }
+
+    const sendFeedback = (serviceID, templateId, variables) => {
+        emailjs.send(
+            serviceID, templateId,
+            variables
+        ).then(res => {
+            console.log('Email successfully sent!')
+        })
+            .catch(err => console.error('There has been an error.  Here some thoughts on the error that occured:', err))
+    }
+    
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const { name, email, message} = state
+
+        alert(`Thank you ${name} for your message from ${email}`);
+        const templateId = 'get_it_done_template';
+        const serviceID = 'my_gmail';
+        sendFeedback(serviceID, templateId, { from_name: name, message, from_email: email, to_name: 'youssouf' })
+    }
+
     return (
         <>
             <Header/>
@@ -15,19 +54,19 @@ function Contact() {
             <section id="contact">
                 <div className="inner">
                     <section>
-                        <form method="post" action="#">
+                        <form onSubmit={handleSubmit}>
                             <div className="fields">
                                 <div className="field half">
                                     <label htmlFor="name">Name</label>
-                                    <input type="text" name="name" id="name" />
+                                    <input type="text" name="name" value={state.name} onChange={handleChange} required/>
                                 </div>
                                 <div className="field half">
                                     <label htmlFor="email">Email</label>
-                                    <input type="text" name="email" id="email" />
+                                    <input type="email" name="email" value={state.email} onChange={handleChange} required/>
                                 </div>
                                 <div className="field">
                                     <label htmlFor="message">Message</label>
-                                    <textarea name="message" id="message" rows="6"></textarea>
+                                    <textarea name="message" rows="6" value={state.message} onChange={handleChange} required></textarea>
                                 </div>
                             </div>
                             <ul className="actions">

@@ -6,9 +6,8 @@ function Menu() {
         <nav id="menu">
             <ul className="links">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="landing.html">Landing</Link></li>
-                <li><Link to="generic.html">Generic</Link></li>
-                <li><Link to="elements.html">Elements</Link></li>
+                <li><Link to="landing.html">About</Link></li>
+                <li><Link to="/contact">Contact us</Link></li>
             </ul>
             <ul className="actions stacked">
                 <li><Link to="/register" className="button primary fit">Get Started</Link></li>
