@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import Banner from './layout/Banner'
 import Footer from './layout/Footer'
 import Header from './layout/Header'
-import Menu from './layout/Menu'
 
 function Home() {
     return (
