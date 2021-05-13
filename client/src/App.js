@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Contact from './components/Contact';
 import Error from './components/Error';
 import Home from './components/Home';
+import Register from './components/Register';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -33,15 +34,16 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   return (
-    <Router>
-          <ErrorBoundary>
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/contact" component={Contact}/>
-                <Route path="/" component={Error}/>
-            </Switch>
-          </ErrorBoundary>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/contact" component={Contact}/>
+            <Route path="/" component={Error}/>
+        </Switch>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

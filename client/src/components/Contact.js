@@ -47,7 +47,6 @@ function Contact() {
     return (
         <>
             <Header classes='alt'/>
-            <Menu/>
             <header className="major" style={titleStyle}>
                 <h1>Reach out to us</h1>
             </header>

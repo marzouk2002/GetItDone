@@ -11,9 +11,6 @@ function Home() {
         {/* <!-- Header --> */}
             <Header classes="alt"/>
 
-        {/* <!-- Menu --> */}
-            <Menu/>
-
         {/* <!-- Banner --> */}
             <Banner status={true}/>
 
