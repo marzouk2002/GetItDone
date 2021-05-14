@@ -1,10 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+//components
 import Contact from './components/Contact';
 import Error from './components/Error';
 import Home from './components/Home';
 import Register from './components/Register';
+//style
+import './App.css'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
