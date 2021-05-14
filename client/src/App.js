@@ -5,6 +5,7 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import Home from './components/Home';
 import Register from './components/Register';
+import Login from './components/Login';
 //style
 import './App.css'
 
@@ -41,6 +42,7 @@ function App() {
         <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/register" component={Register}/>
+            <Route path="/login" component={Login}/>
             <Route path="/contact" component={Contact}/>
             <Route component={Error}/>
         </Switch>
