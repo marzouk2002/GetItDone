@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 
 function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
+    const [formState, setFormState] = useState({})
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -20,10 +21,24 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
             default:
                 setSelected('')
         }
-    }, [selectedTitle])
+    }, [selectedTitle, register])
 
     const goBack = () => {
         setSelectedTitle(null)
+    }
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setFormState({
+            ...formState,
+            [e.target.name]: value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        console.log(formState)
     }
 
     return (
@@ -31,7 +46,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
             <div className="button small" onClick={goBack}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div style={center_stuf}>
                 <h2>{ selectedTitle }</h2>
-                <form style={{...center_stuf, width:"80%" }}>
+                <form style={{...center_stuf, width:"80%" }} onSubmit={handleSubmit}>
                     <div className="fields">
                         {
                             (register & seletected !== "admin") ?
@@ -39,7 +54,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                                         animate={{opacity: 1, y:0}}
                                         transition={{delay: 0.2, duration: 0.8}} className="field">
                                 <label htmlFor="name">Admin Serial Number for {seletected+'s'}</label>
-                                <input type="text" name="serialNumber" required/>
+                                <input onChange={handleChange} type="text" name="serialNumber" required/>
                             </motion.div> : ""
                         }
                         {
@@ -48,20 +63,20 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                                         animate={{opacity: 1, y:0}}
                                         transition={{delay: 0.3, duration: 0.8}} className="field">
                                 <label htmlFor="name">Name</label>
-                                <input type="text" name="name" required/>
+                                <input onChange={handleChange} type="text" name="name" required/>
                             </motion.div>
                         }
                         <motion.div initial={{opacity:0, y: 20}}
                                     animate={{opacity: 1, y:0}}
                                     transition={{delay: 0.4, duration: 0.8}} className="field">
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="email" required/>
+                            <input onChange={handleChange} type="email" name="email" required/>
                         </motion.div>
                         <motion.div initial={{opacity:0, y: 20}}
                                     animate={{opacity: 1, y:0}}
                                     transition={{delay: 0.5, duration: 0.8}} className="field">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name="password" required/>
+                            <input onChange={handleChange} type="password" name="password" required/>
                         </motion.div>
                         {
                             register && 
@@ -69,7 +84,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                                         animate={{opacity: 1, y:0}}
                                         transition={{delay: 0.6, duration: 0.8}} className="field">
                                 <label htmlFor="confirm">Confirm password</label>
-                                <input type="password" name="confirm" required/>
+                                <input onChange={handleChange} type="password" name="confirm" required/>
                             </motion.div>
                         }
                     </div>
