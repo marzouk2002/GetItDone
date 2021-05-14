@@ -2,3 +2,22 @@
   font-size: 1.1rem;
   color: #53e3fb;
 }
+
+.option {
+  text-align: center;
+  padding: 0.5rem;
+  width: fit-content;
+  border-radius: 20px;
+}
+
+.option h2,
+p {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+.user-icon {
+  font-size: 8rem;
+  padding: 1rem;
+  border-radius: 50%;
+}

@@ -1,11 +1,45 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Options() {
     return (
-        <div>
-            
-        </div>
+        <section  className="inner" style= {inner_style}>
+            <div className="row">
+                <div className="col-4 col-12-medium" style= {col_style}>
+                    <div className="option">
+                        <h2>Admin</h2>
+                        <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
+                        <p>Create an account as an Admin</p>
+                        <button className="button primary">Create</button>
+                    </div>
+                </div>
+                <div className="col-4 col-12-medium" style= {col_style}>
+                    <div className="option">
+                        <h2>Project Manager</h2>
+                        <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
+                        <p>Create an account as a Project Manager</p>
+                        <button className="button primary">Create</button>
+                    </div>
+                </div>
+                <div className="col-4 col-12-medium" style= {col_style}>
+                    <div className="option">
+                        <h2>Developer</h2>
+                        <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
+                        <p>Create an account as a Developer</p>
+                        <button className="button primary">Create</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     )
+}
+
+const inner_style = {padding: "1rem 0"}
+
+const col_style = {
+    display: 'grid',
+    placeItems: 'center'
 }
 
 export default Options

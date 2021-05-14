@@ -9,7 +9,9 @@ function Register() {
             <header className="major" style={titleStyle}>
                 <h1>Create an account</h1>
             </header>
-            <Options/>
+            <main>
+                <Options/>
+            </main>
         </>
     )
 }
