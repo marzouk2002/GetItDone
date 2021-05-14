@@ -43,11 +43,20 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
     return (
         <section  className="inner" style= {inner_style}>
-            <div className="button small" onClick={goBack}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
+            <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div style={center_stuf}>
                 <h2>{ selectedTitle }</h2>
                 <form style={{...center_stuf, width:"80%" }} onSubmit={handleSubmit}>
                     <div className="fields">
+                        {
+                            register &&
+                            <motion.div initial={{opacity:0, y: 20}}
+                                        animate={{opacity: 1, y:0}}
+                                        transition={{delay: 0.3, duration: 0.8}} className="field">
+                                <input onChange={handleChange} type="file" name="img"/>
+                                <label htmlFor="name">Select a picture</label>
+                            </motion.div>
+                        }
                         {
                             (register & seletected !== "admin") ?
                             <motion.div initial={{opacity:0, y: 20}}
