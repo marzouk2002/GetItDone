@@ -1,8 +1,10 @@
+/* navbar */
 .active-link {
   font-size: 1.1rem;
   color: #53e3fb;
 }
 
+/* option */
 .option {
   text-align: center;
   padding: 0.5rem;
@@ -12,12 +14,22 @@
 
 .option h2,
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
   margin-top: 0.5rem;
 }
 
 .user-icon {
-  font-size: 8rem;
-  padding: 1rem;
+  font-size: 9rem;
+  padding: 2rem;
   border-radius: 50%;
+}
+
+.color-icons:nth-child(1) .user-icon {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+.color-icons:nth-child(2) .user-icon {
+  background-color: rgba(0, 255, 0, 0.8);
+}
+.color-icons:nth-child(3) .user-icon {
+  background-color: rgba(0, 0, 255, 0.8);
 }

@@ -6,7 +6,7 @@ function Options() {
     return (
         <section  className="inner" style= {inner_style}>
             <div className="row">
-                <div className="col-4 col-12-medium" style= {col_style}>
+                <div className="col-4 col-12-medium color-icons" style= {col_style}>
                     <div className="option">
                         <h2>Admin</h2>
                         <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
@@ -14,7 +14,7 @@ function Options() {
                         <button className="button primary">Create</button>
                     </div>
                 </div>
-                <div className="col-4 col-12-medium" style= {col_style}>
+                <div className="col-4 col-12-medium color-icons" style= {col_style}>
                     <div className="option">
                         <h2>Project Manager</h2>
                         <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
@@ -22,7 +22,7 @@ function Options() {
                         <button className="button primary">Create</button>
                     </div>
                 </div>
-                <div className="col-4 col-12-medium" style= {col_style}>
+                <div className="col-4 col-12-medium color-icons" style= {col_style}>
                     <div className="option">
                         <h2>Developer</h2>
                         <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
