@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
+import Form from './layout/Form'
 import Header from './layout/Header'
 import Options from './layout/Options'
 
 function Register() {
+    const [ selectedTitle, setSelectedTitle ] = useState(null)
+
     return (
         <>
             <Header/>
             <header className="major" style={titleStyle}>
-                <h1>Create an account</h1>
+                    <h1>Create an account</h1>
             </header>
             <main>
-                <Options/>
+                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle}/> : <Options setSelectedTitle={setSelectedTitle}/> } 
             </main>
         </>
     )
