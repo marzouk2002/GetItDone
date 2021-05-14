@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
-function Options({ setSelectedTitle }) {
+function Options({ setSelectedTitle, register }) {
 
     const handleChoice = (e) => {
         setSelectedTitle(e.target.value)
@@ -18,8 +18,8 @@ function Options({ setSelectedTitle }) {
                                 transition={{delay: 0.2, duration: 0.8}} className="option">
                         <h2>Admin</h2>
                         <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
-                        <p>Create an account as an Admin</p>
-                        <button className="button primary" onClick={handleChoice} value="Admin">Create</button>
+                        <p>{ register ? 'Create an account' : 'Login'} as an Admin</p>
+                        <button className="button primary" onClick={handleChoice} value="Admin">{ register ? 'Create' : 'Login'}</button>
                     </motion.div>
                 </div>
                 <div className="col-4 col-12-medium color-icons" style= {center_stuf}>
@@ -28,8 +28,8 @@ function Options({ setSelectedTitle }) {
                                 transition={{delay: 0.3, duration: 0.7}} className="option">
                         <h2>Project Manager</h2>
                         <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
-                        <p>Create an account as a Project Manager</p>
-                        <button className="button primary" onClick={handleChoice} value="Project Manager">Create</button>
+                        <p>{ register ? 'Create an account' : 'Login'} as a Project Manager</p>
+                        <button className="button primary" onClick={handleChoice} value="Project Manager">{ register ? 'Create' : 'Login'}</button>
                     </motion.div>
                 </div>
                 <div className="col-4 col-12-medium color-icons" style= {center_stuf}>
@@ -38,8 +38,8 @@ function Options({ setSelectedTitle }) {
                                 transition={{delay: 0.4, duration: 0.6}} className="option">
                         <h2>Developer</h2>
                         <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
-                        <p>Create an account as a Developer</p>
-                        <button className="button primary" onClick={handleChoice} value="Developer">Create</button>
+                        <p>{ register ? 'Create an account' : 'Login'} as a Developer</p>
+                        <button className="button primary" onClick={handleChoice} value="Developer">{ register ? 'Create' : 'Login'}</button>
                     </motion.div>
                 </div>
             </div>
