@@ -34,28 +34,37 @@ function Form({ selectedTitle, setSelectedTitle }) {
                 <form style={{...center_stuf, width:"80%" }}>
                     <div className="fields">
                         { seletected !== "admin" &&
-                            <div className="field">
+                            <motion.div initial={{opacity:0, y: 20}}
+                                        animate={{opacity: 1, y:0}}
+                                        transition={{delay: 0.2, duration: 0.8}} className="field">
                                 <label htmlFor="name">Admin Serial Number for {seletected+'s'}</label>
                                 <input type="text" name="serialNumber" required/>
-                            </div>
+                            </motion.div>
                         } 
-                        <div className="field">
+                        <motion.div initial={{opacity:0, y: 20}}
+                                    animate={{opacity: 1, y:0}}
+                                    transition={{delay: 0.3, duration: 0.8}} className="field">
                             <label htmlFor="name">Name</label>
                             <input type="text" name="name" required/>
-                        </div>
-                        <div className="field">
+                        </motion.div>
+                        <motion.div initial={{opacity:0, y: 20}}
+                                    animate={{opacity: 1, y:0}}
+                                    transition={{delay: 0.4, duration: 0.8}} className="field">
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" required/>
-                        </div>
-                        <div className="field">
+                        </motion.div>
+                        <motion.div initial={{opacity:0, y: 20}}
+                                    animate={{opacity: 1, y:0}}
+                                    transition={{delay: 0.5, duration: 0.8}} className="field">
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" required/>
-                        </div>
-                        <div className="field">
+                        </motion.div>
+                        <motion.div initial={{opacity:0, y: 20}}
+                                    animate={{opacity: 1, y:0}}
+                                    transition={{delay: 0.6, duration: 0.8}} className="field">
                             <label htmlFor="confirm">Confirm password</label>
                             <input type="password" name="confirm" required/>
-                        </div>
-                        
+                        </motion.div>
                     </div>
                     <input type="submit" value="Register" className="primary" />
                 </form>
