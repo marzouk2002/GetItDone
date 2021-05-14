@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
 function Form({ register, selectedTitle, setSelectedTitle }) {
@@ -54,7 +54,10 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                                         animate={{opacity: 1, y:0}}
                                         transition={{delay: 0.3, duration: 0.8}} className="field">
                                 <input onChange={handleChange} type="file" name="img"/>
-                                <label htmlFor="name">Select a picture</label>
+                                <span className="image">
+                                    <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
+                                </span>
+                                <label htmlFor="img">Select a picture<sub>optional</sub></label>
                             </motion.div>
                         }
                         {
