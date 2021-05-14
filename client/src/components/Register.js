@@ -13,7 +13,7 @@ function Register() {
                     <h1>Create an account</h1>
             </header>
             <main>
-                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle}/> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
+                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={true} /> : <Options register={true} setSelectedTitle={setSelectedTitle}/> } 
             </main>
         </>
     )

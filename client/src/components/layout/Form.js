@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
-function Form({ selectedTitle, setSelectedTitle }) {
+function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
 
     useEffect(() => {
@@ -33,20 +33,24 @@ function Form({ selectedTitle, setSelectedTitle }) {
                 <h2>{ selectedTitle }</h2>
                 <form style={{...center_stuf, width:"80%" }}>
                     <div className="fields">
-                        { seletected !== "admin" &&
+                        {
+                            (register & seletected !== "admin") ?
                             <motion.div initial={{opacity:0, y: 20}}
                                         animate={{opacity: 1, y:0}}
                                         transition={{delay: 0.2, duration: 0.8}} className="field">
                                 <label htmlFor="name">Admin Serial Number for {seletected+'s'}</label>
                                 <input type="text" name="serialNumber" required/>
+                            </motion.div> : ""
+                        }
+                        {
+                            register &&
+                            <motion.div initial={{opacity:0, y: 20}}
+                                        animate={{opacity: 1, y:0}}
+                                        transition={{delay: 0.3, duration: 0.8}} className="field">
+                                <label htmlFor="name">Name</label>
+                                <input type="text" name="name" required/>
                             </motion.div>
-                        } 
-                        <motion.div initial={{opacity:0, y: 20}}
-                                    animate={{opacity: 1, y:0}}
-                                    transition={{delay: 0.3, duration: 0.8}} className="field">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" name="name" required/>
-                        </motion.div>
+                        }
                         <motion.div initial={{opacity:0, y: 20}}
                                     animate={{opacity: 1, y:0}}
                                     transition={{delay: 0.4, duration: 0.8}} className="field">
@@ -59,14 +63,17 @@ function Form({ selectedTitle, setSelectedTitle }) {
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" required/>
                         </motion.div>
-                        <motion.div initial={{opacity:0, y: 20}}
-                                    animate={{opacity: 1, y:0}}
-                                    transition={{delay: 0.6, duration: 0.8}} className="field">
-                            <label htmlFor="confirm">Confirm password</label>
-                            <input type="password" name="confirm" required/>
-                        </motion.div>
+                        {
+                            register && 
+                            <motion.div initial={{opacity:0, y: 20}}
+                                        animate={{opacity: 1, y:0}}
+                                        transition={{delay: 0.6, duration: 0.8}} className="field">
+                                <label htmlFor="confirm">Confirm password</label>
+                                <input type="password" name="confirm" required/>
+                            </motion.div>
+                        }
                     </div>
-                    <input type="submit" value="Register" className="primary" />
+                    <input type="submit" value={ register ? 'Register' : 'Login'} className="primary" />
                 </form>
             </div>
         </section>
