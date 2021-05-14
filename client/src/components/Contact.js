@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './layout/Footer'
 import Header from './layout/Header'
-import Menu from './layout/Menu'
 import emailjs from 'emailjs-com';
 
 // initialise emailjs

@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function Menu() {
     return (
         <nav id="menu">
             <ul className="links">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/contact">Contact us</Link></li>
+                <li><NavLink activeStyle={active_style} to="/" exact={true}>Home</NavLink></li>
+                <li><NavLink activeStyle={active_style} to="/about">About</NavLink></li>
+                <li><NavLink activeStyle={active_style} to="/contact">Contact us</NavLink></li>
             </ul>
             <ul className="actions stacked">
                 <li><Link to="/register" className="button primary fit">Get Started</Link></li>
@@ -15,6 +15,11 @@ function Menu() {
             </ul>
         </nav>
     )
+}
+    
+const active_style = {
+    fontSize : '1.1rem',
+    color: '#53e3fb'
 }
 
 export default Menu
