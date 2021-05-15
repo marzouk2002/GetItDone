@@ -81,3 +81,37 @@ p {
   align-items: center;
   justify-content: center;
 }
+
+.alerts-wrap {
+  width: 60%;
+  font-size: 1.2rem;
+}
+
+.alert {
+  margin-bottom: 1rem;
+  border: 5px #53e3fb;
+}
+
+.alert > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.alert-btn {
+  display: flex;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: 1.5rem;
+  height: max-content;
+  width: max-content;
+}
+
+.alert-btn::hover {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
