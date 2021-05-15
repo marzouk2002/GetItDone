@@ -38,7 +38,20 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log(formState)
+        const route = register ? 'register' : 'login'
+
+        fetch('/users/'+route, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'},
+            body: { 
+                seletected,
+                ...formState}
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.error(err))
     }
 
     return (
