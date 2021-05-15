@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
+import Alert from './Alert'
 
 function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
+    const [msgs, setMsgs] =useState(["heelo", "world"])
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -25,6 +27,10 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
     const goBack = () => {
         setSelectedTitle(null)
+    }
+
+    const deleteMsg = (target) => {
+        setMsgs(msgs.filter((msg, index)=>index!==target))
     }
 
     const handleChange = (e) => {
@@ -59,6 +65,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
             <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div className="center_stuf">
                 <h2>{ selectedTitle }</h2>
+                { msgs && <Alert msgs={msgs} deleteMsg={deleteMsg} />}
                 <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}  encType="multipart/form-data">
                     {
                         register &&
