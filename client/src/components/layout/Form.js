@@ -7,7 +7,7 @@ import Alert from './Alert'
 function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
-    const [msgs, setMsgs] =useState(["heelo", "world"])
+    const [msgs, setMsgs] =useState(null)
 
     useEffect(() => {
         switch(selectedTitle) {

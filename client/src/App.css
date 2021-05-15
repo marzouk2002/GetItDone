@@ -88,7 +88,7 @@ p {
 }
 
 .alert {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   border: 5px #53e3fb;
 }
 
@@ -101,17 +101,11 @@ p {
 }
 
 .alert-btn {
-  display: flex;
-  outline: none;
-  border: none;
-  box-shadow: none;
   font-size: 1.5rem;
-  height: max-content;
-  width: max-content;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.alert-btn::hover {
-  outline: none;
-  border: none;
-  box-shadow: none;
+.alert-btn:hover {
+  color: #53e3fb;
 }
