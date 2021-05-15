@@ -12,7 +12,7 @@ function Options({ setSelectedTitle, register }) {
     return (
         <section  className="inner" style= {inner_style}>
             <div className="row">
-                <div className="col-4 col-12-medium color-icons" style= {center_stuf}>
+                <div className="col-4 col-12-medium color-icons center_stuf">
                     <motion.div initial={{opacity:0, x: -50}}
                                 animate={{opacity: 1, x:0}}
                                 transition={{delay: 0.2, duration: 0.8}} className="option">
@@ -22,7 +22,7 @@ function Options({ setSelectedTitle, register }) {
                         <button className="button primary" onClick={handleChoice} value="Admin">{ register ? 'Create' : 'Login'}</button>
                     </motion.div>
                 </div>
-                <div className="col-4 col-12-medium color-icons" style= {center_stuf}>
+                <div className="col-4 col-12-medium color-icons center_stuf">
                     <motion.div initial={{opacity:0, x: -50}}
                                 animate={{opacity: 1, x:0}}
                                 transition={{delay: 0.3, duration: 0.7}} className="option">
@@ -32,7 +32,7 @@ function Options({ setSelectedTitle, register }) {
                         <button className="button primary" onClick={handleChoice} value="Project Manager">{ register ? 'Create' : 'Login'}</button>
                     </motion.div>
                 </div>
-                <div className="col-4 col-12-medium color-icons" style= {center_stuf}>
+                <div className="col-4 col-12-medium color-icons center_stuf">
                     <motion.div initial={{opacity:0, x: -50}}
                                 animate={{opacity: 1, x:0}}
                                 transition={{delay: 0.4, duration: 0.6}} className="option">
@@ -48,10 +48,5 @@ function Options({ setSelectedTitle, register }) {
 }
 
 const inner_style = {padding: "1rem 0"}
-
-const center_stuf = {
-    display: 'grid',
-    placeItems: 'center'
-}
 
 export default Options

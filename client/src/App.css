@@ -1,3 +1,9 @@
+/* config */
+.center_stuf {
+  display: grid;
+  place-items: center;
+}
+
 /* navbar */
 .active-link {
   font-size: 1.1rem;
@@ -31,6 +37,7 @@ p {
 .user-icon.manager {
   background-color: rgba(0, 255, 0, 0.8);
 }
+
 .user-icon.developer {
   background-color: rgba(0, 0, 255, 0.8);
 }

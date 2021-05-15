@@ -44,21 +44,17 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
     return (
         <section  className="inner" style= {inner_style}>
             <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
-            <div style={center_stuf}>
+            <div className="center_stuf">
                 <h2>{ selectedTitle }</h2>
-                <form style={{...center_stuf, width:"80%" }} onSubmit={handleSubmit}>
+                <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}>
                     <div className="fields">
                         {
                             register &&
-                            <motion.div initial={{opacity:0, y: 20}}
-                                        animate={{opacity: 1, y:0}}
-                                        transition={{delay: 0.3, duration: 0.8}} className="field">
-                                <input onChange={handleChange} type="file" name="img"/>
-                                <span className="image">
-                                    <FontAwesomeIcon className='user-icon' icon={faUserAlt}/>
-                                </span>
+                            <div className="field">
+                                {/* <input onChange={handleChange} type="file" name="img"/> */}
+                                <FontAwesomeIcon className={`user-icon ${seletected}`} icon={faUserAlt}/>
                                 <label htmlFor="img">Select a picture<sub>optional</sub></label>
-                            </motion.div>
+                            </div>
                         }
                         {
                             (register & seletected !== "admin") ?
@@ -108,10 +104,5 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 }
 
 const inner_style = {padding: "1rem 0"}
-
-const center_stuf = {
-    display: 'grid',
-    placeItems: 'center'
-}
 
 export default Form
