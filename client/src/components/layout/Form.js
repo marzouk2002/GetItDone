@@ -46,16 +46,18 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
             <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div className="center_stuf">
                 <h2>{ selectedTitle }</h2>
-                <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}>
-                    <div className="fields">
-                        {
-                            register &&
-                            <div className="field">
-                                {/* <input onChange={handleChange} type="file" name="img"/> */}
+                <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}  encType="multipart/form-data">
+                    {
+                        register &&
+                        <div className="center_stuf">
+                            <div className="img-input">
                                 <FontAwesomeIcon className={`user-icon ${seletected}`} icon={faUserAlt}/>
-                                <label htmlFor="img">Select a picture<sub>optional</sub></label>
+                                <input onChange={handleChange} type="file" title="add a picture if you wanted to" name="img"/>
                             </div>
-                        }
+                        </div>
+                        
+                    }
+                    <div className="fields">
                         {
                             (register & seletected !== "admin") ?
                             <motion.div initial={{opacity:0, y: 20}}
