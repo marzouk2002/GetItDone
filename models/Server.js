@@ -19,6 +19,6 @@ const serverSchema = mongoose.Schema({
     }
 })
 
-const Server = mongoose.model('server', serverSchema)
+const Server = mongoose.model('servers', serverSchema)
 
 module.exports = Server

@@ -46,13 +46,14 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
         const route = register ? 'register' : 'login'
 
-        fetch('/users/'+route, {
+        fetch('http://localhost:5000/users/'+route, {
             method:'POST',
             headers: {
-                'Content-Type': 'application/json'},
-            body: { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'},
+            body: JSON.stringify({ 
                 role:seletected,
-                ...formState}
+                ...formState})
         }).then(res => res.json())
         .then(data => {
             console.log(data)
