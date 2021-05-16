@@ -1,8 +1,13 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+const mongoose = require('mongoose')
 
 const app = express()
+
+mongoose.connect(process.env.DB_URI)
+    .then(() => console.log('Database connected...'))
+    .catch(err => console.log('Something went wrong...\n'+err))
 
 app.use(cors())
 
