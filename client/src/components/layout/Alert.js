@@ -6,12 +6,14 @@ function Alert({ msgs, deleteMsg }) {
     return (
         <div className="alerts-wrap">
             {msgs.map((msg, i) => {
-                return (<div className="row alert" key={i}>
-                    <div className='col-9 col-12-small'>
-                        <p>{msg}</p>
+                return (<div className={"alert alert-"+msg.type} key={i}>
+                    <div className= 'alert-msg'>
+                        <p>{msg.text}</p>
                     </div>
-                    <div className='col-3 col-12-small'>
-                        <div onClick={()=>{deleteMsg(i)}} className="alert-btn"><FontAwesomeIcon icon={faTimes}/></div>
+                    <div className='alert-btn'>
+                        <div className="alert-svg" onClick={()=>{deleteMsg(i)}}>
+                        <FontAwesomeIcon icon={faTimes}/>
+                        </div>
                     </div>
                 </div>)
             })}

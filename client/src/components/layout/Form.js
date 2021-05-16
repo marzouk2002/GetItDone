@@ -7,7 +7,7 @@ import Alert from './Alert'
 function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
-    const [msgs, setMsgs] =useState(null)
+    const [msgs, setMsgs] =useState([{text:"password doenst match", type: 'warning'}])
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -51,7 +51,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
             headers: {
                 'Content-Type': 'application/json'},
             body: { 
-                seletected,
+                role:seletected,
                 ...formState}
         }).then(res => res.json())
         .then(data => {

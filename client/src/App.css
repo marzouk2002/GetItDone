@@ -46,7 +46,7 @@ p {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .img-input > input {
@@ -85,27 +85,50 @@ p {
 .alerts-wrap {
   width: 60%;
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .alert {
-  margin-bottom: 2rem;
-  border: 5px #53e3fb;
-}
-
-.alert > div {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
   font-weight: 600;
+  padding: 0.5rem;
+  border-radius: 100vmax;
+  margin-bottom: 0.7rem;
+}
+
+.alert-danger {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.alert-success {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.alert-warning {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+.alert-msg {
+  flex: 90% 1 1;
+  padding-left: 1rem;
 }
 
 .alert-btn {
+  flex: 10% 1 0;
   font-size: 1.5rem;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
-.alert-btn:hover {
+.alert-svg {
+  cursor: pointer;
+  transition: 0.3s;
+  margin: auto;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.alert-svg:hover {
   color: #53e3fb;
 }
