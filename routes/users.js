@@ -6,9 +6,9 @@ const Server = require('../models/Server')
 
 const route = express.Router()
 
-route.post('/register', (req, res) => {
+route.post('/register', async (req, res) => {
     const body = req.body
-    const error = []
+    const errors = []
 
     //validation 
     const { role, email, password, confirm } = body
@@ -24,12 +24,12 @@ route.post('/register', (req, res) => {
     }
 
     if (role !=='admin') {
-        Server.findOne({ serverId })
+        await Server.findOne({ serverId: serverId })
             .then(server => {
                 if(!server) errors.push({ text: 'Server Not Found', type: 'danger' })
             })
     } else {
-        Users.findOne({ email })
+        await Users.findOne({ email: email })
             .then(user => {
                 if(user) {
                     errors.push({ text: 'Sorry, user already registered. Try new email', type: 'danger' })

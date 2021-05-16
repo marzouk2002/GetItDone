@@ -41,6 +41,14 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
         })
     }
 
+    const handleChangeForImg = (e) => {
+        const file = e.target.files[0];
+        setFormState({
+            ...formState,
+            [e.target.name]: file
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -56,7 +64,11 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                 ...formState})
         }).then(res => res.json())
         .then(data => {
-            console.log(data)
+            if(data.registered) {
+                console.log(data)
+            } else {
+                setMsgs(data.errors)
+            }
         })
         .catch(err => console.error(err))
     }
@@ -73,8 +85,9 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                         <div className="center_stuf">
                             <div className="img-input">
                                 <FontAwesomeIcon className={`user-icon ${seletected}`} icon={faUserAlt}/>
-                                <input onChange={handleChange} type="file" title="add a picture if you wanted to" name="img"/>
+                                <input onChange={handleChangeForImg} type="file" title="add a picture if you wanted to" name="img"/>
                             </div>
+                            {formState.img && formState.img.name}
                         </div>
                         
                     }
