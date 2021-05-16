@@ -9,6 +9,8 @@ mongoose.connect(process.env.DB_URI)
     .then(() => console.log('Database connected...'))
     .catch(err => console.log('Something went wrong...\n'+err))
 
+app.use(express.json())
+
 app.use(cors())
 
 app.use('/users', require('./routes/users'))

@@ -83,7 +83,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                             <motion.div initial={{opacity:0, y: 20}}
                                         animate={{opacity: 1, y:0}}
                                         transition={{delay: 0.2, duration: 0.8}} className="field">
-                                <label htmlFor="name">Admin Serial Number for {seletected+'s'}</label>
+                                <label htmlFor="name">Server Id</label>
                                 <input onChange={handleChange} type="text" name="serialNumber" required/>
                             </motion.div> : ""
                         }
