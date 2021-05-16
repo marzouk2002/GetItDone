@@ -83,11 +83,11 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                     {
                         register &&
                         <div className="center_stuf">
+                                {formState.img && <p>{formState.img.name}</p>}
                             <div className="img-input">
                                 <FontAwesomeIcon className={`user-icon ${seletected}`} icon={faUserAlt}/>
                                 <input onChange={handleChangeForImg} type="file" title="add a picture if you wanted to" name="img"/>
                             </div>
-                            {formState.img && formState.img.name}
                         </div>
                         
                     }

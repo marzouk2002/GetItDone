@@ -44,10 +44,10 @@ route.post('/register', async (req, res) => {
         })
     }
 
-    res.json(body)
+    res.json({registered: true, ...body})
 })
 
-module.exports = route 
+
 // saved for time needed
 // Users.findOne({ role, email })
 //     .then(user => {
@@ -55,3 +55,4 @@ module.exports = route
 //             errors.push({ text: 'Sorry, user already registered. Try new email', type: 'danger' })
 //         }
 //     })
+module.exports = route 
