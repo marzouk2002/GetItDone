@@ -55,19 +55,19 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
         const formData = new FormData()
         Object.entries(formState).map(item => {
-            formData.append(item[0], item[1])
+            return formData.append(item[0], item[1])
         })
 
         formData.append('role', seletected)
         formData.append('file', fileImg)
 
-        axios.post('https://httpbin.org/anything', formData)
+        axios.post('http://localhost:5000/users' + route, formData)
         .then(data => {
-            // if(data.registered) {
+            if(data.registered) {
                 console.log(data)
-            // } else {
-            //     setMsgs(data.errors)
-            // }
+            } else {
+                setMsgs(data.errors)
+            }
         })
         .catch(err => console.error(err))
     }
