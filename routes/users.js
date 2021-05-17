@@ -65,7 +65,7 @@ route.post('/register', upload.single('file'), async (req, res) => {
             file.stream,
             fs.createWriteStream(`${__dirname}/../files/users_pic/${fileName}`)
         );
-        newUser.picture = '/files/users_pic/' + fileName
+        newUser.picture = '/users_pic/' + fileName
     }
 
     if(role ==='admin') {
