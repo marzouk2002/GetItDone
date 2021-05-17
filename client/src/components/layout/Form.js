@@ -54,21 +54,27 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
         const route = register ? 'register' : 'login'
 
-        fetch('http://localhost:5000/users/'+route, {
+        const formData = new FormData()
+        const toSend = new URLSearchParams()
+        Object.entries(formState).map(item => {
+            toSend.append(item[0], item[1])
+        })
+
+        toSend.append('role', seletected)
+
+        fetch('https://httpbin.org/anything', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'},
-            body: JSON.stringify({ 
-                role:seletected,
-                ...formState})
+            // body: toSend
         }).then(res => res.json())
         .then(data => {
-            if(data.registered) {
+            // if(data.registered) {
                 console.log(data)
-            } else {
-                setMsgs(data.errors)
-            }
+            // } else {
+            //     setMsgs(data.errors)
+            // }
         })
         .catch(err => console.error(err))
     }
@@ -79,14 +85,14 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
             <div className="center_stuf">
                 <h2>{ selectedTitle }</h2>
                 { msgs && <Alert msgs={msgs} deleteMsg={deleteMsg} />}
-                <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}  encType="multipart/form-data">
+                <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}>
                     {
                         register &&
                         <div className="center_stuf">
                                 {formState.img && <p>{formState.img.name}</p>}
                             <div className="img-input">
                                 <FontAwesomeIcon className={`user-icon ${seletected}`} icon={faUserAlt}/>
-                                <input onChange={handleChangeForImg} type="file" title="add a picture if you wanted to" name="img"/>
+                                <input onChange={handleChangeForImg} type="file" title="add a picture if you wanted to" accept='image/*' name="img"/>
                             </div>
                         </div>
                         
