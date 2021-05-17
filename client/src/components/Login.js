@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router'
 import Form from './layout/Form'
 import Header from './layout/Header'
 import Options from './layout/Options'
 
 function Login() {
-    const [ selectedTitle, setSelectedTitle ] = useState(null)
+    const location = useLocation()
+    const { msgs, selected }= location.state
+    const [ selectedTitle, setSelectedTitle ] = useState(selected)
 
     return (
         <>
@@ -13,7 +16,7 @@ function Login() {
                     <h1>Login</h1>
             </header>
             <main>
-                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} /> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
+                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} msgsProp={msgs}  /> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
             </main>
         </>
     )

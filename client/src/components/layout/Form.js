@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import Alert from './Alert'
 import axios from 'axios'
 
-function Form({ register, selectedTitle, setSelectedTitle }) {
+function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
     const [fileImg, setFileImg] = useState(null)
-    const [msgs, setMsgs] =useState(null)
+    const [msgs, setMsgs] =useState(msgsProp)
+    let history = useHistory()
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -51,26 +53,34 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const route = register ? 'register' : 'login'
+        history.push({
+                    pathname: '/login',
+                    state: { msgs, selected: selectedTitle}
+                })
 
-        const formData = new FormData()
-        Object.entries(formState).map(item => {
-            return formData.append(item[0], item[1])
-        })
+        // const route = register ? 'register' : 'login'
 
-        formData.append('role', seletected)
-        formData.append('file', fileImg)
+        // const formData = new FormData()
+        // Object.entries(formState).map(item => {
+        //     return formData.append(item[0], item[1])
+        // })
 
-        axios.post('http://localhost:5000/users/' + route, formData)
-        .then(res => {
-            const data = res.data
-            if(data.registered) {
-                setMsgs(data.msgs)
-            } else {
-                setMsgs(data.errors)
-            }
-        })
-        .catch(err => console.error(err))
+        // formData.append('role', seletected)
+        // formData.append('file', fileImg)
+
+        // axios.post('http://localhost:5000/users/' + route, formData)
+        // .then(res => {
+        //     const data = res.data
+        //     if(data.registered) {
+        //         history.push({
+        //             pathname: '/login',
+        //             state: data.msgs
+        //         })
+        //     } else {
+        //         setMsgs(data.errors)
+        //     }
+        // })
+        // .catch(err => console.error(err))
     }
 
     return (
