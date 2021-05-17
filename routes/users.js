@@ -35,7 +35,7 @@ route.post('/register', upload.single('file'), async (req, res) => {
     }
 
     if (role !=='admin') {
-        await Server.findOne({ serverId: serverId })
+        await Server.findOne({ _id: serverId })
             .then(server => {
                 if(!server) errors.push({ text: 'Server Not Found', type: 'danger' })
             })
@@ -75,7 +75,7 @@ route.post('/register', upload.single('file'), async (req, res) => {
         newServer.save()
     } else {
         newUser.serverId = serverId
-        const server = await Server.findOne({ serverId: serverId })
+        const server = await Server.findOne({ _id: serverId })
         server[role+"s"].push({id: newUser.id, auth: false})
         server.save()
     }
