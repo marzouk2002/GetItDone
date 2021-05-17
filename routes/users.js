@@ -63,9 +63,9 @@ route.post('/register', upload.single('file'), async (req, res) => {
         const fileName = newUser.id + file.detectedFileExtension;
         await pipeline(
             file.stream,
-            fs.createWriteStream(`${__dirname}/../files/users-pic/${fileName}`)
+            fs.createWriteStream(`${__dirname}/../files/users_pic/${fileName}`)
         );
-        newUser.picture = fileName
+        newUser.picture = '/files/users_pic/' + fileName
     }
 
     if(role ==='admin') {
