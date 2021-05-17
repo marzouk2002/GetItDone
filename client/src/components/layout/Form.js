@@ -8,6 +8,7 @@ import axios from 'axios'
 function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
+    const [fileImg, setFileImg] = useState(null)
     const [msgs, setMsgs] =useState(null)
 
     useEffect(() => {
@@ -44,10 +45,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
     const handleChangeForImg = (e) => {
         const file = e.target.files[0];
-        setFormState({
-            ...formState,
-            [e.target.name]: file
-        })
+        setFileImg(file)
     }
 
     const handleSubmit = (e) => {
@@ -56,14 +54,14 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
         const route = register ? 'register' : 'login'
 
         const formData = new FormData()
-        const toSend = new URLSearchParams()
         Object.entries(formState).map(item => {
-            toSend.append(item[0], item[1])
+            formData.append(item[0], item[1])
         })
 
-        toSend.append('role', seletected)
+        formData.append('role', seletected)
+        formData.append('file', fileImg)
 
-        axios.post('https://httpbin.org/anything', toSend)
+        axios.post('https://httpbin.org/anything', formData)
         .then(data => {
             // if(data.registered) {
                 console.log(data)
@@ -84,7 +82,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
                     {
                         register &&
                         <div className="center_stuf">
-                                {formState.img && <p>{formState.img.name}</p>}
+                                {fileImg && <p>{fileImg.name}</p>}
                             <div className="img-input">
                                 <FontAwesomeIcon className={`user-icon ${seletected}`} icon={faUserAlt}/>
                                 <input onChange={handleChangeForImg} type="file" title="add a picture if you wanted to" accept='image/*' name="img"/>
