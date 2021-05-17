@@ -44,7 +44,30 @@ route.post('/register', async (req, res) => {
         })
     }
 
-    res.json({registered: true, ...body})
+    // register stuf
+    const newUser = new Users(name, email, role, password)
+    if(role ==='admin') {
+        const newServer = new Server(newUser.id) 
+        newUser.serverId = newServer.id
+        newServer.save()
+    } else {
+        newUser.serverId = serverId
+    }
+
+    bcrypt.genSalt(10, (err, salt) => {
+        if(err) throw err
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if(err) throw err
+
+            newUser.password = hash
+            newUser.save()
+                .then(user => {
+                    const msgs = {text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}
+                    return res.json({registered: true, msgs})
+                })
+                .catch(err => console.log(err))
+        })
+    })
 })
 
 
