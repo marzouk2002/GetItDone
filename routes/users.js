@@ -75,6 +75,9 @@ route.post('/register', upload.single('file'), async (req, res) => {
         newServer.save()
     } else {
         newUser.serverId = serverId
+        const server = await Server.findOne({ serverId: serverId })
+        server[role+"s"].push({id: newUser.id, auth: false})
+        server.save()
     }
 
     bcrypt.genSalt(10, (err, salt) => {
