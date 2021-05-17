@@ -7,11 +7,12 @@ const Server = require('../models/Server')
 
 const route = express.Router()
 
-route.post('/register', async (req, res) => {
+const upload = multer();
+
+route.post('/register', upload.single('file'), async (req, res) => {
     const body = req.body
     const errors = []
-    console.log(req)
-    
+
     //validation 
     const {name, role, email, password, confirm } = body
     const serverId = body?.serverId
@@ -50,55 +51,7 @@ route.post('/register', async (req, res) => {
     const newUser = new Users({name, email, role, password})
 
     // img stuf
-    // if(body.img) {
-    //     // Set Storage Engine
-    //     const storage = multer.diskStorage({
-    //         destination: '../files/users-pic',
-    //         filename: function(req, file, cb) {
-    //             cb(null, newUser.id + path.extname(file.originalname))
-    //         }
-    //     })
-    
-    //     // init upload
-    //     const upload = multer({
-    //         storage: storage,
-    //         limits: {
-    //             fileSize : 100000000
-    //         },
-    //         fileFilter: (req, file, cd) => {
-    //             checkFileType(file, cd)
-    //         }
-    //     }).single('img')
-    
-    //     //check file type
-    //     function checkFileType(file, cb) {
-            
-    //         // Allowed ext
-    //         const filetypes= /jpeg|jpg|png|gif/
-    //         // Check ext
-    //         const extname = filetypes.test(path.extname(file.originalname).toLocaleLowerCase())
-    //         // Check mime
-    //         const mimetype = filetypes.test(file.mimetype)
-    //         if(mimetype && extname) {
-    //             return cb(null, true)
-    //         } else {
-    //             cb('Error: images only')
-    //         }
-    //     }
-
-    //     upload(req, res, err =>{
-    //         if(err)  {
-    //             res.render('index', {
-    //                 msg: err
-    //             })
-    //         }else{
-    //             res.render('index', {
-    //                 msg: 'File Uploaded',
-    //                 file: `uploads/${body.img}`
-    //             })
-    //         }
-    //     })
-    // }
+   
 
     if(role ==='admin') {
         const newServer = new Server({admin: newUser.id}) 
@@ -125,12 +78,4 @@ route.post('/register', async (req, res) => {
     })
 })
 
-
-// saved for time needed
-// Users.findOne({ role, email })
-//     .then(user => {
-//         if(user) {
-//             errors.push({ text: 'Sorry, user already registered. Try new email', type: 'danger' })
-//         }
-//     })
 module.exports = route 

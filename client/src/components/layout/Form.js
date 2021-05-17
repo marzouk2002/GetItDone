@@ -61,10 +61,10 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
         formData.append('role', seletected)
         formData.append('file', fileImg)
 
-        axios.post('http://localhost:5000/users' + route, formData)
+        axios.post('http://localhost:5000/users/' + route, formData)
         .then(data => {
             if(data.registered) {
-                console.log(data)
+                setMsgs(data.msgs)
             } else {
                 setMsgs(data.errors)
             }
