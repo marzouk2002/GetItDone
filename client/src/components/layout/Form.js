@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import Alert from './Alert'
+import axios from 'axios'
 
 function Form({ register, selectedTitle, setSelectedTitle }) {
     const [seletected, setSelected] = useState('')
@@ -62,13 +63,7 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
 
         toSend.append('role', seletected)
 
-        fetch('https://httpbin.org/anything', {
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'},
-            // body: toSend
-        }).then(res => res.json())
+        axios.post('https://httpbin.org/anything', toSend)
         .then(data => {
             // if(data.registered) {
                 console.log(data)
