@@ -1,16 +1,24 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
-const path = require('path')
+
+// pipeline
+const fs = require("fs");
+const { promisify } = require("util");
+const pipeline = promisify(require("stream").pipeline);
+
+// models
 const Users = require('../models/Users')
 const Server = require('../models/Server')
 
 const route = express.Router()
 
+// init multer
 const upload = multer();
 
 route.post('/register', upload.single('file'), async (req, res) => {
     const body = req.body
+    const file = req.file
     const errors = []
 
     //validation 
@@ -51,10 +59,18 @@ route.post('/register', upload.single('file'), async (req, res) => {
     const newUser = new Users({name, email, role, password})
 
     // img stuf
-   
+    if(file) {
+        const fileName = newUser.id + file.detectedFileExtension;
+        await pipeline(
+            file.stream,
+            fs.createWriteStream(`${__dirname}/../files/users-pic/${fileName}`)
+        );
+        newUser.picture = fileName
+    }
 
     if(role ==='admin') {
-        const newServer = new Server({admin: newUser.id}) 
+        const newServer = new Server
+        ({admin: newUser.id}) 
         newUser.serverId = newServer.id
         newServer.save()
     } else {
@@ -70,7 +86,7 @@ route.post('/register', upload.single('file'), async (req, res) => {
             newUser.password = hash
             newUser.save()
                 .then(user => {
-                    const msgs = {text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}
+                    const msgs = [{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
                     return res.json({registered: true, msgs})
                 })
                 .catch(err => console.log(err))

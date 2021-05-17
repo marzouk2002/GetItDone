@@ -62,7 +62,8 @@ function Form({ register, selectedTitle, setSelectedTitle }) {
         formData.append('file', fileImg)
 
         axios.post('http://localhost:5000/users/' + route, formData)
-        .then(data => {
+        .then(res => {
+            const data = res.data
             if(data.registered) {
                 setMsgs(data.msgs)
             } else {
