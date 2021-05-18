@@ -64,7 +64,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         axios.post('http://localhost:5000/users/' + route, formData)
         .then(res => {
             const data = res.data
-            if(data.registered) {
+            if(data.success) {
                 setMsgs(data.msgs)
             } else {
                 setMsgs(data.errors)
