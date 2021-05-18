@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 //components
 import Contact from './components/Contact';
 import Error from './components/Error';
@@ -36,17 +36,16 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
+
   return (
     <ErrorBoundary>
-      <Router>
-        <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/contact" component={Contact}/>
-            <Route component={Error}/>
-        </Switch>
-      </Router>
+      <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/contact" component={Contact}/>
+          <Route component={Error}/>
+      </Switch>
     </ErrorBoundary>
   );
 }

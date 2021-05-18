@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
@@ -11,7 +10,6 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [formState, setFormState] = useState({})
     const [fileImg, setFileImg] = useState(null)
     const [msgs, setMsgs] =useState(msgsProp)
-    let history = useHistory()
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -53,34 +51,26 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        history.push({
-                    pathname: '/login',
-                    state: { msgs, selected: selectedTitle}
-                })
+        const route = register ? 'register' : 'login'
 
-        // const route = register ? 'register' : 'login'
+        const formData = new FormData()
+        Object.entries(formState).map(item => {
+            return formData.append(item[0], item[1])
+        })
 
-        // const formData = new FormData()
-        // Object.entries(formState).map(item => {
-        //     return formData.append(item[0], item[1])
-        // })
+        formData.append('role', seletected)
+        formData.append('file', fileImg)
 
-        // formData.append('role', seletected)
-        // formData.append('file', fileImg)
-
-        // axios.post('http://localhost:5000/users/' + route, formData)
-        // .then(res => {
-        //     const data = res.data
-        //     if(data.registered) {
-        //         history.push({
-        //             pathname: '/login',
-        //             state: data.msgs
-        //         })
-        //     } else {
-        //         setMsgs(data.errors)
-        //     }
-        // })
-        // .catch(err => console.error(err))
+        axios.post('http://localhost:5000/users/' + route, formData)
+        .then(res => {
+            const data = res.data
+            if(data.registered) {
+                setMsgs(data.msgs)
+            } else {
+                setMsgs(data.errors)
+            }
+        })
+        .catch(err => console.error(err))
     }
 
     return (

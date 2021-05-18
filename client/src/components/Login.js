@@ -16,7 +16,7 @@ function Login() {
                     <h1>Login</h1>
             </header>
             <main>
-                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} msgsProp={msgs}  /> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
+                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} msgsProp={msgs}/> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
             </main>
         </>
     )
