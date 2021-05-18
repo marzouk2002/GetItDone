@@ -109,7 +109,7 @@ router.post('/login', async (req, res) => {
     const { email, password, role} = req.body
 
     Users.findOne({ email: email, role: role})
-        .then(user => {
+        .then(async user => {
             const errors= []
             if(!user) {
                 errors.push({msg: 'Sorry, no user with that email!', type: 'danger'})
@@ -143,4 +143,4 @@ router.post('/login', async (req, res) => {
         .catch(err => console.log(err))
 })
 
-module.exports = route 
+module.exports = router

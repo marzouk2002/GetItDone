@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const passport = require('passport');
 
 const app = express()
 
@@ -11,10 +12,18 @@ mongoose.connect(process.env.DB_URI)
 
 app.use(cors())
 
-app.use(express.json())
+// passport 
+require('./config/passport')(passport);
+app.use(passport.initialize());
 
+// Express parser middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+// Users router
 app.use('/users', require('./routes/users'))
 
+// serving files
 app.use(express.static('./files'))
 
 const PORT = process.env.PORT || 5000

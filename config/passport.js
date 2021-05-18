@@ -1,9 +1,9 @@
 require('dotenv').config()
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const Users = require('mongoose').model('users');
+const Users = require('../models/Users')
 
-const PRIV_KEY = process.env.PRIV_KEY
+const PUB_KEY = process.env.PUB_KEY
 
 //options
 const options = {
