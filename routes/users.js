@@ -1,6 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
+const passport = require('passport')
 
 // pipeline
 const fs = require("fs");
@@ -11,17 +12,22 @@ const pipeline = promisify(require("stream").pipeline);
 const Users = require('../models/Users')
 const Server = require('../models/Server')
 
-const route = express.Router()
+const router = express.Router()
 
 // init multer
 const upload = multer();
 
-route.post('/register', upload.single('file'), async (req, res) => {
+// token test
+// router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+//     res.status(200).json({ success: true, msg: "You are successfully authenticated to this route!"});
+// });
+
+// register route
+router.post('/register', upload.single('file'), async (req, res) => {
     const body = req.body
     const file = req.file
     const errors = []
 
-    //validation 
     const {name, role, email, password, confirm } = body
     const serverId = body?.serverId
 
@@ -95,6 +101,11 @@ route.post('/register', upload.single('file'), async (req, res) => {
                 .catch(err => console.log(err))
         })
     })
+})
+
+// login route
+router.post('/login', (req, res) => {
+    const { email, password, role} = req.body
 })
 
 module.exports = route 
