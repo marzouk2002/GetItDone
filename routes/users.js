@@ -138,7 +138,8 @@ router.post('/login', async (req, res) => {
             }
 
             const tokenObject = utils.issueJWT(user);
-            res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires });
+            const msgs=[{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
+            res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires, msgs });
         })
         .catch(err => console.log(err))
 })

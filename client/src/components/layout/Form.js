@@ -66,8 +66,10 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
             const data = res.data
             if(data.success) {
                 setMsgs(data.msgs)
+                console.log(data)
             } else {
                 setMsgs(data.errors)
+                console.log(data)
             }
         })
         .catch(err => console.error(err))
