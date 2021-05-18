@@ -2,7 +2,7 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
 const passport = require('passport')
-const utilts = require('../lib/utilts')
+const utils = require('../lib/utils')
 
 // pipeline
 const fs = require("fs");
@@ -116,7 +116,7 @@ router.post('/login', async (req, res) => {
                 return res.status(404).json({success: false, errors})
             }
 
-            const isValid = utilts.validPassword(password, user.password)
+            const isValid = utils.validPassword(password, user.password)
 
             if(!isValid) {
                 errors.push({msg: 'Sorry, incorrect password', type: 'danger'})
