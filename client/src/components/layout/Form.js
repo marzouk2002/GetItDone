@@ -61,18 +61,18 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         formData.append('role', seletected)
         formData.append('file', fileImg)
 
-        axios.post('http://localhost:5000/users/' + route, formData)
-        .then(res => {
-            const data = res.data
-            if(data.success) {
-                setMsgs(data.msgs)
-                console.log(data)
-            } else {
-                setMsgs(data.errors)
-                console.log(data)
-            }
-        })
-        .catch(err => console.error(err))
+        axios.post(`http://localhost:5000/users/${route}`, formData)
+            .then(res => {
+                const data = res.data
+                if(data.success) {
+                    setMsgs(data.msgs)
+                    console.log(data)
+                } else {
+                    setMsgs(data.errors)
+                    console.log(data)
+                }
+            })
+            .catch(err => console.error(err))
     }
 
     return (

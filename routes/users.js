@@ -105,7 +105,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
 })
 
 // login route
-router.post('/login', async (req, res) => {
+router.post('/login', (req, res) => {
     const { email, password, role} = req.body
 
     Users.findOne({ email: email, role: role})
