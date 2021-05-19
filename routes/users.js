@@ -107,49 +107,12 @@ router.post('/register', upload.single('file'), async (req, res) => {
 router.post('/login', upload.single('file'), async (req, res) => {
     const { email, password, role} = req.body
 
-    // try {
-    //     const user = await Users.findOne({ email: email, role: role})
-
-    //     const errors= []
-    //     if(!user) {
-    //         errors.push({msg: 'Sorry, no user with that email!', type: 'danger'})
-    //         return res.status(404).json({success: false, errors})
-    //     }
-        
-    //     const isValid = utils.validPassword(password, user.password)
-
-    //     if(!isValid) {
-    //         errors.push({msg: 'Sorry, incorrect password', type: 'danger'})
-    //         return res.status(401).json({success: false, errors})
-    //     }
-
-    //     if(role !== 'admin') {
-    //         const server = await Server.findOne({ _id: user.serverId })
-    //         let isAuth
-    //         server[role+'s'].forEach(pers => {
-    //             if(pers.id === user._id) {
-    //                 isAuth = pers.auth
-    //             }
-    //         });
-    //         if(!isAuth) {
-    //             errors.push({msg: "Sorry, the admin didn't accept your request yet", type: 'warning'})
-    //             return res.status(405).json({success: false, errors})
-    //         }
-    //     }
-
-    //     const tokenObject = utils.issueJWT(user);
-    //     const msgs=[{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
-    //     res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires, msgs });
-    // }
-    // catch (err) {
-    //     console.log(err)
-    // }
     try {
         const user = await Users.findOne({ email: email, role: role})
         const errors= []
         if(!user) {
-            errors.push({msg: 'Sorry, no user with that email!', type: 'danger'})
-            return res.status(404).json({success: false, errors})
+            errors.push({text: 'Sorry, no user with that email!', type: 'danger'})
+            return res.json({success: false, errors})
         }
         
         const isValid = await utils.validPassword(password, user.password)
@@ -161,19 +124,21 @@ router.post('/login', upload.single('file'), async (req, res) => {
 
         if(role !== 'admin') {
             const server = await Server.findOne({ _id: user.serverId })
-            let isAuth
+            let isAuth=null
             server[role+'s'].forEach(pers => {
-                if(pers.id === user._id) {
+                if(pers.id === user.id) {
                     isAuth = pers.auth
                 }
             });
             if(!isAuth) {
-                errors.push({msg: "Sorry, the admin didn't accept your request yet", type: 'warning'})
-                return res.status(405).json({success: false, errors})
+                errors.push({text: "Sorry, the admin didn't accept your request yet", type: 'warning'})
+                return res.json({success: false, errors})
             }
         }
         
-        res.json({msg : 'req resived', body: req.body, user, isValid})
+        const tokenObject = utils.issueJWT(user);
+        user.password = password
+        return res.json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires, user});
     }
     catch(err) {
         res.json({msg : 'req not resived', err: err})
