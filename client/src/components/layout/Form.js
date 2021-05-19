@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect, useHistory } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
@@ -6,10 +7,12 @@ import Alert from './Alert'
 import axios from 'axios'
 
 function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
+    const [ redirect, setRedirect ] = useState(false)
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
     const [fileImg, setFileImg] = useState(null)
     const [msgs, setMsgs] =useState(msgsProp)
+    let history= useHistory()
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -65,17 +68,19 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         .then(res => {
             const data = res.data
             if(data.success) {
-                setMsgs(data.msgs)
-                console.log(data)
+                localStorage.setItem('token', data.token)
+                //redux
+                setRedirect(true)
             } else {
                 setMsgs(data.errors)
-                console.log(data)
             }
         })
         .catch(err => console.error(err))
     }
 
     return (
+        <>
+         { redirect && <Redirect to='/'/> }
         <section  className="inner" style= {inner_style}>
             <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div className="center_stuf">
@@ -138,6 +143,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
                 </form>
             </div>
         </section>
+        </>
     )
 }
 
