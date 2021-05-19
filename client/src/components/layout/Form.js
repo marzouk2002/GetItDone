@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router'
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +7,6 @@ import Alert from './Alert'
 import axios from 'axios'
 
 function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
-    const [ redirect, setRedirect ] = useState(false)
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
     const [fileImg, setFileImg] = useState(null)
@@ -72,7 +70,6 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
                 if(!register) {
                     localStorage.setItem('token', data.token)
                     //redux
-                    // setRedirect(true)
                 }
             } else {
                 setMsgs(data.errors)
@@ -82,8 +79,6 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     }
 
     return (
-        <>
-         { redirect && <Redirect to='/'/> }
         <section  className="inner" style= {inner_style}>
             <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div className="center_stuf">
@@ -146,7 +141,6 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
                 </form>
             </div>
         </section>
-        </>
     )
 }
 

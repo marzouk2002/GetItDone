@@ -95,7 +95,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
             newUser.password = hash
             newUser.save()
                 .then(user => {
-                    const msgs = [{text: `Congratulation ${user.name}, you are logged in.`, type: 'success'}]
+                    const msgs = [{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
                     return res.json({success: true, msgs})
                 })
                 .catch(err => console.log(err))
@@ -138,7 +138,7 @@ router.post('/login', upload.single('file'), async (req, res) => {
         
         const tokenObject = utils.issueJWT(user);
         user.password = password
-        const msgs = [{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
+        const msgs = [{text: `Welcome ${user.name}, you are logged in`, type: 'success'}]
         return res.json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires, user, msgs});
     }
     catch(err) {
