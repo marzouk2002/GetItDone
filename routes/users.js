@@ -89,7 +89,6 @@ router.post('/register', upload.single('file'), async (req, res) => {
 
     bcrypt.genSalt(10, (err, salt) => {
         if(err) throw err
-        console.log(newUser)
         bcrypt.hash(newUser.password, salt, (err, hash) => {
             if(err) throw err
 
@@ -105,43 +104,84 @@ router.post('/register', upload.single('file'), async (req, res) => {
 })
 
 // login route
-router.post('/login', (req, res) => {
+router.post('/login', upload.single('file'), async (req, res) => {
     const { email, password, role} = req.body
 
-    Users.findOne({ email: email, role: role})
-        .then(async user => {
-            const errors= []
-            if(!user) {
-                errors.push({msg: 'Sorry, no user with that email!', type: 'danger'})
-                return res.status(404).json({success: false, errors})
-            }
+    // try {
+    //     const user = await Users.findOne({ email: email, role: role})
 
-            const isValid = utils.validPassword(password, user.password)
+    //     const errors= []
+    //     if(!user) {
+    //         errors.push({msg: 'Sorry, no user with that email!', type: 'danger'})
+    //         return res.status(404).json({success: false, errors})
+    //     }
+        
+    //     const isValid = utils.validPassword(password, user.password)
 
-            if(!isValid) {
-                errors.push({msg: 'Sorry, incorrect password', type: 'danger'})
-                return res.status(401).json({success: false, errors})
-            }
+    //     if(!isValid) {
+    //         errors.push({msg: 'Sorry, incorrect password', type: 'danger'})
+    //         return res.status(401).json({success: false, errors})
+    //     }
 
-            if(role !== 'admin') {
-                const server = await Server.findOne({ _id: user.serverId })
-                let isAuth
-                server[role+'s'].forEach(pers => {
-                    if(pers.id === user._id) {
-                        isAuth = pers.auth
-                    }
-                });
-                if(!isAuth) {
-                    errors.push({msg: "Sorry, the admin didn't accept your request yet", type: 'warning'})
-                    return res.status(405).json({success: false, errors})
+    //     if(role !== 'admin') {
+    //         const server = await Server.findOne({ _id: user.serverId })
+    //         let isAuth
+    //         server[role+'s'].forEach(pers => {
+    //             if(pers.id === user._id) {
+    //                 isAuth = pers.auth
+    //             }
+    //         });
+    //         if(!isAuth) {
+    //             errors.push({msg: "Sorry, the admin didn't accept your request yet", type: 'warning'})
+    //             return res.status(405).json({success: false, errors})
+    //         }
+    //     }
+
+    //     const tokenObject = utils.issueJWT(user);
+    //     const msgs=[{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
+    //     res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires, msgs });
+    // }
+    // catch (err) {
+    //     console.log(err)
+    // }
+    try {
+        const user = await Users.findOne({ email: email, role: role})
+        const errors= []
+        if(!user) {
+            errors.push({msg: 'Sorry, no user with that email!', type: 'danger'})
+            return res.status(404).json({success: false, errors})
+        }
+        
+        const isValid = await utils.validPassword(password, user.password)
+
+        if(!isValid) {
+            errors.push({text: 'Sorry, incorrect password', type: 'danger'})
+            return res.json({success: false, errors})
+        }
+
+        if(role !== 'admin') {
+            const server = await Server.findOne({ _id: user.serverId })
+            let isAuth
+            server[role+'s'].forEach(pers => {
+                if(pers.id === user._id) {
+                    isAuth = pers.auth
                 }
+            });
+            if(!isAuth) {
+                errors.push({msg: "Sorry, the admin didn't accept your request yet", type: 'warning'})
+                return res.status(405).json({success: false, errors})
             }
+        }
+        
+        res.json({msg : 'req resived', body: req.body, user, isValid})
+    }
+    catch(err) {
+        res.json({msg : 'req not resived', err: err})
+    }
+})
 
-            const tokenObject = utils.issueJWT(user);
-            const msgs=[{text: `Congratulation ${user.name}, you're now registered. try to login`, type: 'success'}]
-            res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires, msgs });
-        })
-        .catch(err => console.log(err))
+router.post('/test', (req, res) => {
+    res.json({msg : 'req resived'})
 })
 
 module.exports = router
