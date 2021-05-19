@@ -16,4 +16,8 @@ function Header({ classes }) {
     )
 }
 
+Headers.protoTypes = {
+    classes: PropTypes.string.isRequired
+}
+
 export default Header

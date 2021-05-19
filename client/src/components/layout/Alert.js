@@ -1,7 +1,8 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { motion } from 'framer-motion'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 
 function Alert({ msgs, deleteMsg }) {
     return (
@@ -24,6 +25,11 @@ function Alert({ msgs, deleteMsg }) {
             })}
         </div>
     )
+}
+
+Headers.protoTypes = {
+    msgs: PropTypes.array.isRequired,
+    deleteMsg: PropTypes.func.isRequired
 }
 
 export default Alert

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Banner({ status }) {
     return status ? (
@@ -27,6 +28,10 @@ function Banner({ status }) {
             </div>
         </section>
     )
+}
+
+Banner.protoTypes = {
+    status: PropTypes.bool.isRequired
 }
 
 export default Banner
