@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
@@ -46,6 +47,12 @@ function Options({ setSelectedTitle, register }) {
         </section>
     )
 }
+
+Options.protoTypes = {
+    register: PropTypes.bool.isRequired,
+    setSelectedTitle: PropTypes.func.isRequired,
+}
+
 
 const inner_style = {padding: "1rem 0"}
 

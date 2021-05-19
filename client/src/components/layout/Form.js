@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Redirect, useHistory } from 'react-router'
+import { Redirect } from 'react-router'
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
@@ -12,7 +13,6 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [formState, setFormState] = useState({})
     const [fileImg, setFileImg] = useState(null)
     const [msgs, setMsgs] =useState(msgsProp)
-    let history= useHistory()
 
     useEffect(() => {
         switch(selectedTitle) {
@@ -145,6 +145,13 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         </section>
         </>
     )
+}
+
+Form.protoTypes = {
+    register: PropTypes.bool.isRequired,
+    selectedTitle: PropTypes.string.isRequired,
+    setSelectedTitle: PropTypes.func.isRequired,
+    msgsProp: PropTypes.any
 }
 
 const inner_style = {padding: "1rem 0"}
