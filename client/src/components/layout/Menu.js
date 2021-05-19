@@ -7,10 +7,12 @@ import { setInfo, isLogged } from '../../actions'
 
 
 function Menu() {
-    const login = useSelector(state => state.login)
+
     const dispatch = useDispatch()
+    const login = useSelector(state => state.login)
 
     const logoutFunc = () => {
+        localStorage.setItem("token", "")
         dispatch(setInfo(false))
         dispatch(isLogged(false))
     }

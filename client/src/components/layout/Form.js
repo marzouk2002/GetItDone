@@ -76,9 +76,9 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
                 setMsgs(data.msgs)
                 if(!register) {
                     localStorage.setItem('token', data.token)
-                    //redux
-                    dispatch(isLogged(true))
+
                     dispatch(setInfo(data.user))
+                    dispatch(isLogged(true))
                 }
             } else {
                 setMsgs(data.errors)
