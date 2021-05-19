@@ -68,9 +68,12 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         .then(res => {
             const data = res.data
             if(data.success) {
-                localStorage.setItem('token', data.token)
-                //redux
-                setRedirect(true)
+                setMsgs(data.msgs)
+                if(!register) {
+                    localStorage.setItem('token', data.token)
+                    //redux
+                    // setRedirect(true)
+                }
             } else {
                 setMsgs(data.errors)
             }
