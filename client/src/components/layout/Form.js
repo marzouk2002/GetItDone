@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
+import axios from 'axios'
+// font awesome and framer motion
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
+// component
 import Alert from './Alert'
-import axios from 'axios'
+// redux store 
+import { useDispatch } from 'react-redux'
+import { setInfo, isLogged } from '../../actions'
 
 function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [seletected, setSelected] = useState('')
