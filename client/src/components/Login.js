@@ -4,9 +4,6 @@ import { useLocation } from 'react-router'
 import Form from './layout/Form'
 import Header from './layout/Header'
 import Options from './layout/Options'
-// redux store 
-import { useDispatch } from 'react-redux'
-import { setInfo, isLogged } from '../actions'
 
 function Login() {
     const location = useLocation()

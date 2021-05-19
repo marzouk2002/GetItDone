@@ -17,6 +17,8 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [fileImg, setFileImg] = useState(null)
     const [msgs, setMsgs] =useState(msgsProp)
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
         switch(selectedTitle) {
             case('Admin'):
@@ -75,6 +77,8 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
                 if(!register) {
                     localStorage.setItem('token', data.token)
                     //redux
+                    dispatch(isLogged(true))
+                    dispatch(setInfo(data.user))
                 }
             } else {
                 setMsgs(data.errors)
