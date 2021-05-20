@@ -10,6 +10,7 @@ import Alert from './Alert'
 // redux store 
 import { useDispatch } from 'react-redux'
 import { setInfo, isLogged } from '../../actions'
+import { useHistory } from 'react-router';
 
 function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [seletected, setSelected] = useState('')
@@ -18,16 +19,17 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const [msgs, setMsgs] =useState(msgsProp)
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
-        switch(selectedTitle) {
-            case('Admin'):
+        switch(selectedTitle.toLowerCase()) {
+            case('admin'):
                 setSelected('admin')
                 break
-            case('Project Manager'):
+            case('project Manager'):
                 setSelected('manager')
                 break
-            case('Developer'):
+            case('developer'):
                 setSelected('developer')
                 break
             default:
@@ -73,8 +75,16 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         .then(res => {
             const data = res.data
             if(data.success) {
-                setMsgs(data.msgs)
-                if(!register) {
+                if(register) {
+                    history.push({
+                        pathname:"/login",
+                        state: {
+                            msgs: data.msgs,
+                            selected: seletected
+                        }
+                    })
+                } else {
+                    setMsgs(data.msgs)
                     localStorage.setItem('token', data.token)
                     dispatch(setInfo(data.user))
                     dispatch(isLogged(true))
