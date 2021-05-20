@@ -1,18 +1,25 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import ProfileCard  from './ProfileCard'
-// redux 
-import { useSelector } from 'react-redux'
+// redux store 
+import { useSelector, useDispatch } from 'react-redux'
+import { setInfo, isLogged } from '../../actions'
 
 
 function Menu() {
 
     const login = useSelector(state => state.login)
+    const dispatch = useDispatch()
 
     const handleCloseMenu = (e) => {
         e.preventDefault()
-
         document.body.classList.remove('is-menu-visible')
+    }
+
+    const handleLogout = (e) => {
+        localStorage.removeItem('token')
+        dispatch(setInfo(false))
+        dispatch(isLogged(false))
     }
 
     return (
@@ -27,7 +34,7 @@ function Menu() {
                     {
                     login ?  
                         <>
-                            <li><Link to="/" className="button fit">Log Out</Link></li>
+                            <li><Link to="/" onClick={handleLogout} className="button fit">Log Out</Link></li>
                             <li><Link to="/profile" className="button primary fit"><ProfileCard /></Link></li>
                         </> : 
                         <>
@@ -37,7 +44,7 @@ function Menu() {
                     }
                 </ul>
             </div>
-            <a class="close" href="#menu">Close</a>
+            <a className="close" href="#menu">Close</a>
         </nav>
     )
 }

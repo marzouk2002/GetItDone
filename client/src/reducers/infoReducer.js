@@ -4,7 +4,7 @@ const infoReducer = (state = null, action) => {
         case 'SET_INFO':
             return action.payload
         case 'LOGOUT':
-            return false
+            return null
         default :
             return state
     }

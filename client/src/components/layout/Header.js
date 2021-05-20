@@ -1,5 +1,4 @@
 import React from 'react';
-import Menu from './Menu';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +18,6 @@ function Header({ classes }) {
                     <a onClick={showMenu} href="#menu">Menu</a>
                 </nav>
             </header>
-            <Menu/>
         </>
     )
 }

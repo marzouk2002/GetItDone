@@ -1,21 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router'
 import Banner from './layout/Banner'
 import Footer from './layout/Footer'
 
 
 function Home() {
-    const location = useLocation()
     
-    const logoutFunc = () => {
-        localStorage.removeItem('token')
-    }
-    console.log(location)
-    if(location.state ) {
-        logoutFunc()
-    }
-
     return (
         <>
         {/* <!-- Banner --> */}

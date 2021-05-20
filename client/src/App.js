@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
 import Header from './components/layout/Header';
+import Menu from './components/layout/Menu';
 //style
 import './App.css'
 
@@ -51,6 +52,7 @@ function App() {
               <Route component={Error}/>
           </Switch>
         </div>
+        <Menu/>
       </Router>
     </ErrorBoundary>
   );
