@@ -16,6 +16,7 @@ import './App.css'
 // redux store 
 import { useDispatch } from 'react-redux'
 import { setInfo, isLogged } from './actions'
+import About from './components/About';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -76,6 +77,7 @@ function App() {
               <Route path="/register" component={Register}/>
               <Route path="/login" component={Login}/>
               <Route path="/contact" component={Contact}/>
+              <Route path="/about" component={About}/>
               <Route component={Error}/>
           </Switch>
         </div>
