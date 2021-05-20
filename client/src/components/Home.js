@@ -73,8 +73,8 @@ function Home() {
                         </header>
                         <p style={{marginBottom: '1rem'}}>Get It Done is a project management system. Its goal is to help teams getting work done as fast and effectively as possible. And it does that by letting each member know what he should do and when to do it. By giving employers and project managers the ability to assign tasks to developers and track their progress.</p>
                         <ul className="actions">
-                            <li><a href="/about" className="button primary">Reade More</a></li>
-                            <li><a href="/register" className="button next">Get Started</a></li>
+                            <li><Link to="/about" className="button primary">Reade More</Link></li>
+                            <li><Link to="/register" className="button next">Get Started</Link></li>
                         </ul>
                     </div>
                 </section>

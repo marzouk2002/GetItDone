@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Form from './layout/Form'
 import Options from './layout/Options'
 
@@ -13,7 +14,7 @@ function Register() {
                 </header>
                 { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={true}/> : <Options register={true} setSelectedTitle={setSelectedTitle}/> } 
                 <footer className='center_stuf'>
-                    <p>Have an acoount? <a href='/login'>login now!</a></p>
+                    <p>Have an acoount? <Link to='/login'>login now!</Link></p>
                 </footer>
             </main>
         </>

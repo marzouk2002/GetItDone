@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router'
+import { Link } from 'react-router-dom'
 // components
 import Form from './layout/Form'
 import Options from './layout/Options'
@@ -19,7 +20,7 @@ function Login() {
                 { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} msgsProp={msgs}/> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
             </main>
             <footer className='center_stuf'>
-                <p>No acoount? <a href='/register'>Create one now!</a></p>
+                <p>No acoount? <Link to='/register'>Create one now!</Link></p>
             </footer>
         </>
     )

@@ -20,7 +20,7 @@ function Menu() {
                 {
                    login ?  
                     <>
-                        <li><Link to={{ pathname:"/", state:true }} className="button fit">Log Out</Link></li>
+                        <li><Link to="/" className="button fit">Log Out</Link></li>
                         <li><Link to="/profile" className="button primary fit"><ProfileCard /></Link></li>
                     </> : 
                     <>

@@ -251,7 +251,6 @@
 			}, 350);
 
 			return true;
-
 		};
 
 		$menu._show = function() {
@@ -275,26 +274,26 @@
 
 		};
 
-		$menuInner
-			.on('click', function(event) {
-				event.stopPropagation();
-			})
-			.on('click', 'a', function(event) {
+		// $menuInner
+		// 	.on('click', function(event) {
+		// 		event.stopPropagation();
+		// 	})
+			// .on('click', 'a', function(event) {
 
-				var href = $(this).attr('href');
+			// 	// var href = $(this).attr('href');
 
-				event.preventDefault();
-				event.stopPropagation();
+			// 	// event.preventDefault();
+			// 	// event.stopPropagation();
 
-				// Hide.
-					$menu._hide();
+			// 	// Hide.
+			// 		$menu._hide();
 
-				// Redirect.
-					window.setTimeout(function() {
-						window.location.href = href;
-					}, 250);
+			// 	// Redirect.
+			// 		// window.setTimeout(function() {
+			// 		// 	window.location.href = href;
+			// 		// }, 250);
 
-			});
+			// });
 
 		$menu
 			.appendTo($body)
