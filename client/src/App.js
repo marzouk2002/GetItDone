@@ -41,14 +41,16 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <Header classes='alt'/>
-        <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/contact" component={Contact}/>
-            <Route component={Error}/>
-        </Switch>
+        <div id="wrapper">
+          <Header classes='alt'/>
+          <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/register" component={Register}/>
+              <Route path="/login" component={Login}/>
+              <Route path="/contact" component={Contact}/>
+              <Route component={Error}/>
+          </Switch>
+        </div>
       </Router>
     </ErrorBoundary>
   );
