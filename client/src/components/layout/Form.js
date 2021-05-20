@@ -5,8 +5,6 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
-// component
-import Alert from './Alert'
 // redux store 
 import { useDispatch } from 'react-redux'
 import { setInfo, isLogged } from '../../actions'
@@ -21,7 +19,20 @@ function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
     const history = useHistory()
 
     useEffect(() => {
-        setSelected(selectedTitle.toLowerCase())
+        switch(selectedTitle.toLowerCase()) {
+            case 'admin':
+                setSelected('admin')
+                break
+            case 'project manager':
+                setSelected('manager')
+                break
+            case 'developer':
+                setSelected('developer')
+                break
+            default:
+                setSelected('')
+            
+        }
     }, [selectedTitle, register])
 
     const goBack = () => {
@@ -151,7 +162,8 @@ Form.protoTypes = {
     register: PropTypes.bool.isRequired,
     selectedTitle: PropTypes.string.isRequired,
     setSelectedTitle: PropTypes.func.isRequired,
-    msgsProp: PropTypes.any
+    msgs: PropTypes.any,
+    setMsgs: PropTypes.func
 }
 
 const inner_style = {padding: "1rem 0"}

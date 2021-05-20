@@ -20,7 +20,7 @@ function Register() {
                         <h1>Create an account</h1>
                 </header>
                 { msgs && <Alert msgs={msgs} deleteMsg={deleteMsg} />}
-                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={true}/> : <Options register={true} setSelectedTitle={setSelectedTitle}/> } 
+                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={true} msgs={msgs} setMsgs={setMsgs}/> : <Options register={true} setSelectedTitle={setSelectedTitle}/> } 
                 <footer className='center_stuf'>
                     <p>Have an acoount? <Link to='/login'>login now!</Link></p>
                 </footer>

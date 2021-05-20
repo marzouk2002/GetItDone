@@ -83,8 +83,9 @@ p {
 }
 
 .alerts-wrap {
-  width: 60%;
+  width: 50%;
   font-size: 1.2rem;
+  margin: auto;
   margin-bottom: 1rem;
 }
 
@@ -96,6 +97,7 @@ p {
   font-weight: 600;
   padding: 0.5rem;
   border-radius: 100vmax;
+
   margin-bottom: 0.7rem;
 }
 
@@ -161,6 +163,7 @@ p {
   margin: 0;
   height: auto;
   line-height: normal;
+  font-weight: 700;
   padding: 0.1rem;
   text-align: left;
 }

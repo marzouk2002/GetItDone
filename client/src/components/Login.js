@@ -23,7 +23,7 @@ function Login() {
                         <h1>Login</h1>
                 </header>
                 { msgs && <Alert msgs={msgs} deleteMsg={deleteMsg} />}
-                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} msgsProp={msgs}/> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
+                { selectedTitle ? <Form selectedTitle={selectedTitle}  setSelectedTitle={setSelectedTitle} register={false} msgs={msgs} setMsgs={setMsgs}/> : <Options register={false} setSelectedTitle={setSelectedTitle}/> } 
             </main>
             <footer className='center_stuf'>
                 <p>No acoount? <Link to='/register'>Create one now!</Link></p>
