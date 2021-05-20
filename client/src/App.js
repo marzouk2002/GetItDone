@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 //components
 import Contact from './components/Contact';
 import Error from './components/Error';
@@ -8,8 +9,13 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Header from './components/layout/Header';
 import Menu from './components/layout/Menu';
+
 //style
 import './App.css'
+
+// redux store 
+import { useDispatch } from 'react-redux'
+import { setInfo, isLogged } from './actions'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -38,6 +44,27 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(()=> {
+    const token = localStorage.getItem('token')
+    if(!token) return
+    fetch('http://localhost:5000/users/valideToken', {
+     headers: {
+       "Authorization": token
+     }
+    }).then(res => {
+
+      if(res.status >= 400) throw new Error({error:"Unauthorized"})
+      return res.json()
+
+    }).then(data => {
+
+      dispatch(setInfo(data.user))
+      dispatch(isLogged(true))
+
+    }).catch(err => console.log(err))
+  })
 
   return (
     <ErrorBoundary>
