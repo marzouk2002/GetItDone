@@ -1,9 +1,21 @@
 import React from 'react'
 
-export default function About() {
+function About() {
     return (
-        <div>
-            about page
-        </div>
+        <>
+        <main>
+            <header className="major" style={titleStyle}>
+                    <h1>About</h1>
+            </header>
+        </main>
+        
+    </>
     )
 }
+
+const titleStyle = {
+    margin: '5vmin auto',
+    textAlign: 'center'
+}
+
+export default About
