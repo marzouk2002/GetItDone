@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Banner({ status }) {
     return status ? (
@@ -11,7 +12,7 @@ function Banner({ status }) {
                 <div className="content">
                     <p>The one and all productivenis platform.</p>
                     <ul className="actions">
-                        <li><a href="/register" className="button next scrolly">Get Started</a></li>
+                        <li><Link to="/register" className="button next scrolly">Get Started</Link></li>
                     </ul>
                 </div>
             </div>
