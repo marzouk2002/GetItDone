@@ -132,3 +132,40 @@ p {
 .alert-svg:hover {
   color: #53e3fb;
 }
+
+.profile-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0.4rem;
+}
+
+.profile-card .image {
+  margin-left: 0.6rem;
+  display: grid;
+  place-items: center;
+}
+
+.profile-card .image img {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-card .name {
+  margin: auto;
+}
+
+.profile-card .name p {
+  margin: 0;
+  height: auto;
+  line-height: normal;
+  padding: 0.1rem;
+  text-align: left;
+}
+
+.profile-card .name .email {
+  text-transform: lowercase;
+  font-family: sans-serif;
+}

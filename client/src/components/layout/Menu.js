@@ -34,8 +34,8 @@ function Menu() {
                     {
                     login ?  
                         <>
+                            <li><ProfileCard /></li>
                             <li><Link to="/" onClick={handleLogout} className="button fit">Log Out</Link></li>
-                            <li><Link to="/profile" className="button primary fit"><ProfileCard /></Link></li>
                         </> : 
                         <>
                             <li><Link to="/register" className="button primary fit">Get Started</Link></li>

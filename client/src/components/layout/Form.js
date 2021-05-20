@@ -22,19 +22,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
     const history = useHistory()
 
     useEffect(() => {
-        switch(selectedTitle.toLowerCase()) {
-            case('admin'):
-                setSelected('admin')
-                break
-            case('project Manager'):
-                setSelected('manager')
-                break
-            case('developer'):
-                setSelected('developer')
-                break
-            default:
-                setSelected('')
-        }
+        setSelected(selectedTitle.toLowerCase())
     }, [selectedTitle, register])
 
     const goBack = () => {
