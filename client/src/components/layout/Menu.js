@@ -2,20 +2,12 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import ProfileCard  from './ProfileCard'
 // redux 
-import { useSelector, useDispatch } from 'react-redux'
-import { setInfo, isLogged } from '../../actions'
+import { useSelector } from 'react-redux'
 
 
 function Menu() {
 
-    const dispatch = useDispatch()
     const login = useSelector(state => state.login)
-
-    const logoutFunc = () => {
-        localStorage.setItem("token", "")
-        dispatch(setInfo(false))
-        dispatch(isLogged(false))
-    }
 
     return (
         <nav id="menu">
@@ -28,7 +20,7 @@ function Menu() {
                 {
                    login ?  
                     <>
-                        <li><Link to="/" onClick={logoutFunc} className="button fit">Log Out</Link></li>
+                        <li><Link to={{ pathname:"/", state:true }} className="button fit">Log Out</Link></li>
                         <li><Link to="/profile" className="button primary fit"><ProfileCard /></Link></li>
                     </> : 
                     <>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './layout/Footer'
-import Header from './layout/Header'
 import emailjs from 'emailjs-com';
 
 // initialise emailjs
@@ -45,7 +44,6 @@ function Contact() {
 
     return (
         <>
-            <Header classes='alt'/>
             <header className="major" style={titleStyle}>
                 <h1>Reach out to us</h1>
             </header>

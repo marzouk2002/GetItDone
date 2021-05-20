@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Form from './layout/Form'
-import Header from './layout/Header'
 import Options from './layout/Options'
 
 function Register() {
@@ -8,7 +7,6 @@ function Register() {
 
     return (
         <>
-            <Header/>
             <main>
                 <header className="major" style={titleStyle}>
                         <h1>Create an account</h1>

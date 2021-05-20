@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import Banner from './layout/Banner'
 import Footer from './layout/Footer'
-import Header from './layout/Header'
+
 
 function Home() {
+    const location = useLocation()
+    
+    const logoutFunc = () => {
+        localStorage.removeItem('token')
+    }
+    console.log(location)
+    if(location.state ) {
+        logoutFunc()
+    }
+
     return (
         <>
-        {/* <!-- Header --> */}
-            <Header classes="alt"/>
-
         {/* <!-- Banner --> */}
             <Banner status={true}/>
 
@@ -17,6 +25,7 @@ function Home() {
         <div id="main">
 
             {/* <!-- One --> */}
+
                 <section id="one" className="tiles">
                     <article>
                         <span className="image">

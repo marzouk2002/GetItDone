@@ -16,7 +16,7 @@ function Header({ classes }) {
     )
 }
 
-Headers.protoTypes = {
+Header.protoTypes = {
     classes: PropTypes.string.isRequired
 }
 

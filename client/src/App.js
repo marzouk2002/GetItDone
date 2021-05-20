@@ -6,6 +6,7 @@ import Error from './components/Error';
 import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
+import Header from './components/layout/Header';
 //style
 import './App.css'
 
@@ -40,6 +41,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
+        <Header classes='alt'/>
         <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/register" component={Register}/>

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router'
 // components
 import Form from './layout/Form'
-import Header from './layout/Header'
 import Options from './layout/Options'
 
 function Login() {
@@ -13,7 +12,6 @@ function Login() {
 
     return (
         <>
-            <Header/>
             <main>
                 <header className="major" style={titleStyle}>
                         <h1>Login</h1>
