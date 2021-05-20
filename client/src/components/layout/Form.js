@@ -12,11 +12,10 @@ import { useDispatch } from 'react-redux'
 import { setInfo, isLogged } from '../../actions'
 import { useHistory } from 'react-router';
 
-function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
+function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
     const [seletected, setSelected] = useState('')
     const [formState, setFormState] = useState({})
     const [fileImg, setFileImg] = useState(null)
-    const [msgs, setMsgs] =useState(msgsProp)
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -29,9 +28,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
         setSelectedTitle(null)
     }
 
-    const deleteMsg = (target) => {
-        setMsgs(msgs.filter((msg, index)=>index!==target))
-    }
+
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -89,7 +86,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgsProp }) {
             <div className="button small" onClick={goBack} style={{position: 'absolute'}}><FontAwesomeIcon icon={faChevronLeft}/> Back</div>
             <div className="center_stuf">
                 <h2>{ selectedTitle }</h2>
-                { msgs && <Alert msgs={msgs} deleteMsg={deleteMsg} />}
+                
                 <form style={{width:"80%" }} className="center_stuf" onSubmit={handleSubmit}>
                     {
                         register &&
