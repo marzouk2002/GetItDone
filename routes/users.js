@@ -19,7 +19,7 @@ const router = express.Router()
 const upload = multer();
 
 // token test
-router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.status(200).json({ success: true, msg: "You are successfully authenticated to this route!"});
 });
 
@@ -146,8 +146,8 @@ router.post('/login', upload.single('file'), async (req, res) => {
     }
 })
 
-router.post('/test', (req, res) => {
-    res.json({msg : 'req resived'})
+router.get('/valideToken', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.json({user: req.user})
 })
 
 module.exports = router
