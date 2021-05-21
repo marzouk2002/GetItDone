@@ -196,12 +196,12 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
     }
 
     Object.entries(body).map(item => {
-        if(item[0]=='file') return
-        user[item[0]]=item[0]
+        if(item[0]=='file' || item[0]=='confirm') return
+        user[item[0]]=item[1]
         if(item[0]=='password') {
             bcrypt.genSalt(10, (err, salt) => {
                 if(err) throw err
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                bcrypt.hash(user.password, salt, (err, hash) => {
                     if(err) throw err
         
                     user.password = hash
