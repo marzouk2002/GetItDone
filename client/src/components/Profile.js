@@ -31,29 +31,14 @@ function Profile() {
              return formData.append(item[0], item[1])
          })
  
-         formData.append('role', seletected)
+         formData.append('id', userInfo._id)
          formData.append('file', fileImg) 
  
-         axios.post(`http://localhost:5000/users/${route}`, formData)
+         axios.post('http://localhost:5000/users/update', formData)
          .then(res => {
              const data = res.data
              if(data.success) {
-                 if(register) {
-                     history.push({
-                         pathname:"/login",
-                         state: {
-                             msgs: data.msgs,
-                             selected: seletected
-                         }
-                     })
-                 } else {
-                     setMsgs(data.msgs)
-                     localStorage.setItem('token', data.token)
-                     dispatch(setInfo(data.user))
-                     dispatch(isLogged(true))
-                 }
-             } else {
-                 setMsgs(data.errors)
+                 
              }
          })
          .catch(err => console.error(err))
@@ -92,35 +77,21 @@ function Profile() {
                     <h2 style={{marginBottom: '1rem' }}>Change some thing?<sub style={subStyle}>* fill only the fields you would like to change (this include the image above)</sub></h2>
                     <form style={{width:"80%", margin: 'auto' }} className="center_stuf" onSubmit={handleSubmit}>
                         <div className="fields">
-                                <div initial={{opacity:0, y: 20}}
-                                            animate={{opacity: 1, y:0}}
-                                            transition={{delay: 0.2, duration: 0.8}} className="field">
-                                    <label htmlFor="name">Server Id</label>
-                                    <input onChange={handleChange} type="text" name="serverId" required/>
-                                </div> 
-                                <div initial={{opacity:0, y: 20}}
-                                            animate={{opacity: 1, y:0}}
-                                            transition={{delay: 0.3, duration: 0.8}} className="field">
-                                    <label htmlFor="name">Name</label>
-                                    <input onChange={handleChange} type="text" name="name" required/>
-                                </div>
-                            <div initial={{opacity:0, y: 20}}
-                                        animate={{opacity: 1, y:0}}
-                                        transition={{delay: 0.4, duration: 0.8}} className="field">
+                            <div className="field">
+                                <label htmlFor="name">Name</label>
+                                <input onChange={handleChange} type="text" name="name"/>
+                            </div>
+                            <div className="field">
                                 <label htmlFor="email">Email</label>
-                                <input onChange={handleChange} type="email" name="email" required/>
+                                <input onChange={handleChange} type="email" name="email"/>
                             </div>
-                            <div initial={{opacity:0, y: 20}}
-                                        animate={{opacity: 1, y:0}}
-                                        transition={{delay: 0.5, duration: 0.8}} className="field">
+                            <div className="field">
                                 <label htmlFor="password">Password</label>
-                                <input onChange={handleChange} type="password" name="password" required/>
+                                <input onChange={handleChange} type="password" name="password"/>
                             </div>
-                            <div initial={{opacity:0, y: 20}}
-                                        animate={{opacity: 1, y:0}}
-                                        transition={{delay: 0.6, duration: 0.8}} className="field">
+                            <div className="field">
                                 <label htmlFor="confirm">Confirm password</label>
-                                <input onChange={handleChange} type="password" name="confirm" required/>
+                                <input onChange={handleChange} type="password" name="confirm"/>
                             </div>
                         </div>
                         <input type="submit" value='Update' className="primary" />
