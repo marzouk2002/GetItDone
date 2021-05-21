@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router'
+// components
+import Alert from './layout/Alert'
 // redux
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setInfo, isLogged } from '../../actions'
 // axios
 import axios from 'axios'
 
 function Profile() {
     const userInfo = useSelector(state => state.userInfo)
     const [formState, setFormState] = useState({})
-
+    const [msgs, setMsgs] = useState(null)
     const [fileImg, setFileImg] = useState(null)
+
+    const dispatch = useDispatch()
+
+    const deleteMsg = (target) => {
+        setMsgs(msgs.filter((msg, index)=>index!==target))
+    }
     
     const handleChange = (e) => {
         const value = e.target.value;
@@ -37,7 +46,13 @@ function Profile() {
             headers: { Authorization: token }
         })
         .then(res => {
-            console.log(res)
+            const { user, msgs, errors, success } = res.data
+            if(success) {
+                setMsgs(msgs)
+                dispatch(setInfo(user))
+            } else {
+                setMsgs(errors)
+            }
         })
         .catch(err => console.error(err))
      }
@@ -73,6 +88,7 @@ function Profile() {
                 </div >
                 <div  style={{margin: '3rem 0' }}>
                     <h2 style={{marginBottom: '1rem' }}>Change some thing?<sub style={subStyle}>* fill only the fields you would like to change (this include the image above)</sub></h2>
+                    { msgs && <Alert msgs={msgs} deleteMsg={deleteMsg} />}
                     <form style={{width:"80%", margin: 'auto' }} className="center_stuf" onSubmit={handleSubmit}>
                         <div className="fields">
                             <div className="field">
