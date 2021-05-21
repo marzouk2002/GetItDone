@@ -32,8 +32,10 @@ function Profile() {
         })
  
         formData.append('file', fileImg) 
- 
-        axios.post('http://localhost:5000/users/update', formData)
+        const token = localStorage.getItem('token')
+        axios.post('http://localhost:5000/users/update', formData,{
+            headers: { Authorization: token }
+        })
         .then(res => {
             console.log(res)
         })
@@ -96,10 +98,6 @@ function Profile() {
             </section>
         </main>
     )
-}
-const titleStyle = {
-    margin: '5vmin auto',
-    textAlign: 'center'
 }
 
 const inner_style = {padding: "1rem 0"}

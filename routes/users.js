@@ -40,18 +40,18 @@ router.post('/register', upload.single('file'), async (req, res) => {
     if (password.length < 6) {
         errors.push({ text: 'Passwords should be at least 6 characters', type: 'warning' })
     }
+    
+    Users.findOne({ email: email, role: role })
+        .then(user => {
+            if(user) {
+                errors.push({ text: 'Sorry, user already registered. Try a new email', type: 'danger' })
+            }
+    })
 
     if (role !=='admin') {
-        await Server.findOne({ _id: serverId })
+        Server.findOne({ _id: serverId })
             .then(server => {
                 if(!server) errors.push({ text: 'Server Not Found', type: 'danger' })
-            })
-    } else {
-        await Users.findOne({ email: email })
-            .then(user => {
-                if(user) {
-                    errors.push({ text: 'Sorry, user already registered. Try new email', type: 'danger' })
-                }
             })
     }
 
@@ -149,5 +149,75 @@ router.post('/login', upload.single('file'), async (req, res) => {
 router.get('/valideToken', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({user: req.user})
 })
+
+router.post('/update', passport.authenticate('jwt', { session: false }), upload.single('file'), async (req, res) => {
+    const user = req.user
+    const body = req.body
+    const file = req.file
+    const errors = []
+
+    const {email, password, confirm } = body
+    const serverId = body?.serverId
+
+    //Validation
+    if (password) {
+        if (confirm !== password) {
+            errors.push({ text: 'Sorry, passwords do not match', type: 'warning' })
+        }
+    
+        if (password.length < 6) {
+            errors.push({ text: 'Passwords should be at least 6 characters', type: 'warning' })
+        }
+    }
+
+    if(email) {
+        Users.findOne({ email: email, role: user.role })
+            .then(user => {
+                if(user) {
+                    errors.push({ text: 'Sorry, user already registered. Try a new email', type: 'danger' })
+                }
+        })
+    }
+
+    if(errors.length > 0) {
+        return res.json({
+            success: false,
+            errors
+        })
+    }
+
+    if(file) {
+        const fileName = user._id + file.detectedFileExtension;
+        await pipeline(
+            file.stream,
+            fs.createWriteStream(`${__dirname}/../files/users_pic/${fileName}`)
+        );
+        user.picture = '/users_pic/' + fileName
+    }
+
+    Object.entries(body).map(item => {
+        if(item[0]=='file') return
+        user[item[0]]=item[0]
+        if(item[0]=='password') {
+            bcrypt.genSalt(10, (err, salt) => {
+                if(err) throw err
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if(err) throw err
+        
+                    user.password = hash
+                })
+            })
+        }
+    })
+                   
+    user.save()
+        .then(user => {
+            const msgs = [{text: `Congratulation ${user.name}, Everything updated.`, type: 'success'}]
+            return res.json({success: true, msgs, user})
+        })
+        .catch(err => console.log(err))
+})
+
+
 
 module.exports = router
