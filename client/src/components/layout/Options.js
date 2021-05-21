@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+// font awesome and framer
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'

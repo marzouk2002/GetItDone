@@ -30,6 +30,19 @@ p {
   border-radius: 50%;
 }
 
+.user-icon-small {
+  color: white;
+  font-size: 2.5rem;
+  padding: 0.5rem;
+  margin: 0.2rem auto;
+}
+
+.user-icon-large {
+  font-size: 2.5rem;
+  padding: 0.5rem;
+  margin: 0.2rem auto;
+}
+
 .user-icon.admin {
   background-color: rgba(255, 0, 0, 0.8);
 }
