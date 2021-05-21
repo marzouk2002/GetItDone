@@ -10,12 +10,7 @@ function Profile() {
     const [formState, setFormState] = useState({})
 
     const [fileImg, setFileImg] = useState(null)
-
-    const handleChangeForImg = (e) => {
-        const file = e.target.files[0];
-        setFileImg(file)
-    }
-
+    
     const handleChange = (e) => {
         const value = e.target.value;
         setFormState({
@@ -24,30 +19,31 @@ function Profile() {
         })
     }
 
+    const handleChangeForImg = (e) => {
+        const file = e.target.files[0];
+        setFileImg(file)
+    }
+    
     const handleSubmit = (e) => {
         e.preventDefault()
-         const formData = new FormData()
-         Object.entries(formState).map(item => {
-             return formData.append(item[0], item[1])
-         })
+        const formData = new FormData()
+        Object.entries(formState).map(item => {
+            return formData.append(item[0], item[1])
+        })
  
-         formData.append('id', userInfo._id)
-         formData.append('file', fileImg) 
+        formData.append('file', fileImg) 
  
-         axios.post('http://localhost:5000/users/update', formData)
-         .then(res => {
-             const data = res.data
-             if(data.success) {
-                 
-             }
-         })
-         .catch(err => console.error(err))
+        axios.post('http://localhost:5000/users/update', formData)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => console.error(err))
      }
 
     return (
         <main>
             { !userInfo && <Redirect to={{pathname: "/login", state: {msgs:[{text: 'Sorry you should logged in to access that page',type:"danger" }]}}} /> }
-            <header className="major" style={titleStyle}>
+            <header className="major" style={{marginLeft: '10%'}}>
                     <h1>Profile</h1>
             </header>
             <section className="inner" style= {inner_style}>
