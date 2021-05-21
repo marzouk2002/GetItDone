@@ -9,6 +9,8 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Header from './components/layout/Header';
 import Menu from './components/layout/Menu';
+import About from './components/About';
+import Profile from './components/Profile';
 
 //style
 import './App.css'
@@ -16,7 +18,6 @@ import './App.css'
 // redux store 
 import { useDispatch } from 'react-redux'
 import { setInfo, isLogged } from './actions'
-import About from './components/About';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -78,6 +79,7 @@ function App() {
               <Route path="/login" component={Login}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/about" component={About}/>
+              <Route path="/profile" component={Profile}/>
               <Route component={Error}/>
           </Switch>
         </div>
