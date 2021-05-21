@@ -61,7 +61,7 @@ function App() {
       return res.json()
 
     }).then(data => {
-
+      
       dispatch(setInfo(data.user))
       dispatch(isLogged(true))
 

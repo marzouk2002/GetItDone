@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 // font awesome and framer motion
@@ -8,7 +9,6 @@ import { motion } from 'framer-motion'
 // redux store 
 import { useDispatch } from 'react-redux'
 import { setInfo, isLogged } from '../../actions'
-import { useHistory } from 'react-router';
 
 function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
     const [seletected, setSelected] = useState('')
