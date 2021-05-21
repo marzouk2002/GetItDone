@@ -116,7 +116,6 @@ router.post('/login', upload.single('file'), async (req, res) => {
         }
         
         const isValid = await utils.validPassword(password, user.password)
-
         if(!isValid) {
             errors.push({text: 'Sorry, incorrect password', type: 'danger'})
             return res.json({success: false, errors})
@@ -157,7 +156,6 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
     const errors = []
 
     const {email, password, confirm } = body
-    const serverId = body?.serverId
 
     //Validation
     if (password) {
@@ -194,19 +192,18 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
         );
         user.picture = '/users_pic/' + fileName
     }
-
     Object.entries(body).map(item => {
         if(item[0]=='file' || item[0]=='confirm') return
-        user[item[0]]=item[1]
+        
         if(item[0]=='password') {
             bcrypt.genSalt(10, (err, salt) => {
                 if(err) throw err
-                bcrypt.hash(user.password, salt, (err, hash) => {
-                    if(err) throw err
-        
-                    user.password = hash
+                bcrypt.hash(item[1], salt, (err, hash) => {
+                    user[item[0]] = hash
                 })
             })
+        } else {
+            user[item[0]]=item[1]
         }
     })
                    

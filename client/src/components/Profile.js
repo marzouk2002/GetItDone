@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import Alert from './layout/Alert'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { setInfo, isLogged } from '../../actions'
+import { setInfo } from '../actions'
 // axios
 import axios from 'axios'
 
