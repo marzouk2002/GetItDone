@@ -7,6 +7,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setInfo } from '../actions'
 // axios
 import axios from 'axios'
+// font awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Profile() {
     const userInfo = useSelector(state => state.userInfo)
@@ -68,7 +71,8 @@ function Profile() {
                     <div className="col-6 col-12-small profile-pic">
                         <div className="img">
                             <form > 
-                                <img src={'http://localhost:5000'+userInfo.picture} alt="user profile pic"  />
+                            { userInfo.picture ? <img src={'http://localhost:5000' + userInfo.picture} alt="profile" /> :
+                            <FontAwesomeIcon className={`user-icon user-icon-large ${userInfo.role}`}  icon={faUserAlt}/>} 
                                 <input type="file" onChange={handleChangeForImg} accept='image/*'/>
                             </form>
                         </div>

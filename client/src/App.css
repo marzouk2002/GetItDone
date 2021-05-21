@@ -38,9 +38,8 @@ p {
 }
 
 .user-icon-large {
-  font-size: 2.5rem;
-  padding: 0.5rem;
-  margin: 0.2rem auto;
+  color: white;
+  font-size: 20vmax;
 }
 
 .user-icon.admin {
