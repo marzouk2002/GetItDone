@@ -245,7 +245,8 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
         }
     }));
 
-    managers.filter(man => !man)
+    managers = managers.filter(man => man !== null)
+    developers = developers.filter(dev => dev !== null)
 
     let serverInfo ={ developers, managers, requests }
     serverInfo.requests = requests

@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 //redux
 import { useSelector } from 'react-redux'
 
 function Server() {
+    const [ developers, setDevelopers ] = useState(null)
+    const [ managers, setManagers ] = useState(null)
+    const [ requests, setRequests ] = useState(null)
 
     const userInfo = useSelector(state => state.userInfo)
 
@@ -12,7 +15,12 @@ function Server() {
             headers : { Authorization: token }
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            const { developers, managers, requests } = data.serverInfo
+            setDevelopers(developers)
+            setManagers(managers)
+            setRequests(requests)
+        })
     })
 
     return (
@@ -44,7 +52,7 @@ function Server() {
                         </table>
                     </div>
                 </div>
-                <div>
+                { managers && <div>
                     <h3>Managers</h3>
                     <div className="table-wrapper">
                         <table>
@@ -55,15 +63,17 @@ function Server() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>{userInfo.name}</td>
-                                    <td>{userInfo.email}</td>
-                                    <td>{userInfo.role}</td>
-                                </tr>
+                               { managers.map(man => {
+                                    return (<tr key={man.id}>
+                                        <td>{man.name}</td>
+                                        <td>{man.email}</td>
+                                        <td>{man.role}</td>
+                                    </tr>)
+                                })}
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div>}
             </section>
         </main>
     )
