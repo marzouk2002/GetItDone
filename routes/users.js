@@ -220,22 +220,20 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     const { serverId } = req.user
 
     let server = await Server.findOne({ _id: serverId })
-    let { developers, managers } = server
+    let { developers, managers, project } = server
     
-    const requests = ["eaze"]
-    developers.map( dev => {
-        // const { id, auth } = dev 
-        // const developer = await Users.findOne({ _id: id})
-        // // console.log(dev)
-        // if(auth) {
-        //     return developer
-        // } else {
-        //     requests.push(developer)
-        //     return null
-        // }
-        return 'hello'
-    })
-    // .filter(dev =>dev!==null)
+    const requests = []
+    await Promise.all(developers.map(async (dev, i) => {
+        const { id, auth } = dev 
+        const developer = await Users.findOne({ _id: id})
+        if(auth) {
+            developers[i] = developer
+        } else {
+            requests.push(developer)
+            developers[i] = null
+        }
+    }));
+
     await Promise.all(managers.map(async (man,i) => {
         const { id, auth } = man 
         const manager = await Users.findOne({ _id: id})
@@ -243,7 +241,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
             managers[i] = manager
         } else {
             requests.push(manager)
-            managers[i]=false
+            managers[i] = null
         }
     }));
 
@@ -251,7 +249,6 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
 
     let serverInfo ={ developers, managers, requests }
     serverInfo.requests = requests
-    // console.log(serverInfo)
     res.json({serverInfo})
 })
 
