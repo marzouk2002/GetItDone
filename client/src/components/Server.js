@@ -24,35 +24,24 @@ function Server() {
         })
     }, [ update, token ])
 
-    const fire = (e) => {
-        const id = e.target.value
-        fetch('http://localhost:5000/users/fire', {
-            method: 'DELETE',
-            headers : { Authorization: token },
-            body: {id}
-        }).then(res => {
-            console.log(res)
-        })
-    }
     const accept = (e) => {
         const id = e.target.value
-        fetch('http://localhost:5000/users/newuser', {
+        fetch('http://localhost:5000/users/newuser?user_id='+id, {
             method: 'PUT',
             headers : { Authorization: token },
-            body: {id}
-        }).then(res => {
-            console.log(res)
-        })
+        }).then(res => setUpdate(update+1))
+        .catch(err => console.log(err))
+        
     }
-    const reject = (e) => {
+    const rejectAndFire = (e) => {
         const id = e.target.value
-        fetch('http://localhost:5000/users/newuser', {
+        fetch('http://localhost:5000/users/newuser?user_id='+id, {
             method: 'DELETE',
             headers : { Authorization: token },
             body: {id}
-        }).then(res => {
-            console.log(res)
-        })
+        }).then(res => res.json())
+        .then(data => console.log(data)) 
+        .catch(err => console.log(err))
     }
 
     return (
@@ -124,7 +113,7 @@ function Server() {
                                     return (<tr key={man._id}>
                                         <td>{man.name}</td>
                                         <td>{man.email}</td>
-                                        <td><button style={{fontSize: '0.8rem'}} onClick={fire} value={man._id}>Fire</button></td>
+                                        <td><button style={{fontSize: '0.8rem'}} value={man._id}>Fire</button></td>
                                     </tr>)
                                 })}
                             </tbody>
@@ -146,7 +135,7 @@ function Server() {
                                     return (<tr key={dev._id}>
                                         <td>{dev.name}</td>
                                         <td>{dev.email}</td>
-                                        <td><button style={{fontSize: '0.8rem'}} onClick={fire} value={dev._id}>Fire</button></td>
+                                        <td><button style={{fontSize: '0.8rem'}} value={dev._id}>Fire</button></td>
                                     </tr>)
                                 })}
                             </tbody>

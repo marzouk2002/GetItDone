@@ -254,8 +254,20 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     res.json({serverInfo})
 })
 
-router.put('/newuser', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json({user: req.user})
+router.put('/newuser', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const user_id = req.query.user_id
+    const server_id = req.user.serverId
+    const server = await Server.findById(server_id)
+    const { role } = await Users.findById(user_id)
+    server[role + 's'].forEach(async user => {
+        if(user.id === user_id) {
+            user.auth = true
+        }
+    })
+    
+    server.markModified(role + 's');
+    await server.save()
+    res.status(200).json({msg: 'complited'})
 })
 
 
