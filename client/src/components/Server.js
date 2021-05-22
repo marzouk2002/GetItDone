@@ -39,8 +39,7 @@ function Server() {
             method: 'DELETE',
             headers : { Authorization: token },
             body: {id}
-        }).then(res => res.json())
-        .then(data => console.log(data)) 
+        }).then(res => setUpdate(update+1))
         .catch(err => console.log(err))
     }
 
@@ -72,7 +71,7 @@ function Server() {
                                         <td>{req.email}</td>
                                         <td>{req.role}</td>
                                         <td><button className="button primary" onClick={accept} style={{fontSize: '0.8rem'}} value={req._id}>Accept</button></td>
-                                        <td><button className="button" style={{fontSize: '0.8rem'}} value={req._id}>Reject</button></td>
+                                        <td><button className="button" onClick={rejectAndFire} style={{fontSize: '0.8rem'}} value={req._id}>Reject</button></td>
                                     </tr>)
                                 })}
                             </tbody>
@@ -113,7 +112,7 @@ function Server() {
                                     return (<tr key={man._id}>
                                         <td>{man.name}</td>
                                         <td>{man.email}</td>
-                                        <td><button style={{fontSize: '0.8rem'}} value={man._id}>Fire</button></td>
+                                        <td><button style={{fontSize: '0.8rem'}} onClick={rejectAndFire} value={man._id}>Fire</button></td>
                                     </tr>)
                                 })}
                             </tbody>
@@ -135,7 +134,7 @@ function Server() {
                                     return (<tr key={dev._id}>
                                         <td>{dev.name}</td>
                                         <td>{dev.email}</td>
-                                        <td><button style={{fontSize: '0.8rem'}} value={dev._id}>Fire</button></td>
+                                        <td><button style={{fontSize: '0.8rem'}} onClick={rejectAndFire} value={dev._id}>Fire</button></td>
                                     </tr>)
                                 })}
                             </tbody>
