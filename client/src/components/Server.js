@@ -51,10 +51,10 @@ function Server() {
             <section className="inner" style= {inner_style}>
                 <div>
                     <h3 style={{marginBottom:'0', lineHeight: 'normal'}}>Server Id: </h3>
-                    <h2 style={{marginLeft:'4rem'}}>{userInfo.serverId}</h2>
+                    <h1 className="center_stuf">{userInfo.serverId}</h1>
                 </div>
                 { requests.length>0 && <div>
-                    <h3>Requests</h3>
+                    <h3 className="center_stuf">Requests</h3>
                     <div className="table-wrapper">
                         <table>
                             <thead>
@@ -79,7 +79,7 @@ function Server() {
                     </div>
                 </div>}
                 <div>
-                    <h3>Admin</h3>
+                    <h3 className="center_stuf">Admin</h3>
                     <div className="table-wrapper">
                         <table>
                             <thead>
@@ -98,7 +98,7 @@ function Server() {
                     </div>
                 </div>
                 { managers && <div>
-                    <h3>Managers</h3>
+                    <h3 className="center_stuf">Managers</h3>
                     <div className="table-wrapper">
                         <table>
                             <thead>
@@ -120,7 +120,7 @@ function Server() {
                     </div>
                 </div>}
                 { developers.length>0 && <div>
-                    <h3>Developers</h3>
+                    <h3 className="center_stuf">Developers</h3>
                     <div className="table-wrapper">
                         <table>
                             <thead>
