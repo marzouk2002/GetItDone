@@ -257,6 +257,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
 router.put('/newuser', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const user_id = req.query.user_id
     const server_id = req.user.serverId
+
     const server = await Server.findById(server_id)
     const { role } = await Users.findById(user_id)
     server[role + 's'].forEach(async user => {
@@ -267,6 +268,23 @@ router.put('/newuser', passport.authenticate('jwt', { session: false }), async (
     
     server.markModified(role + 's');
     await server.save()
+    res.status(200).json({msg: 'complited'})
+})
+
+router.delete('/newuser', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const user_id = req.query.user_id
+    const server_id = req.user.serverId
+
+    const server = await Server.findById(server_id)
+    const user = await Users.findById(user_id)
+
+    const role = user.role + 's'
+    server[role]=server[role].filter(user => user.id !== user_id)
+    
+    server.markModified(role);
+    await server.save()
+
+    await Users.deleteOne({_id: user_id})
     res.status(200).json({msg: 'complited'})
 })
 
