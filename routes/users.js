@@ -221,7 +221,34 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
 
     const server = await Server.findOne({ _id: serverId })
 
-    server.managers
+    requests = []
+    server.developers.map(async dev => {
+        const { id, auth } = dev 
+        const developer = await Users.findOne({ _id: id})
+        if(auth) {
+            return developer
+        } else {
+            requests.push(developer)
+            return null
+        }
+
+    }).filter(dev =>dev!==null)
+
+    server.managers.map(async man => {
+        const { id, auth } = man 
+        const manager = await Users.findOne({ _id: id})
+        if(auth) {
+            return manager
+        } else {
+            requests.push(manager)
+            return null
+        }
+
+    }).filter(man => man !== null)
+
+    server.requests = requests
+
+    res.json({server: server})
 })
 
 
