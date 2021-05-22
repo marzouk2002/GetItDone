@@ -216,5 +216,14 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
 })
 
 
+router.get('/serverinfo', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { serverId } = req.user
+
+    const server = await Server.findOne({ _id: serverId })
+
+    server.managers
+})
+
+
 
 module.exports = router

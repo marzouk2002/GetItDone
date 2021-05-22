@@ -23,7 +23,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
             case 'admin':
                 setSelected('admin')
                 break
-            case 'project manager':
+            case 'project manager' || 'manager':
                 setSelected('manager')
                 break
             case 'developer':
