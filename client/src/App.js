@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 //components
@@ -11,6 +11,7 @@ import Header from './components/layout/Header';
 import Menu from './components/layout/Menu';
 import About from './components/About';
 import Profile from './components/Profile';
+import Server from './components/Server';
 
 //style
 import './App.css'
@@ -46,6 +47,8 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
+  const [ isAdmin, setAdmin ] = useState(false)
+
   const dispatch = useDispatch()
 
   useEffect(()=> {
@@ -61,9 +64,10 @@ function App() {
       return res.json()
 
     }).then(data => {
-      
-      dispatch(setInfo(data.user))
+      const user = data.user
+      dispatch(setInfo(user))
       dispatch(isLogged(true))
+      if(user.role === "admin") setAdmin(true)
 
     }).catch(err => console.log(err))
   })
@@ -80,6 +84,7 @@ function App() {
               <Route path="/contact" component={Contact}/>
               <Route path="/about" component={About}/>
               <Route path="/profile" component={Profile}/>
+              { isAdmin && <Route path="/server" component={Server}/> }
               <Route component={Error}/>
           </Switch>
         </div>

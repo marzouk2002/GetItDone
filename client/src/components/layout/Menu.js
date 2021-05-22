@@ -9,6 +9,7 @@ import { setInfo, isLogged } from '../../actions'
 function Menu() {
 
     const login = useSelector(state => state.login)
+    const role = useSelector(state => state.userInfo?.role)
     const dispatch = useDispatch()
 
     const handleCloseMenu = (e) => {
@@ -29,6 +30,7 @@ function Menu() {
                     <li><NavLink activeClassName='active-link' to="/" exact={true}>Home</NavLink></li>
                     <li><NavLink activeClassName='active-link' to="/about">About</NavLink></li>
                     <li><NavLink activeClassName='active-link' to="/contact">Contact us</NavLink></li>
+                    { role==="admin" && <li><NavLink activeClassName='active-link' to="/server">Server</NavLink></li>}
                 </ul>
                 <ul className="actions stacked">
                     {
