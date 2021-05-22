@@ -219,36 +219,40 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
 router.get('/serverinfo', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { serverId } = req.user
 
-    const server = await Server.findOne({ _id: serverId })
-
-    requests = []
-    server.developers.map(async dev => {
-        const { id, auth } = dev 
-        const developer = await Users.findOne({ _id: id})
-        if(auth) {
-            return developer
-        } else {
-            requests.push(developer)
-            return null
-        }
-
-    }).filter(dev =>dev!==null)
-
-    server.managers.map(async man => {
+    let server = await Server.findOne({ _id: serverId })
+    let { developers, managers } = server
+    
+    const requests = ["eaze"]
+    developers.map( dev => {
+        // const { id, auth } = dev 
+        // const developer = await Users.findOne({ _id: id})
+        // // console.log(dev)
+        // if(auth) {
+        //     return developer
+        // } else {
+        //     requests.push(developer)
+        //     return null
+        // }
+        return 'hello'
+    })
+    // .filter(dev =>dev!==null)
+    await Promise.all(managers.map(async (man,i) => {
         const { id, auth } = man 
         const manager = await Users.findOne({ _id: id})
         if(auth) {
-            return manager
+            managers[i] = manager
         } else {
             requests.push(manager)
-            return null
+            managers[i]=false
         }
+    }));
 
-    }).filter(man => man !== null)
+    managers.filter(man => !man)
 
-    server.requests = requests
-
-    res.json({server: server})
+    let serverInfo ={ developers, managers, requests }
+    serverInfo.requests = requests
+    // console.log(serverInfo)
+    res.json({serverInfo})
 })
 
 

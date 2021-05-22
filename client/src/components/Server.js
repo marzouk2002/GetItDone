@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 //redux
 import { useSelector } from 'react-redux'
 
 function Server() {
 
     const userInfo = useSelector(state => state.userInfo)
+
+    useEffect(()=> {
+        const token = localStorage.getItem('token')
+        fetch('http://localhost:5000/users/serverinfo', {
+            headers : { Authorization: token }
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    })
 
     return (
         <main>
@@ -18,7 +27,7 @@ function Server() {
                 </div>
                 <div>
                     <h3>Admin</h3>
-                    <div class="table-wrapper">
+                    <div className="table-wrapper">
                         <table>
                             <thead>
                                 <tr>
@@ -37,7 +46,7 @@ function Server() {
                 </div>
                 <div>
                     <h3>Managers</h3>
-                    <div class="table-wrapper">
+                    <div className="table-wrapper">
                         <table>
                             <thead>
                                 <tr>
