@@ -22,7 +22,7 @@ function Header() {
     }
 
     return (
-        <header id="header" className= { isAlt && 'alt'}>
+        <header id="header" className= { isAlt ? 'alt' : ''}>
             <Link to='/' className="logo"><strong>Get</strong> <span>It done</span></Link>
             <nav>
                 <a onClick={showMenu} href="#menu">Menu</a>

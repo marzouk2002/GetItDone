@@ -30,6 +30,7 @@ function Menu() {
                     <li><NavLink activeClassName='active-link' to="/" exact={true}>Home</NavLink></li>
                     <li><NavLink activeClassName='active-link' to="/about">About</NavLink></li>
                     <li><NavLink activeClassName='active-link' to="/contact">Contact us</NavLink></li>
+                    { login && <li><NavLink activeClassName='active-link' to="/dashboard">Dashboard</NavLink></li>}
                     { role==="admin" && <li><NavLink activeClassName='active-link' to="/server">Server</NavLink></li>}
                 </ul>
                 <ul className="actions stacked">
