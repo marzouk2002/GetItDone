@@ -15,7 +15,6 @@ function Server() {
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
-        console.log(serverInfo)
         if(serverInfo) {
             const { developers, managers, requests } = serverInfo
             setDevelopers(developers)
@@ -28,7 +27,6 @@ function Server() {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 const { developers, managers, requests } = data.serverInfo
                 setDevelopers(developers)
                 setManagers(managers)
