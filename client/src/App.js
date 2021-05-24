@@ -76,7 +76,7 @@ function App() {
     <ErrorBoundary>
       <Router>
         <div id="wrapper">
-          <Header classes='alt'/>
+          <Header/>
           <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/register" component={Register}/>
