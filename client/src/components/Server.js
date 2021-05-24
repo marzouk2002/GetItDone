@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 //redux
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setServerInfo } from '../actions'
 
 function Server() {
     const [ developers, setDevelopers ] = useState([])
@@ -8,21 +9,34 @@ function Server() {
     const [ requests, setRequests ] = useState([])
     const [ update, setUpdate ] = useState(0)
 
+    const dispatch = useDispatch()
     const userInfo = useSelector(state => state.userInfo)
+    const serverInfo = useSelector(state => state.serverInfo)
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
-        fetch('http://localhost:5000/users/serverinfo', {
-            headers : { Authorization: token }
-        })
-        .then(res => res.json())
-        .then(data => {
-            const { developers, managers, requests } = data.serverInfo
+        console.log(serverInfo)
+        if(serverInfo) {
+            const { developers, managers, requests } = serverInfo
             setDevelopers(developers)
             setManagers(managers)
             setRequests(requests)
-        })
-    }, [ update, token ])
+            
+        } else {
+            fetch('http://localhost:5000/users/serverinfo', {
+                headers : { Authorization: token }
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                const { developers, managers, requests } = data.serverInfo
+                setDevelopers(developers)
+                setManagers(managers)
+                setRequests(requests)
+                dispatch(setServerInfo(data.serverInfo))
+            })
+        }
+    }, [ update, token, dispatch, serverInfo ])
 
     const accept = (e) => {
         const id = e.target.value

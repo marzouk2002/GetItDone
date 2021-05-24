@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import Alert from './layout/Alert'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { setInfo } from '../actions'
+import { setUserInfo } from '../actions'
 // axios
 import axios from 'axios'
 // font awesome
@@ -52,7 +52,7 @@ function Profile() {
             const { user, msgs, errors, success } = res.data
             if(success) {
                 setMsgs(msgs)
-                dispatch(setInfo(user))
+                dispatch(setUserInfo(user))
             } else {
                 setMsgs(errors)
             }

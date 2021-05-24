@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import loginReducer from './loginReducer'
-import infoReducer from './infoReducer'
-import serverReducer from './serverReducer'
+import userInfoReducer from './infoReducer'
+import serverInfoReducer from './serverReducer'
 
 const allReducers = combineReducers({
     login: loginReducer,
-    userInfo: infoReducer,
-    serverInfo: serverReducer
+    userInfo: userInfoReducer,
+    serverInfo: serverInfoReducer
 })
 
 export default allReducers

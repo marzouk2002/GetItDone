@@ -11,7 +11,7 @@ export const isLogged = (bool) => {
 export const setUserInfo = (data) => {
     if(data) {
         return {
-        type: 'SET_INFO',
+        type: 'SET_USER_INFO',
         payload: data
         }
     } 
@@ -23,7 +23,7 @@ export const setUserInfo = (data) => {
 export const setServerInfo = (data) => {
     if(data) {
         return {
-        type: 'SET_INFO',
+        type: 'SET_SERV_INFO',
         payload: data
         }
     } 

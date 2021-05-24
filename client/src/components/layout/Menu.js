@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import ProfileCard  from './ProfileCard'
 // redux store 
 import { useSelector, useDispatch } from 'react-redux'
-import { setInfo, isLogged } from '../../actions'
+import { setUserInfo, isLogged } from '../../actions'
 
 
 function Menu() {
@@ -19,7 +19,7 @@ function Menu() {
 
     const handleLogout = (e) => {
         localStorage.removeItem('token')
-        dispatch(setInfo(false))
+        dispatch(setUserInfo(false))
         dispatch(isLogged(false))
     }
 

@@ -1,7 +1,7 @@
 
-const infoReducer = (state = null, action) => {
+const userInfoReducer = (state = null, action) => {
     switch(action.type) {
-        case 'SET_INFO':
+        case 'SET_USER_INFO':
             return action.payload
         case 'LOGOUT':
             return null
@@ -10,4 +10,4 @@ const infoReducer = (state = null, action) => {
     }
 }
 
-export default infoReducer
+export default userInfoReducer
