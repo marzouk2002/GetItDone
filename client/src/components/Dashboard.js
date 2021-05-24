@@ -4,6 +4,8 @@ import { Redirect } from 'react-router'
 import Bands from './layout/Bands'
 // redux
 import { useSelector } from 'react-redux'
+// style 
+import '../dashboard.css'
 
 function Dashboard() {
 
