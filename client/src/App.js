@@ -18,7 +18,7 @@ import './App.css'
 
 // redux store 
 import { useDispatch } from 'react-redux'
-import { setInfo, isLogged } from './actions'
+import { setUserInfo, isLogged } from './actions'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -65,7 +65,7 @@ function App() {
 
     }).then(data => {
       const user = data.user
-      dispatch(setInfo(user))
+      dispatch(setUserInfo(user))
       dispatch(isLogged(true))
       if(user.role === "admin") setAdmin(true)
 

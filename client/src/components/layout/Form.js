@@ -8,7 +8,7 @@ import { faChevronLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 // redux store 
 import { useDispatch } from 'react-redux'
-import { setInfo, isLogged } from '../../actions'
+import { setUserInfo, isLogged } from '../../actions'
 
 function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
     const [seletected, setSelected] = useState('')
@@ -85,7 +85,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
                 } else {
                     setMsgs(data.msgs)
                     localStorage.setItem('token', data.token)
-                    dispatch(setInfo(data.user))
+                    dispatch(setUserInfo(data.user))
                     dispatch(isLogged(true))
                 }
             } else {

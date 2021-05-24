@@ -8,7 +8,19 @@ export const isLogged = (bool) => {
     }
 }
 
-export const setInfo = (data) => {
+export const setUserInfo = (data) => {
+    if(data) {
+        return {
+        type: 'SET_INFO',
+        payload: data
+        }
+    } 
+    else {
+        return  {type:'LOGOUT'}
+    }
+}
+
+export const setServerInfo = (data) => {
     if(data) {
         return {
         type: 'SET_INFO',
