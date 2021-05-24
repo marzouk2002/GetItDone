@@ -11,6 +11,7 @@ import Header from './components/layout/Header';
 import Menu from './components/layout/Menu';
 import About from './components/About';
 import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
 import Server from './components/Server';
 
 //style
@@ -84,6 +85,7 @@ function App() {
               <Route path="/contact" component={Contact}/>
               <Route path="/about" component={About}/>
               <Route path="/profile" component={Profile}/>
+              <Route path="/dashboard" component={Dashboard}/>
               { isAdmin && <Route path="/server" component={Server}/> }
               <Route component={Error}/>
           </Switch>
