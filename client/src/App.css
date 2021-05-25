@@ -4,6 +4,27 @@
   place-items: center;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #4b578b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #161c35;
+  border-radius: 100vmax;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0f1327;
+}
+
 /* navbar */
 .active-link {
   font-size: 1.1rem;
