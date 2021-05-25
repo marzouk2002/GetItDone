@@ -20,7 +20,7 @@ function Bands() {
                 <div className="band-1-content">
                     <div>
                         <img src={"http://localhost:5000" + userInfo.picture} alt="profile" className="profile-pic"/>
-                        <Link to='/profile'>Accont</Link>
+                        <Link to='/profile'>Account</Link>
                     </div>
                 </div>
             </div>

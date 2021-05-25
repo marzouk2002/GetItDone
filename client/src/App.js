@@ -48,6 +48,7 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
+  const [ Logged, setlogged ] = useState(false)
   const [ isAdmin, setAdmin ] = useState(false)
 
   const dispatch = useDispatch()
@@ -68,6 +69,7 @@ function App() {
       const user = data.user
       dispatch(setUserInfo(user))
       dispatch(isLogged(true))
+      setlogged(true)
       if(user.role === "admin") setAdmin(true)
 
     }).catch(err => console.log(err))
@@ -84,8 +86,8 @@ function App() {
               <Route path="/login" component={Login}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/about" component={About}/>
-              <Route path="/profile" component={Profile}/>
-              <Route path="/dashboard" component={Dashboard}/>
+              { Logged && <><Route path="/profile" component={Profile}/>
+              <Route path="/dashboard" component={Dashboard}/></>}
               { isAdmin && <Route path="/server" component={Server}/> }
               <Route component={Error}/>
           </Switch>
