@@ -22,7 +22,7 @@ function Server() {
             setRequests(requests)
             
         } else {
-            fetch('http://localhost:5000/users/serverinfo', {
+            fetch('http://localhost:5000/app/serverinfo', {
                 headers : { Authorization: token }
             })
             .then(res => res.json())

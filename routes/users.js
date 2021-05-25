@@ -215,49 +215,6 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
         .catch(err => console.log(err))
 })
 
-
-router.get('/serverinfo', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    const { serverId } = req.user
-
-    let server = await Server.findOne({ _id: serverId })
-    let { developers, managers, project } = server
-    
-    const requests = []
-
-    await Promise.all(
-        managers.map(async (man,i) => {
-            const { id, auth } = man 
-            const manager = await Users.findOne({ _id: id})
-            if(auth) {
-                managers[i] = manager
-            } else {
-                requests.push(manager)
-                managers[i] = null
-            }
-        })
-    );
-
-    await Promise.all(
-        developers.map(async (dev, i) => {
-            const { id, auth } = dev 
-            const developer = await Users.findOne({ _id: id})
-            if(auth) {
-                developers[i] = developer
-            } else {
-                requests.push(developer)
-                developers[i] = null
-            }
-        })
-    );
-
-    managers = managers.filter(man => man !== null)
-    developers = developers.filter(dev => dev !== null)
-
-    let serverInfo ={ developers, managers, requests }
-    serverInfo.requests = requests
-    res.json({serverInfo})
-})
-
 router.put('/newuser', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const user_id = req.query.user_id
     const server_id = req.user.serverId

@@ -23,6 +23,9 @@ app.use(express.urlencoded({extended: true}));
 // Users router
 app.use('/users', require('./routes/users'))
 
+// App router
+app.use('/app', require('./routes/app'))
+
 // serving files
 app.use(express.static('./files'))
 
