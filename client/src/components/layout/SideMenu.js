@@ -7,7 +7,7 @@ import { setUserInfo, isLogged, setServerInfo } from '../../actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAlt, faServer, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
-function Bands() {
+function SideMenu() {
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.userInfo)
 
@@ -52,4 +52,4 @@ function Bands() {
     )
 }
 
-export default Bands
+export default SideMenu
