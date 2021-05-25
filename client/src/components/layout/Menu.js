@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import ProfileCard  from './ProfileCard'
 // redux store 
 import { useSelector, useDispatch } from 'react-redux'
-import { setUserInfo, isLogged } from '../../actions'
+import { setUserInfo, isLogged, setServerInfo } from '../../actions'
 
 
 function Menu() {
