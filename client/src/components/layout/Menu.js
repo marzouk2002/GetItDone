@@ -20,6 +20,7 @@ function Menu() {
     const handleLogout = (e) => {
         localStorage.removeItem('token')
         dispatch(setUserInfo(false))
+        dispatch(setServerInfo(false))
         dispatch(isLogged(false))
     }
 

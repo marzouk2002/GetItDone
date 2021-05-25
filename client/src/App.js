@@ -86,8 +86,8 @@ function App() {
               <Route path="/login" component={Login}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/about" component={About}/>
-              { Logged && <><Route path="/profile" component={Profile}/>
-              <Route path="/dashboard" component={Dashboard}/></>}
+              { Logged && <Route path="/profile" component={Profile}/>}
+              { Logged && <Route path="/dashboard" component={Dashboard}/>}
               { isAdmin && <Route path="/server" component={Server}/> }
               <Route component={Error}/>
           </Switch>
