@@ -44,13 +44,16 @@ p {
 
 .user-icon.admin {
   background-color: rgba(255, 0, 0, 0.8);
+  color: white;
 }
 
 .user-icon.manager {
   background-color: rgba(0, 255, 0, 0.8);
+  color: white;
 }
 
 .user-icon.developer {
+  color: white;
   background-color: rgba(0, 0, 255, 0.8);
 }
 
