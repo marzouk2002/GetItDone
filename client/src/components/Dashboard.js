@@ -8,11 +8,15 @@ import { useSelector } from 'react-redux'
 import '../dashboard.css'
 // font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function Dashboard() {
 
     const login = useSelector(state => state.login)
+
+    const proMenuToggle = () => {
+        document.querySelector('.control').classList.toggle('open')
+    }
 
     return (
         <div className="dashbord-container">
@@ -20,13 +24,13 @@ function Dashboard() {
             <Bands/>
             <div className="main">
                 <div className="projects-band">
-                    <div className="container"></div>
                     <div className="control">
-                        <div className="btn">
-                            <FontAwesomeIcon icon={faChevronLeft}/>
+                        <div className="btn" onClick={proMenuToggle}>
+                            <FontAwesomeIcon icon={faChevronRight}/>
                         </div>
                         <h4>projects</h4>
                     </div>
+                    <div className="pro-container"></div>
                 </div>
                 <h1>Dashboard</h1>
             </div>

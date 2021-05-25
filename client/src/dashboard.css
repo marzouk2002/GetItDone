@@ -40,6 +40,7 @@
   background-color: #242943;
   z-index: 4;
   transition: transform 0.4s ease-in-out;
+  display: flex;
 }
 
 .main.open-band-1 {
@@ -65,4 +66,49 @@
   margin: 10px;
   margin-right: 15px;
   color: #384169;
+}
+
+.projects-band {
+  display: flex;
+  background-color: #1c203a;
+}
+
+.pro-container {
+  order: 1;
+  width: 5px;
+  overflow: hidden;
+  transition: width 0.3s ease-out;
+}
+
+.control {
+  width: 50px;
+  order: 2;
+}
+
+.control .btn {
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: #181b2c;
+  cursor: pointer;
+}
+
+.control.open .btn svg {
+  transition: transform 0.3s ease-out;
+}
+
+.control.open .btn svg {
+  transform: rotate(180deg) translateX(5%);
+}
+
+.control.open ~ .pro-container {
+  width: 250px;
+}
+
+.control h4 {
+  transform: rotate(90deg) translateX(50%);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 1.5rem;
+  margin: 0;
+  opacity: 0.8;
 }
