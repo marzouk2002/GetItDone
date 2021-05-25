@@ -11,19 +11,18 @@ const pipeline = promisify(require("stream").pipeline);
 // models DB
 const Users = require('../models/Users')
 const Server = require('../models/Server')
+const Project = require('../models/Project')
 
 const router = express.Router()
 
 // init multer
 const upload = multer();
 
-router.use(passport.authenticate('jwt', { session: false }))
-
-router.get('/serverinfo', async (req, res) => {
+router.get('/serverinfo', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { serverId } = req.user
 
     let server = await Server.findOne({ _id: serverId })
-    let { developers, managers, project } = server
+    let { developers, managers, projects } = server
     
     const requests = []
 
@@ -53,10 +52,17 @@ router.get('/serverinfo', async (req, res) => {
         })
     );
 
+    await Promise.all(
+        projects.map(async (proId, i) => {
+            const project = await Project.findOne({ _id: proId})
+            projects[i] = project
+        })
+    );
+
     managers = managers.filter(man => man !== null)
     developers = developers.filter(dev => dev !== null)
 
-    let serverInfo ={ developers, managers, requests }
+    let serverInfo ={ developers, managers, requests, projects }
     serverInfo.requests = requests
     res.json({serverInfo})
 })

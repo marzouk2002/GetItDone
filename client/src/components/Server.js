@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router'
 //redux
 import { useSelector, useDispatch } from 'react-redux'
 import { setServerInfo } from '../actions'
@@ -57,6 +58,8 @@ function Server() {
 
     return (
         <main>
+            { userInfo?.role!=='admin' ? <Redirect to={{pathname: "/login", state: {msgs:[{text: 'Sorry you should be an admin access that page',type:"danger" }]}}} /> :
+            <>
             <header className="major" style={{marginLeft: '10%'}}>
                     <h1>Server</h1>
             </header>
@@ -153,7 +156,8 @@ function Server() {
                         </table>
                     </div>
                 </div>}
-            </section>
+            </section></>
+             }
         </main>
     )
 }
