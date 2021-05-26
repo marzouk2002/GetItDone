@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default function ProjectsMenu() {
+function ProjectsMenu() {
 
     const proMenuToggle = () => {
         document.querySelector('.control').classList.toggle('open')
@@ -32,3 +32,5 @@ export default function ProjectsMenu() {
         </div>
     )
 }
+
+export default ProjectsMenu

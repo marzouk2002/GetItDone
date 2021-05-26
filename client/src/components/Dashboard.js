@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router'
 // components
-import SideMenu from './layout/SideMenu'
-import ProjectsMenu from './layout/ProjectsMenu'
-import Texting from './layout/Texting'
+import toExport from './layout/dashboard/index'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
 import { setServerInfo as setServerStore } from '../actions'
 // style 
 import '../dashboard.css'
 
+const { SideMenu, ProjectsMenu, Texting } = toExport
 
 function Dashboard() {
     const dispatch = useDispatch()
@@ -38,7 +37,7 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu/>
-                <h1>Dashboard</h1>  
+                
             </div>
             <Texting/>
         </div>

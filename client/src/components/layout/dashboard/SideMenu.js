@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { setUserInfo, isLogged, setServerInfo } from '../../actions'
+import { setUserInfo, isLogged, setServerInfo } from '../../../actions'
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAlt, faServer, faPowerOff } from '@fortawesome/free-solid-svg-icons'
