@@ -3,6 +3,7 @@ import { Redirect } from 'react-router'
 // components
 import SideMenu from './layout/SideMenu'
 import ProjectsMenu from './layout/ProjectsMenu'
+import Texting from './layout/Texting'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
 import { setServerInfo as setServerStore } from '../actions'
@@ -37,8 +38,9 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu/>
-                <h1>Dashboard</h1>
+                
             </div>
+            <Texting/>
         </div>
     )
 }
