@@ -4,7 +4,7 @@ import ProjectForm from './ProjectForm'
 
 export default function Main() {
     return (
-        <div className="pro-main">
+        <div className="major pro-main">
             <ProjectForm/>
         </div>
     )
