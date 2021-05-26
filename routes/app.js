@@ -22,7 +22,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     const { serverId } = req.user
 
     let server = await Server.findOne({ _id: serverId })
-    let { developers, managers, projects } = server
+    let { developers, managers } = server
     
     const requests = []
 
@@ -52,12 +52,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
         })
     );
 
-    await Promise.all(
-        projects.map(async (proId, i) => {
-            const project = await Project.findOne({ _id: proId})
-            projects[i] = project
-        })
-    );
+    const projects = await Project.find({ serverId: serverId })
 
     managers = managers.filter(man => man !== null)
     developers = developers.filter(dev => dev !== null)
@@ -65,6 +60,14 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     let serverInfo ={ developers, managers, requests, projects }
     serverInfo.requests = requests
     res.json({serverInfo})
+})
+
+router.get('/projects', passport.authenticate('jwt', { session: false }), async (req, res)=> {
+    const { serverId } = req.user
+
+    const projects = await Project.find({ serverId: serverId })
+
+    res.json({projects})
 })
 
 
