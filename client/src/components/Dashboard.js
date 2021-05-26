@@ -38,7 +38,7 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu/>
-                
+                <h1>Dashboard</h1>  
             </div>
             <Texting/>
         </div>
