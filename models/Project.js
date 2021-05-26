@@ -11,6 +11,10 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    completion: {
+        type: String,
+        default: 0
+    },
     managers: [String],
     developers: [String],
     files: String,
