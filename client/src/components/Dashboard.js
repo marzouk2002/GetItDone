@@ -8,7 +8,7 @@ import { setServerInfo as setServerStore } from '../actions'
 // style 
 import '../dashboard.css'
 
-const { SideMenu, ProjectsMenu, Texting } = toExport
+const { SideMenu, ProjectsMenu, Texting, Main } = toExport
 
 function Dashboard() {
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu/>
-                
+                <Main/>
             </div>
             <Texting/>
         </div>

@@ -156,3 +156,13 @@ hr {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
 }
+
+.pro-main {
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.pro-main h1 {
+  line-height: normal;
+  margin-bottom: 0;
+}
