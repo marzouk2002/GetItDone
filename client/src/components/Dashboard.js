@@ -13,7 +13,7 @@ function Dashboard() {
     // store
     const login = useSelector(state => state.login)
     //state
-    const [ projects, setProjects ] = useState(null)
+    const [ projects, setProjects ] = useState([])
     const [ selectedIndex, setIndex ] = useState(0)
 
     const token = localStorage.getItem('token')
@@ -44,7 +44,7 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu projects={projects} setIndex={setIndex}/>
-                <Main/>
+                <Main projects={projects} selectedIndex={selectedIndex}/>
             </div>
             <Texting/>
         </div>
