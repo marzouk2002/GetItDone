@@ -70,5 +70,12 @@ router.get('/projects', passport.authenticate('jwt', { session: false }), async 
     res.json({projects})
 })
 
+router.delete('/deletepro', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const pro_id = req.query.pro_id
+
+    await Project.deleteOne({_id: pro_id})
+    res.status(200).json({msg: 'complited'})
+})
+
 
 module.exports = router

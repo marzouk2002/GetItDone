@@ -17,26 +17,18 @@ function Server() {
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
-        if(serverInfo) {
-            const { developers, managers, requests, projects } = serverInfo
-            setDevelopers(developers)
-            setManagers(managers)
-            setRequests(requests)
-            setProjects(projects)
-            
-        } else {
             fetch('http://localhost:5000/app/serverinfo', {
                 headers : { Authorization: token }
             })
             .then(res => res.json())
             .then(data => {
-                const { developers, managers, requests } = data.serverInfo
+                const { developers, managers, requests, projects } = data.serverInfo
                 setDevelopers(developers)
                 setManagers(managers)
                 setRequests(requests)
+                setProjects(projects)
                 dispatch(setServerInfo(data.serverInfo))
             })
-        }
     }, [ update, token, dispatch, serverInfo ])
 
     const accept = (e) => {
