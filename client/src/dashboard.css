@@ -181,12 +181,22 @@ hr {
   width: 2.6rem;
   fill: none;
   stroke-width: 2.2;
-  stroke: red;
   transform-origin: center;
   transform: translate(1px, -1px) rotate(-90deg);
   stroke-linecap: round;
   stroke-dasharray: 125;
-  stroke-dashoffset: calc(125 - (125 * 25) / 100);
+}
+
+.pro-link-prog svg circle.red {
+  stroke: rgba(255, 0, 0, 0.9);
+}
+
+.pro-link-prog svg circle.yellow {
+  stroke: rgba(255, 255, 0, 0.9);
+}
+
+.pro-link-prog svg circle.green {
+  stroke: rgba(0, 255, 0, 0.9);
 }
 
 .pro-link-prog .number {
