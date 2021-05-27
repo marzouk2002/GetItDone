@@ -29,7 +29,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     await Promise.all(
         managers.map(async (man,i) => {
             const { id, auth } = man 
-            const manager = await Users.findOne({ _id: id})
+            const manager = await Users.findOne({ _id: id}, {name: 1, role: 1, email: 1})
             if(auth) {
                 managers[i] = manager
             } else {
@@ -42,7 +42,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     await Promise.all(
         developers.map(async (dev, i) => {
             const { id, auth } = dev 
-            const developer = await Users.findOne({ _id: id})
+            const developer = await Users.findOne({ _id: id}, {name: 1, role: 1, email: 1})
             if(auth) {
                 developers[i] = developer
             } else {
@@ -52,7 +52,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
         })
     );
 
-    const projects = await Project.find({ serverId: serverId })
+    const projects = await Project.find({ serverId: serverId }, {title: 1, completion: 1})
 
     managers = managers.filter(man => man !== null)
     developers = developers.filter(dev => dev !== null)

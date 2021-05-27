@@ -11,10 +11,12 @@ import '../dashboard.css'
 const { SideMenu, ProjectsMenu, Texting, Main } = toExport
 
 function Dashboard() {
+    // store
     const dispatch = useDispatch()
     const login = useSelector(state => state.login)
-
+    //state
     const [ serverInfo, setServerInfo ] = useState(useSelector(state => state.serverInfo))
+    const [ projects, setProjects ] = useState(null)
 
     const token = localStorage.getItem('token')
     
@@ -30,6 +32,16 @@ function Dashboard() {
             })
         }
     }, [ token, dispatch, serverInfo ])
+
+    useEffect(()=> {
+        fetch('http://localhost:5000/app/projects', {
+            headers : { Authorization: token }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setProjects(data.projects)
+        })
+    }, [ token ])
 
     return (
         <div className="dashbord-container">
