@@ -168,12 +168,17 @@ hr {
   border-radius: 50%;
   font-weight: 800;
   position: relative;
+  transition: transform 0.4s ease-in-out;
 }
 
 .pro-link-prog svg {
   position: relative;
   height: 2.6rem;
   width: 2.6rem;
+}
+
+.pro-link:hover .pro-link-prog {
+  transform: scale(1.2);
 }
 
 .pro-link-prog svg circle {
