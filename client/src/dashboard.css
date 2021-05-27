@@ -215,6 +215,9 @@ hr {
   font-size: 1.1rem;
   color: #eee;
 }
+.pro-link-prog .number h4 span {
+  font-size: 0.6rem;
+}
 
 .form-link:hover .icon {
   transform: scale(1.2) rotate(180deg);
