@@ -135,16 +135,19 @@ hr {
   margin: 0.8rem 1rem;
 }
 
-.pro-inner > .form-link {
+.pro-inner > .form-link,
+.pro-inner > .pro-link {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   text-align: center;
   cursor: pointer;
+  padding-right: 10%;
 }
 
-.form-link > h3 {
+.form-link > h3,
+.pro-link > h3 {
   margin-bottom: 0;
+  margin-left: 8%;
 }
 
 .form-link > .icon {
@@ -156,6 +159,51 @@ hr {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   transition: 0.5s transform ease-in-out;
+}
+.pro-link-prog {
+  height: 2.6rem;
+  width: 2.6rem;
+  font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  font-weight: 800;
+  position: relative;
+}
+
+.pro-link-prog svg {
+  position: relative;
+  height: 2.6rem;
+  width: 2.6rem;
+}
+
+.pro-link-prog svg circle {
+  height: 2.6rem;
+  width: 2.6rem;
+  fill: none;
+  stroke-width: 2.2;
+  stroke: red;
+  transform-origin: center;
+  transform: translate(1px, -1px) rotate(-90deg);
+  stroke-linecap: round;
+  stroke-dasharray: 125;
+  stroke-dashoffset: calc(125 - (125 * 25) / 100);
+}
+
+.pro-link-prog .number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pro-link-prog .number h4 {
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  color: #eee;
 }
 
 .form-link:hover .icon {

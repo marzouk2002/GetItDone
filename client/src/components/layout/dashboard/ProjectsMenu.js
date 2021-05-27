@@ -29,13 +29,19 @@ function ProjectsMenu({ projects, setIndex }) {
                     <hr />
                     {
                         projects && projects.map((pro, i) => (
-                            <>
-                                <div  key={pro.id} onClick={()=>handleClick(i)}>
-                                    <div>{pro.completion}</div>
-                                    <div>{pro.title}</div>
+                            <><div className='pro-link' key={pro._id} onClick={()=>handleClick(i)}>
+                                <div className='pro-link-prog'>
+                                    <svg>
+                                        
+                                        <circle cx='20' cy='20' r='20' className={pro.completion<25 ? 'red' : pro.completion<75 ? 'yellow' : 'green'}/>
+                                    </svg>
+                                    <div className='number'>
+                                        <h4>{pro.completion}<span>%</span></h4>
+                                    </div>
                                 </div>
-                                <hr/>
-                            </>
+                                <h3>{pro.title}</h3>
+                            </div>
+                            <hr/></>
                         ))
                     }
                     { role === 'admin' &&
