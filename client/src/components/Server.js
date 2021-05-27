@@ -8,6 +8,7 @@ function Server() {
     const [ developers, setDevelopers ] = useState([])
     const [ managers, setManagers ] = useState([])
     const [ requests, setRequests ] = useState([])
+    const [ projects, setProjects ] = useState([])
     const [ update, setUpdate ] = useState(0)
 
     const dispatch = useDispatch()
@@ -17,10 +18,11 @@ function Server() {
     
     useEffect(()=> {
         if(serverInfo) {
-            const { developers, managers, requests } = serverInfo
+            const { developers, managers, requests, projects } = serverInfo
             setDevelopers(developers)
             setManagers(managers)
             setRequests(requests)
+            setProjects(projects)
             
         } else {
             fetch('http://localhost:5000/app/serverinfo', {
@@ -46,9 +48,20 @@ function Server() {
         .catch(err => console.log(err))
         
     }
+
     const rejectAndFire = (e) => {
         const id = e.target.value
         fetch('http://localhost:5000/users/newuser?user_id='+id, {
+            method: 'DELETE',
+            headers : { Authorization: token },
+            body: {id}
+        }).then(res => setUpdate(update+1))
+        .catch(err => console.log(err))
+    }
+
+    const deletePro = (e) => {
+        const id = e.target.value
+        fetch('http://localhost:5000/app/deletepro?pro_id='+id, {
             method: 'DELETE',
             headers : { Authorization: token },
             body: {id}
@@ -150,6 +163,28 @@ function Server() {
                                         <td>{dev.name}</td>
                                         <td>{dev.email}</td>
                                         <td><button style={{fontSize: '0.8rem'}} onClick={rejectAndFire} value={dev._id}>Fire</button></td>
+                                    </tr>)
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>}
+                { projects.length>0 && <div>
+                    <h3 className="center_stuf">Projects</h3>
+                    <div className="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Completion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               { projects.map(pro => {
+                                    return (<tr key={pro._id}>
+                                        <td>{pro.title}</td>
+                                        <td style={{paddingLeft: '2.5rem'}}>{pro.completion} %</td>
+                                        <td style={{textAlign: 'center'}}><button style={{fontSize: '0.8rem'}} onClick={deletePro} value={pro._id}>Delete</button></td>
                                     </tr>)
                                 })}
                             </tbody>
