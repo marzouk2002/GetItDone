@@ -1,10 +1,10 @@
 
-const userInfoReducer = (state = null, action) => {
+const userInfoReducer = (state = {}, action) => {
     switch(action.type) {
         case 'SET_USER_INFO':
             return action.payload
         case 'LOGOUT':
-            return null
+            return {}
         default :
             return state
     }

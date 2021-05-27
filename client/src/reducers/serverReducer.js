@@ -1,9 +1,9 @@
-const serverInfoReducer = (state = null, action) => {
+const serverInfoReducer = (state = {}, action) => {
     switch(action.type) {
         case 'SET_SERV_INFO':
             return action.payload
         case 'LOGOUT':
-            return null
+            return {}
         default :
             return state
     }

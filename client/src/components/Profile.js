@@ -13,6 +13,7 @@ import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Profile() {
     const userInfo = useSelector(state => state.userInfo)
+    const isLogin = useSelector(state => state.login)
     const [formState, setFormState] = useState({})
     const [msgs, setMsgs] = useState(null)
     const [fileImg, setFileImg] = useState(null)
@@ -62,7 +63,7 @@ function Profile() {
 
     return (
         <main>
-            { !userInfo && <Redirect to={{pathname: "/login", state: {msgs:[{text: 'Sorry you should logged in to access that page',type:"danger" }]}}} /> }
+            { !isLogin && <Redirect to={{pathname: "/login", state: {msgs:[{text: 'Sorry you should logged in to access that page',type:"danger" }]}}} /> }
             <header className="major" style={{marginLeft: '10%'}}>
                     <h1>Profile</h1>
             </header>
