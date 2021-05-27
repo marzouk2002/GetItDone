@@ -2,11 +2,18 @@ import React from 'react'
 // font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faPlus } from '@fortawesome/free-solid-svg-icons'
-
-function ProjectsMenu() {
+// redux
+import { useSelector } from 'react-redux'
+function ProjectsMenu({ projects, setIndex }) {
+    // store
+    const role = useSelector(state => state.userInfo.role)
 
     const proMenuToggle = () => {
         document.querySelector('.control').classList.toggle('open')
+    }
+
+    const  handleClick= (i) => {
+        setIndex(i)
     }
 
     return (
@@ -20,13 +27,26 @@ function ProjectsMenu() {
             <div className="pro-container">
                 <div className='pro-inner'>
                     <hr />
-                    <div className='form-link'>
-                        <div className="icon">
-                            <FontAwesomeIcon icon={faPlus}/>
+                    {
+                        projects && projects.map((pro, i) => (
+                            <>
+                                <div  key={pro.id} onClick={()=>handleClick(i)}>
+                                    <div>{pro.completion}</div>
+                                    <div>{pro.title}</div>
+                                </div>
+                                <hr/>
+                            </>
+                        ))
+                    }
+                    { role === 'admin' &&
+                        <><div className='form-link' onClick={()=>handleClick(projects.length)}>
+                            <div className="icon">
+                                <FontAwesomeIcon icon={faPlus}/>
+                            </div>
+                            <h3>Add a Project</h3>
                         </div>
-                        <h3>Add a Project</h3>
-                    </div>
-                    <hr />
+                        <hr/></>
+                    }
                 </div>
             </div>
         </div>

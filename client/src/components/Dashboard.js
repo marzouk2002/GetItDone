@@ -3,8 +3,7 @@ import { Redirect } from 'react-router'
 // components
 import toExport from './layout/dashboard/index'
 // redux
-import { useSelector, useDispatch } from 'react-redux'
-import { setServerInfo as setServerStore } from '../actions'
+import { useSelector } from 'react-redux'
 // style 
 import '../dashboard.css'
 
@@ -12,43 +11,39 @@ const { SideMenu, ProjectsMenu, Texting, Main } = toExport
 
 function Dashboard() {
     // store
-    const dispatch = useDispatch()
     const login = useSelector(state => state.login)
     //state
-    const [ serverInfo, setServerInfo ] = useState(useSelector(state => state.serverInfo))
     const [ projects, setProjects ] = useState(null)
+    const [ selectedIndex, setIndex ] = useState(0)
 
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
-        if(!serverInfo) {
-            fetch('http://localhost:5000/app/serverinfo', {
+            fetch('http://localhost:5000/app/projects', {
                 headers : { Authorization: token }
             })
             .then(res => res.json())
             .then(data => {
-                setServerInfo(data.serverInfo)
-                dispatch(setServerStore(data.serverInfo))
+                setProjects(data.projects)
             })
-        }
-    }, [ token, dispatch, serverInfo ])
-
-    useEffect(()=> {
-        fetch('http://localhost:5000/app/projects', {
-            headers : { Authorization: token }
-        })
-        .then(res => res.json())
-        .then(data => {
-            setProjects(data.projects)
-        })
     }, [ token ])
+
+    // useEffect(()=> {
+    //     fetch('http://localhost:5000/app/projects', {
+    //         headers : { Authorization: token }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setProjects(data.projects)
+    //     })
+    // }, [ token ])
 
     return (
         <div className="dashbord-container">
             { !login && <Redirect to={{pathname: "/login", state: {msgs:[{text: 'Sorry you should logged in to access that page',type:"danger" }]}}} /> }
             <SideMenu/>
             <div className="main">
-                <ProjectsMenu/>
+                <ProjectsMenu projects={projects} setIndex={setIndex}/>
                 <Main/>
             </div>
             <Texting/>
