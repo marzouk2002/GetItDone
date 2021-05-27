@@ -28,16 +28,6 @@ function Dashboard() {
             })
     }, [ token ])
 
-    // useEffect(()=> {
-    //     fetch('http://localhost:5000/app/projects', {
-    //         headers : { Authorization: token }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setProjects(data.projects)
-    //     })
-    // }, [ token ])
-
     return (
         <div className="dashbord-container">
             { !login && <Redirect to={{pathname: "/login", state: {msgs:[{text: 'Sorry you should logged in to access that page',type:"danger" }]}}} /> }

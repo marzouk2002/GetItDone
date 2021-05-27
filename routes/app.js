@@ -63,9 +63,19 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
 })
 
 router.get('/projects', passport.authenticate('jwt', { session: false }), async (req, res)=> {
-    const { serverId } = req.user
+    const { serverId, role, _id } = req.user
+    const projectsFromDB = await Project.find({ serverId: serverId })
 
-    const projects = await Project.find({ serverId: serverId })
+    let projects = []
+
+    if(role === 'admin') {
+        projects = [...projectsFromDB]
+    } else {
+        projects = projectsFromDB.filter( pro => {
+            const isIn = pro[role + 's'].includes(_id)
+            return isIn
+        })
+    }
 
     res.json({projects})
 })
