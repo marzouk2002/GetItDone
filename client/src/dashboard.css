@@ -131,12 +131,9 @@ hr {
   padding: 1rem;
 }
 
-.pro-inner > div {
+.pro-inner .form-link,
+.pro-inner .pro-link {
   margin: 0.8rem 1rem;
-}
-
-.pro-inner > .form-link,
-.pro-inner > .pro-link {
   display: flex;
   align-items: center;
   text-align: center;
@@ -168,7 +165,7 @@ hr {
   border-radius: 50%;
   font-weight: 800;
   position: relative;
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .pro-link-prog svg {
