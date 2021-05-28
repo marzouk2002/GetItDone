@@ -11,10 +11,10 @@ function ProjectForm() {
     const [ managers, setManagers ] = useState([])
     const [ formState, setFormState ] = useState({
         title: '',
-        description: '',
-        managers:[],
-        developers:[]
+        description: ''
     })
+    const [ selectedDev, setSelectedDev ] = useState({})
+    const [ selectedMang, setSelectedMang ] = useState({})
 
     const dispatch = useDispatch()
     const serverInfo = useSelector(state => state.serverInfo)
@@ -43,6 +43,13 @@ function ProjectForm() {
         }
     }
 
+    const handleSelectChange = (e) => {
+        const input = e.target.previousElementSibling
+        const inputState = input.getAttribute('value')
+        setSelectedMang({...selectedMang, [inputState] : !selectedMang[inputState]})
+    }
+
+
     return (
         <div>
             <h1>Start a Project</h1>
@@ -68,20 +75,24 @@ function ProjectForm() {
                                 <div>
                                     <label htmlFor="managers">Managers</label>
                                     {
-                                        managers.map((mang, i) => (<div key={i}className="field">
-                                            <input type="checkbox" value={mang._id} name='manger' checked={true}/>
-                                        <label htmlFor='manger'>{mang.name}</label>
-                                            </div>))
+                                        
+                                        managers.map((mang, i) => {
+                                            return (<div key={i} className="field">
+                                                <input type="checkbox" value={mang._id} name="manager" checked={selectedMang[mang._id]}/>
+                                                <label htmlFor="manager" onClick={handleSelectChange}>{mang.name}</label>
+                                            </div>)
+                                        })
                                     }
                                 </div>
                                 <div>
                                     <label htmlFor="developers">Developers</label>
                                     
                                     {
-                                        developers.map((dev, i) => (<div key={i}className="field">
-                                            <input type="checkbox" value={dev._id} name='developer' checked={true}/>
-                                        <label htmlFor='developer'>{dev.name}</label>
-                                            </div>))
+                                        developers.map((dev, i) => {
+                                            return (<div key={i} className="field">
+                                                <input type="checkbox" value={dev._id} name='developers' checked={false}/>
+                                                <label htmlFor='developers'>{dev.name}</label>
+                                            </div>)})
                                     }
                                    
                                 </div>
