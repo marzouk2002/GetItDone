@@ -45,8 +45,13 @@ function ProjectForm() {
 
     const handleSelectChange = (e) => {
         const input = e.target.previousElementSibling
-        const inputState = input.getAttribute('value')
-        setSelectedMang({...selectedMang, [inputState] : !selectedMang[inputState]})
+        const inputId = input.getAttribute('value')
+        const inputType = input.getAttribute('name')
+        if(inputType === 'manager') {
+            setSelectedMang({...selectedMang, [inputId] : !selectedMang[inputId]})
+        } else {
+            setSelectedDev({...selectedDev, [inputId] : !selectedDev[inputId]})
+        }
     }
 
 
@@ -90,8 +95,8 @@ function ProjectForm() {
                                     {
                                         developers.map((dev, i) => {
                                             return (<div key={i} className="field">
-                                                <input type="checkbox" value={dev._id} name='developers' checked={false}/>
-                                                <label htmlFor='developers'>{dev.name}</label>
+                                                <input type="checkbox" value={dev._id} name='developer' checked={selectedDev[dev._id]}/>
+                                                <label htmlFor='developer' onClick={handleSelectChange}>{dev.name}</label>
                                             </div>)})
                                     }
                                    
