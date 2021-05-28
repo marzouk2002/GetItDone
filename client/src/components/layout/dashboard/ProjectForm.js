@@ -49,14 +49,12 @@ function ProjectForm() {
                             <div className="selecet-staff">
                                 <div>
                                     <label htmlFor="managers">Managers</label>
-                                    <div>
-                                        <input type="checkbox" id="demo-human" name="demo-human"/>
-                                        <label for="demo-human">I am a human</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="demo-human" name="demo-human"/>
-                                        <label for="demo-human">I am a human</label>
-                                    </div>
+                                    {
+                                        managers.map((mang, i) => (<div key={i}className="field">
+                                            <input type="checkbox" value={mang._id} name='manger' checked={true}/>
+                                        <label htmlFor='manger'>{mang.name}</label>
+                                            </div>))
+                                    }
                                 </div>
                                 <div>
                                     <label htmlFor="developers">Developers</label>
