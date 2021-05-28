@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-//redux
+// redux
 import { useSelector, useDispatch } from 'react-redux'
 import { setServerInfo } from '../../../actions'
+// CKEditor
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function ProjectForm() {
     const [ developers, setDevelopers ] = useState([])
@@ -27,14 +30,47 @@ function ProjectForm() {
     return (
         <div>
             <h1>Start a Project</h1>
-            <div style={{width: '80%', marginLeft: '5%'}}>
+            <div style={{width: '82%', margin: '2rem 0 0 5%'}}>
                 <form>
                     <div className="field">
-                        <label htmlFor="name">Title</label>
-                        <input type="text" name="name" required/>
+                        <label htmlFor="title">Title</label>
+                        <input type="text" name="title" required/>
                     </div> 
                     <div className="row">
-
+                        <div className="col-7 col-12-medium" style={{marginTop: '2rem'}}>
+                            <div className="field">
+                                <label htmlFor="description">Description</label>
+                                <CKEditor
+                                    editor={ ClassicEditor }
+                                    data="<p>Hello from CKEditor 5!</p>"/>
+                            </div> 
+                        </div>
+                        <div className="col-5 col-12-medium">
+                            <div className="selecet-staff">
+                                <div>
+                                    <label htmlFor="managers">Managers</label>
+                                    <div>
+                                        <input type="checkbox" id="demo-human" name="demo-human"/>
+                                        <label for="demo-human">I am a human</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="demo-human" name="demo-human"/>
+                                        <label for="demo-human">I am a human</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label htmlFor="developers">Developers</label>
+                                    
+                                    {
+                                        developers.map((dev, i) => (<div key={i}className="field">
+                                            <input type="checkbox" value={dev._id} name='developer' checked={true}/>
+                                        <label htmlFor='developer'>{dev.name}</label>
+                                            </div>))
+                                    }
+                                   
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </form>
             </div>
