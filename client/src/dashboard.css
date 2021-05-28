@@ -124,6 +124,13 @@ hr {
   display: block;
   position: absolute;
   right: 0;
+  top: 20%;
+}
+
+.texting .btn {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 0.5rem;
 }
 
 .pro-inner {
