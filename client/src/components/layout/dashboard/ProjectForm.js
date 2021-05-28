@@ -9,6 +9,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function ProjectForm() {
     const [ developers, setDevelopers ] = useState([])
     const [ managers, setManagers ] = useState([])
+    const [ formState, setFormState ] = useState({
+        title: '',
+        description: '',
+        managers:[],
+        developers:[]
+    })
 
     const dispatch = useDispatch()
     const serverInfo = useSelector(state => state.serverInfo)
@@ -27,6 +33,16 @@ function ProjectForm() {
         })
     }, [ token, dispatch, serverInfo ])
 
+    const handleTextChange = (event, editor) => {
+        if(editor) {
+            const data = editor.getData()
+            setFormState({...formState, description: data})
+        } else {
+            const data = event.target.value
+            setFormState({...formState, title: data})
+        }
+    }
+
     return (
         <div>
             <h1>Start a Project</h1>
@@ -34,7 +50,7 @@ function ProjectForm() {
                 <form>
                     <div className="field">
                         <label htmlFor="title">Title</label>
-                        <input type="text" name="title" required/>
+                        <input type="text" name="title" onChange={handleTextChange} required/>
                     </div> 
                     <div className="row">
                         <div className="col-7 col-12-medium" style={{marginTop: '2rem'}}>
@@ -42,7 +58,9 @@ function ProjectForm() {
                                 <label htmlFor="description">Description</label>
                                 <CKEditor
                                     editor={ ClassicEditor }
-                                    data="<p>Hello from CKEditor 5!</p>"/>
+                                    data={formState.description}
+                                    onChange={handleTextChange}
+                                    />
                             </div> 
                         </div>
                         <div className="col-5 col-12-medium">
