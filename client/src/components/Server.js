@@ -13,7 +13,6 @@ function Server() {
 
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.userInfo)
-    const serverInfo = useSelector(state => state.serverInfo)
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
