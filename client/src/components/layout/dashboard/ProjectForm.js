@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setServerInfo } from '../../../actions'
 // CKEditor
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -22,7 +22,6 @@ function ProjectForm() {
     const [ srcFiles, setSrcFiles ] = useState([])
 
     const dispatch = useDispatch()
-    const serverInfo = useSelector(state => state.serverInfo)
     const token = localStorage.getItem('token')
 
     useEffect(()=> {
@@ -42,13 +41,14 @@ function ProjectForm() {
         if (filesInpu.length === 0) {
             setSrcFiles([])
             return
-        } else {
-            const file = filesInpu[0]
-            const objectUrl = URL.createObjectURL(file)
-            setSrcFiles([{name: file.name, url:objectUrl}, ...srcFiles])
-    
-            return () => URL.revokeObjectURL(objectUrl)
         }
+        const newArr = filesInpu.map(file => {
+            const objectUrl = URL.createObjectURL(file)
+            return {name: file.name, url:objectUrl}
+        })
+        setSrcFiles(newArr)
+    
+        return () => newArr
     }, [ filesInpu ])
 
     const handleTextChange = (event, editor) => {
@@ -73,11 +73,15 @@ function ProjectForm() {
     }
 
     const handleFileChange = (e) => {
-        console.log(e.target)
         const file = e.target.files[0];
         setFilesInpu([file, ...filesInpu])
     }
 
+    const deleteFile = (index) => {
+        const copyArr = [...filesInpu]
+        copyArr.splice(index, 1)
+        setFilesInpu(copyArr)
+    }
 
     return (
         <div>
@@ -138,19 +142,22 @@ function ProjectForm() {
                                 srcFiles.map((src,i) =>
                                     (<div className="preview-file">
                                         <picture className='bg'>
-                                            <source srcset={src.url} alt=''/>
+                                            <source srcSet={src.url} alt=''/>
                                             <img src={src.url} alt=''/>
                                         </picture>
                                         <div className="file-name">
                                             <p>{src.name}</p>
                                         </div>
                                         <div className="delete">
-                                            <FontAwesomeIcon icon={faTrashAlt}/>
+                                            <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteFile(i)}/>
                                         </div>
                                     </div>)
                                 )
                             }
                         </div>
+                    </div>
+                    <div className='center_stuf' style={{marginTop: '2rem'}}>
+                            <input type="submit" value="Submit"/>
                     </div>
                 </form>
             </div>
