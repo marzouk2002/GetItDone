@@ -29,7 +29,7 @@ function Server() {
                 setProjects(projects)
                 dispatch(setServerInfo(data.serverInfo))
             })
-    }, [ update, token, dispatch, serverInfo ])
+    }, [ update, token ])
 
     const accept = (e) => {
         const id = e.target.value

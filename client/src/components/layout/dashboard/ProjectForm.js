@@ -5,6 +5,9 @@ import { setServerInfo } from '../../../actions'
 // CKEditor
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// fontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 function ProjectForm() {
     const [ developers, setDevelopers ] = useState([])
@@ -33,7 +36,7 @@ function ProjectForm() {
             setManagers(managers)
             dispatch(setServerInfo(data.serverInfo))
         })
-    }, [ token, dispatch, serverInfo ])
+    }, ["1"])
 
     useEffect(() => {
         if (filesInpu.length === 0) {
@@ -134,8 +137,16 @@ function ProjectForm() {
                             {
                                 srcFiles.map((src,i) =>
                                     (<div className="preview-file">
-                                        <img src={src.url} alt="" />
-                                        <p>{src.name}</p>
+                                        <picture className='bg'>
+                                            <source srcset={src.url} alt=''/>
+                                            <img src={src.url} alt=''/>
+                                        </picture>
+                                        <div className="file-name">
+                                            <p>{src.name}</p>
+                                        </div>
+                                        <div className="delete">
+                                            <FontAwesomeIcon icon={faTrashAlt}/>
+                                        </div>
                                     </div>)
                                 )
                             }

@@ -300,3 +300,58 @@ hr {
   overflow-y: hidden;
   overflow-x: auto;
 }
+
+.files-selected {
+  flex: 100% 1 1;
+  display: flex;
+  height: 100%;
+  margin-top: auto;
+}
+
+.preview-file {
+  height: 7rem;
+  width: 7rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-file div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-file .bg {
+  object-fit: cover;
+}
+
+.preview-file .file-name {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: grid;
+  place-items: center;
+}
+.preview-file .delete {
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  transition: 0.3s transform ease-in-out;
+  transform-origin: bottom;
+  transform: scaleY(0);
+}
+
+.preview-file .delete svg {
+  cursor: pointer;
+  transition: 0.3s color ease-out;
+}
+
+.preview-file .delete svg:hover {
+  color: red;
+}
+
+.preview-file:hover .delete {
+  transform: scaleY(1);
+}
