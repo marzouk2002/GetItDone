@@ -15,6 +15,8 @@ function ProjectForm() {
     })
     const [ selectedDev, setSelectedDev ] = useState({})
     const [ selectedMang, setSelectedMang ] = useState({})
+    const [ filesInpu, setFilesInpu ] = useState([])
+    const [ srcFiles, setSrcFiles ] = useState([])
 
     const dispatch = useDispatch()
     const serverInfo = useSelector(state => state.serverInfo)
@@ -32,6 +34,19 @@ function ProjectForm() {
             dispatch(setServerInfo(data.serverInfo))
         })
     }, [ token, dispatch, serverInfo ])
+
+    useEffect(() => {
+        if (filesInpu.length === 0) {
+            setSrcFiles([])
+            return
+        } else {
+            const file = filesInpu[0]
+            const objectUrl = URL.createObjectURL(file)
+            setSrcFiles([{name: file.name, url:objectUrl}, ...srcFiles])
+    
+            return () => URL.revokeObjectURL(objectUrl)
+        }
+    }, [ filesInpu ])
 
     const handleTextChange = (event, editor) => {
         if(editor) {
@@ -52,6 +67,12 @@ function ProjectForm() {
         } else {
             setSelectedDev({...selectedDev, [inputId] : !selectedDev[inputId]})
         }
+    }
+
+    const handleFileChange = (e) => {
+        console.log(e.target)
+        const file = e.target.files[0];
+        setFilesInpu([file, ...filesInpu])
     }
 
 
@@ -107,10 +128,17 @@ function ProjectForm() {
                     <div className='files'  style={{marginTop: '1.5rem'}}>
                         <div className="field">
                             <label htmlFor="files">Files</label>
-                            <input type="file" name="files"/>
+                            <input type="file" name="files" onChange={handleFileChange}/>
                         </div> 
                         <div className="files-selected">
-
+                            {
+                                srcFiles.map((src,i) =>
+                                    (<div className="preview-file">
+                                        <img src={src.url} alt="" />
+                                        <p>{src.name}</p>
+                                    </div>)
+                                )
+                            }
                         </div>
                     </div>
                 </form>

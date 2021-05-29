@@ -42,8 +42,6 @@ function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
         setSelectedTitle(null)
     }
 
-
-
     const handleChange = (e) => {
         const value = e.target.value;
         setFormState({
