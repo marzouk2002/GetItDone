@@ -104,10 +104,15 @@ function ProjectForm() {
                             </div> 
                         </div>
                     </div>
-                    <div className="field">
-                        <label htmlFor="title">Files</label>
-                        <input type="file" name="files"/>
-                    </div> 
+                    <div className='files'  style={{marginTop: '1.5rem'}}>
+                        <div className="field">
+                            <label htmlFor="files">Files</label>
+                            <input type="file" name="files"/>
+                        </div> 
+                        <div className="files-selected">
+
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

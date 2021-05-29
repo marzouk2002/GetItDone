@@ -294,3 +294,9 @@ hr {
   align-items: center;
   justify-content: center;
 }
+
+.project-form .files {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
