@@ -140,7 +140,7 @@ function ProjectForm() {
                         <div className="files-selected">
                             {
                                 srcFiles.map((src,i) =>
-                                    (<div className="preview-file">
+                                    (<div className="preview-file" key={i}>
                                         <picture className='bg'>
                                             <source srcSet={src.url} alt=''/>
                                             <img src={src.url} alt=''/>
