@@ -5,7 +5,7 @@ import toExport from './layout/dashboard/index'
 // redux
 import { useSelector } from 'react-redux'
 // style 
-import '../dashboard.css'
+import '../styles/dashboard.css'
 
 const { SideMenu, ProjectsMenu, Texting, Main } = toExport
 

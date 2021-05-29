@@ -15,7 +15,7 @@ import Dashboard from './components/Dashboard';
 import Server from './components/Server';
 
 //style
-import './App.css'
+import './styles/App.css'
 
 // redux store 
 import { useDispatch } from 'react-redux'
