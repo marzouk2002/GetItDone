@@ -1,9 +1,24 @@
-.container {
+.containner {
   width: 100%;
   height: 100%;
   display: -ms-grid;
   display: grid;
   place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.containner::before {
+  content: '';
+  background: #bfc7f5;
+  opacity: 0.9;
+  filter: blur(9px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .wrapper {
@@ -23,7 +38,7 @@
   width: 0.5rem;
   height: 80%;
   border-radius: 100vmax;
-  background-color: blue;
+  background-color: #2238b6;
   -webkit-transform: scaleY(0.4);
   transform: scaleY(0.4);
   -webkit-animation: bounce 1.2s ease-in-out infinite;
