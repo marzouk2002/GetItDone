@@ -59,7 +59,7 @@ function ProjectForm() {
         <div>
             <h1>Start a Project</h1>
             <div style={{width: '82%', margin: '2rem 0 0 5%'}}>
-                <form>
+                <form className='project-form'>
                     <div className="field">
                         <label htmlFor="title">Title</label>
                         <input type="text" name="title" onChange={handleTextChange} required/>
@@ -104,6 +104,10 @@ function ProjectForm() {
                             </div> 
                         </div>
                     </div>
+                    <div className="field">
+                        <label htmlFor="title">Files</label>
+                        <input type="file" name="files"/>
+                    </div> 
                 </form>
             </div>
         </div>
