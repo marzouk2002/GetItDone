@@ -12,13 +12,13 @@ const projectSchema = new mongoose.Schema({
         required: true
     },
     completion: {
-        type: String,
+        type: Number,
         default: 0
     },
     managers: [String],
     developers: [String],
-    files: String,
-    parts: [Object],
+    files: [String],
+    branchs: [Object],
     comments: [Object]
 })
 
