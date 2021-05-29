@@ -35,7 +35,7 @@ function ProjectForm() {
             setManagers(managers)
             dispatch(setServerInfo(data.serverInfo))
         })
-    }, ["1"])
+    })
 
     useEffect(() => {
         if (filesInpu.length === 0) {
