@@ -71,7 +71,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
         const fileName = newUser.id + file.detectedFileExtension;
         await pipeline(
             file.stream,
-            fs.createWriteStream(`${__dirname}/../files/users_pic/${fileName}`)
+            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
         );
         newUser.picture = '/users_pic/' + fileName
     }
@@ -196,7 +196,7 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
         const fileName = user._id + file.detectedFileExtension;
         await pipeline(
             file.stream,
-            fs.createWriteStream(`${__dirname}/../files/users_pic/${fileName}`)
+            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
         );
         user.picture = '/users_pic/' + fileName
     }

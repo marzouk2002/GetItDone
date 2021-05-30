@@ -10,7 +10,7 @@ export default function Main({ projects, selectedIndex, setProjects }) {
         <div className="major pro-main">
             {
                 projectSelect ? <><h1>{projectSelect.title}</h1><h4>{projectSelect.description}</h4> </>
-                : <ProjectForm  projects={projects} setProjects={setProjects}/>
+                : <ProjectForm  projects={projects} setProjects={setProjects}  setLoading={setLoading}/>
             }
             {loading && <Loading/>}
         </div>
