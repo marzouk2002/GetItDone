@@ -5,6 +5,7 @@ const utils = require('../lib/utils')
 
 // pipeline
 const fs = require("fs");
+const path = require("path")
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
 
@@ -87,31 +88,42 @@ router.delete('/deletepro', passport.authenticate('jwt', { session: false }), as
     res.status(200).json({msg: 'complited'})
 })
 
-router.post('/update', passport.authenticate('jwt', { session: false }), upload.array('files'), async (req, res) => {
+router.post('/addproject', passport.authenticate('jwt', { session: false }), upload.array('files'), async (req, res) => {
     const { _id, serverId } = req.user
-    const { title, description, managers, developers } = req.body
+    let { title, description, managers, developers } = req.body
     const files = req.files
+
+    managers = managers.slice(1)
+    developers = developers.slice(1)
 
     const newProject = new Project({ adminId: _id, serverId, title, description, managers, developers })
 
+
     const projectFolder = newProject.id
     const serverFolder = serverId
-    const baseName = '/servers' + serverFolder + '/' + projectFolder + '/'
+    const baseName = path.join('servers' , serverFolder , projectFolder)
     let filesArr = []
-    asyncForEach(files, async (file) => {
-        const fileName = file.originalname;
-        console.log(baseName + fileName)
-        await pipeline(
-            file.stream,
-            fs.createWriteStream(`${__dirname}/../files/servers/${serverFolder}/${projectFolder}/${fileName}`)
-        );
-        filesArr.push(baseName + fileName)
+    fs.mkdir(path.join(__dirname, '..', 'files', baseName),{ recursive: true }, function(err) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log("New directory successfully created.")
+        }
     })
+    await Promise.all(
+        files.map(async (file) => {
+            const fileName = file.originalName;
+            await pipeline(
+                file.stream,
+                fs.createWriteStream(path.join(__dirname, '..', 'files', baseName, fileName))
+            );
+            filesArr.push(path.join(baseName, fileName))
+    }));
 
-    newProject.files = filesArr
+    newProject.files = [...filesArr]
     newProject.save()
         .then(project => {
-            res.json({message: 'ssucces', project})
+            res.json({message: 'succes', project})
         })
         .catch(err => {
             console.log(err)
