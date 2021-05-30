@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 // axios 
 import axios from 'axios'
+// lodash
+import _ from 'lodash'
 
 function ProjectForm() {
     const [ developers, setDevelopers ] = useState([])
@@ -77,8 +79,12 @@ function ProjectForm() {
     }
 
     const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if(file) setFilesInpu([file, ...filesInpu])
+        const fileArr = []
+        const { files } = e.target;
+        _.forEach(files, file => {
+            if(file) fileArr.push(file)
+        });
+        setFilesInpu([...fileArr, ...filesInpu])
     }
 
     const deleteFile = (index) => {
@@ -95,10 +101,9 @@ function ProjectForm() {
             return formData.append(item[0], item[1])
         })
         
-        filesInpu.forEach(file => {
-            return formData.append(file.name, file)
-        })
-
+        _.forEach(filesInpu, file => {
+            formData.append('files', file);
+        });
         formData.append('managers', [])
         formData.append('developers', [])
 
@@ -111,7 +116,11 @@ function ProjectForm() {
         })
         
 
-        axios.post("https://httpbin.org/anything", formData).then(res=>console.log(res))
+        axios.post("http://localhost:5000/app/addproject", formData,{
+            headers: { Authorization: token }
+        })
+            .then(res=>console.log(res))
+            .catch(err=>console.error(err))
     }
 
     return (
@@ -166,7 +175,7 @@ function ProjectForm() {
                     <div className='files'  style={{marginTop: '1.5rem'}}>
                         <div className="field">
                             <label htmlFor="files">Files</label>
-                            <input type="file" name="files" onChange={handleFileChange}/>
+                            <input type="file" name="files" multiple onChange={handleFileChange}/>
                         </div> 
                         <div className="files-selected">
                             {
