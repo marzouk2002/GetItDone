@@ -72,7 +72,7 @@ function Server() {
                     <h3 style={{marginBottom:'0', lineHeight: 'normal'}}>Server Id: </h3>
                     <h1 className="center_stuf">{userInfo.serverId}</h1>
                 </div>
-                { requests.length>0 && <div>
+                { requests.length && <div>
                     <h3 className="center_stuf">Requests</h3>
                     <div className="table-wrapper">
                         <table>
@@ -116,7 +116,7 @@ function Server() {
                         </table>
                     </div>
                 </div>
-                { managers && <div>
+                { managers.length && <div>
                     <h3 className="center_stuf">Managers</h3>
                     <div className="table-wrapper">
                         <table>
@@ -138,7 +138,7 @@ function Server() {
                         </table>
                     </div>
                 </div>}
-                { developers.length>0 && <div>
+                { developers.length && <div>
                     <h3 className="center_stuf">Developers</h3>
                     <div className="table-wrapper">
                         <table>
@@ -160,7 +160,7 @@ function Server() {
                         </table>
                     </div>
                 </div>}
-                { projects.length>0 && <div>
+                { projects.length && <div>
                     <h3 className="center_stuf">Projects</h3>
                     <div className="table-wrapper">
                         <table>

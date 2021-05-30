@@ -6,6 +6,7 @@ const utils = require('../lib/utils')
 
 // pipeline
 const fs = require("fs");
+const path = require('path')
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
 
@@ -76,9 +77,16 @@ router.post('/register', upload.single('file'), async (req, res) => {
     }
 
     if(role ==='admin') {
-        const newServer = new Server
-        ({admin: newUser.id}) 
-        newUser.serverId = newServer.id
+        const newServer = new Server({admin: newUser.id})
+        const serverId = newServer.id
+        fs.mkdir(path.join(__dirname, '..', 'files', 'servers', serverId),{ recursive: true }, function(err) {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log("New directory successfully created.")
+            }
+        })
+        newUser.serverId = serverId
         newServer.save()
     } else {
         newUser.serverId = serverId
