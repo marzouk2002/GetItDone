@@ -34,7 +34,7 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu projects={projects} setIndex={setIndex}/>
-                <Main projects={projects} selectedIndex={selectedIndex}/>
+                <Main projects={projects} setProjects={setProjects} selectedIndex={selectedIndex}/>
             </div>
             <Texting/>
         </div>

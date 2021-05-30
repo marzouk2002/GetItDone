@@ -13,7 +13,7 @@ import axios from 'axios'
 // lodash
 import _ from 'lodash'
 
-function ProjectForm() {
+function ProjectForm({ projects, setProjects }) {
     const [ developers, setDevelopers ] = useState([])
     const [ managers, setManagers ] = useState([])
     const [ formState, setFormState ] = useState({
@@ -119,7 +119,10 @@ function ProjectForm() {
         axios.post("http://localhost:5000/app/addproject", formData,{
             headers: { Authorization: token }
         })
-            .then(res=>console.log(res))
+            .then(res=>{
+                const { project } = res.data
+                setProjects([...projects, project])
+            })
             .catch(err=>console.error(err))
     }
 
