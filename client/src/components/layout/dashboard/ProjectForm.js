@@ -8,6 +8,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // fontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+// axios 
+import axios from 'axios'
 
 function ProjectForm() {
     const [ developers, setDevelopers ] = useState([])
@@ -43,6 +45,8 @@ function ProjectForm() {
             return
         }
         const newArr = filesInpu.map(file => {
+            const patr= /^image/
+            if(!patr.test(file.type)) return {name: file.name, url:null}
             const objectUrl = URL.createObjectURL(file)
             return {name: file.name, url:objectUrl}
         })
@@ -74,7 +78,7 @@ function ProjectForm() {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        setFilesInpu([file, ...filesInpu])
+        if(file) setFilesInpu([file, ...filesInpu])
     }
 
     const deleteFile = (index) => {
@@ -83,11 +87,38 @@ function ProjectForm() {
         setFilesInpu(copyArr)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const formData = new FormData()
+        Object.entries(formState).map(item => {
+            return formData.append(item[0], item[1])
+        })
+        
+        filesInpu.forEach(file => {
+            return formData.append(file.name, file)
+        })
+
+        formData.append('managers', [])
+        formData.append('developers', [])
+
+        Object.entries(selectedMang).forEach(mang => {
+            if(mang[1]) return formData.append('managers', mang[0])
+        })
+        
+        Object.entries(selectedDev).forEach(dev => {
+            if(dev[1]) return formData.append('developers', dev[0])
+        })
+        
+
+        axios.post("https://httpbin.org/anything", formData).then(res=>console.log(res))
+    }
+
     return (
         <div>
             <h1>Start a Project</h1>
             <div style={{width: '82%', margin: '2rem 0 0 5%'}}>
-                <form className='project-form'>
+                <form onSubmit={handleSubmit} className='project-form'>
                     <div className="field">
                         <label htmlFor="title">Title</label>
                         <input type="text" name="title" onChange={handleTextChange} required/>
@@ -141,10 +172,10 @@ function ProjectForm() {
                             {
                                 srcFiles.map((src,i) =>
                                     (<div className="preview-file" key={i}>
-                                        <picture className='bg'>
+                                        { src.url &&  <picture className='bg'>
                                             <source srcSet={src.url} alt=''/>
                                             <img src={src.url} alt=''/>
-                                        </picture>
+                                        </picture>}
                                         <div className="file-name">
                                             <p>{src.name}</p>
                                         </div>
