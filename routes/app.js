@@ -83,8 +83,16 @@ router.get('/projects', passport.authenticate('jwt', { session: false }), async 
 
 router.delete('/deletepro', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const pro_id = req.query.pro_id
-
+    const { serverId } = req.user
     await Project.deleteOne({_id: pro_id})
+
+    fs.rmdir(
+        path.join(__dirname, '..', 'files', 'servers', serverId, pro_id), 
+        {recursive: true},
+         err=> {
+             if(err) throw err
+             console.log('folder deleted')
+         })
     res.status(200).json({msg: 'complited'})
 })
 
