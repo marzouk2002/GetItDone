@@ -308,6 +308,7 @@ hr {
   overflow-y: auto;
 }
 
+.display-files input[type='file'],
 .project-form input[type='file'] {
   outline: none;
   color: transparent;
@@ -318,10 +319,18 @@ hr {
   position: relative;
 }
 
+.display-files input[type='file'] {
+  width: 8rem;
+  height: 8rem;
+  background-color: black;
+}
+
+.display-files input[type='file']::-webkit-file-upload-button,
 .project-form input[type='file']::-webkit-file-upload-button {
   visibility: hidden;
 }
 
+.display-files input[type='file']::after,
 .project-form input[type='file']::after {
   position: absolute;
   top: 0;
@@ -339,10 +348,28 @@ hr {
   justify-content: center;
 }
 
+.display-files input[type='submit'] {
+  position: absolute;
+  width: 8rem;
+  bottom: 0;
+  line-height: normal;
+}
+
+.display-files input[type='file']::after {
+  font-weight: 1000;
+  font-size: 3rem;
+}
+
+.display-files,
 .project-form .files {
+  position: relative;
   display: flex;
-  overflow-y: hidden;
   overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.display-files {
+  width: 90%;
 }
 
 .files-selected {

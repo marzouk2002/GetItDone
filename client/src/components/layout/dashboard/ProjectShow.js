@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 // redux
 import { useSelector } from 'react-redux'
+// components
+import DisplayFiles from './DispalyFiles'
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
-    const { title, description, managers, developers } = projectSelected
+    const { title, description, managers, developers, files } = projectSelected
 
     const userInfo = useSelector(state => state.userInfo) 
 
@@ -81,6 +83,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                         </div>
                     </div>
                 </div>
+                <DisplayFiles files={files}/>
             </div>
         </div>
     )
