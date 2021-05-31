@@ -104,8 +104,10 @@ router.post('/addproject', passport.authenticate('jwt', { session: false }), upl
     managers = managers.slice(1)
     developers = developers.slice(1)
 
-    if(managers.length) managers = managers.map(mang=> JSON.parse(mang))
-    if(developers.length) developers = developers.map(dev=> JSON.parse(dev))
+    
+
+    managers = managers.length ? managers.map(mang=> JSON.parse(mang)) : []
+    developers = developers.length ? developers.map(dev=> JSON.parse(dev)) : []
 
     const newProject = new Project({ adminId: _id, serverId, title, description, managers, developers })
 

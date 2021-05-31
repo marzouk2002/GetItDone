@@ -51,7 +51,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                     <div className='col-5 col-12-medium'>
                         <div className='seleceted-staff'>
                             {
-                                managers.length &&  <div>
+                                managers.length ? <div>
                                 <label>Managers</label>
                                 <ul>
                                 {
@@ -62,10 +62,10 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                                     })
                                 }
                                 </ul>
-                                </div>
+                                </div> : ''
                             }
                             {
-                                developers.length &&  <div>
+                                developers.length ? <div>
                                 <label>Developers</label>
                                 <ul>
                                 {
@@ -76,7 +76,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                                     })
                                 }
                                 </ul>
-                                </div>
+                                </div> : ''
                             }
                         </div>
                     </div>
