@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+// lodash
 import _ from 'lodash'
+// motion
+import { motion } from 'framer-motion'
 
-export default function DispalyFiles({ files }) {
-    const [ filesInpu, setFilesInput ] = useState(null)
+function DispalyFiles({ files }) {
+    const [ filesInpu, setFilesInput ] = useState([])
 
     const handleInputFileChange = (e) => {
         const fileArr = []
@@ -18,8 +21,12 @@ export default function DispalyFiles({ files }) {
         <label>Files</label>
         <div className="display-files">
             <input type="file" name="files" onChange={handleInputFileChange} multiple/>
-            <input type='submit' value='Submit' className='btn primary'/>
+            { filesInpu.length ? <motion.input initial={{opacity:0, y: '100%'}}
+                animate={{opacity: 1, y:0}}
+                transition={{delay: 0.4, duration: 0.8}} type='submit' value='Submit' className='btn primary'/> : ''} 
         </div>
     </div>
     )
 }
+
+export default DispalyFiles
