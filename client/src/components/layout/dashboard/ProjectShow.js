@@ -4,18 +4,25 @@ import parse from 'html-react-parser'
 // fontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+// redux
+import { useSelector } from 'react-redux'
 
 function ProjectShow ({ projectSelected }) {
     const { title, description, managers, developers } = projectSelected
+
+    const userInfo = useSelector(state => state.userInfo) 
 
     console.log(projectSelected)
     return (
         <div>
             <div className="project-header">
             <h1>{title}</h1>
-            <div className='detele-btn'>
-                <FontAwesomeIcon icon={faTrashAlt}/>
-            </div>
+            {
+            userInfo.role === 'admin' && 
+                <div className='detele-btn' title='delete this project'>
+                    <FontAwesomeIcon icon={faTrashAlt}/>
+                </div>
+            }
             </div>
             
             <div className='project-wrap'>

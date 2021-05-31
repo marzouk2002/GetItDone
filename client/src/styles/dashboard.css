@@ -159,6 +159,33 @@ hr {
   align-items: center;
 }
 
+.project-header .detele-btn {
+  background-color: rgba(255, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.detele-btn svg {
+  font-size: 1.2rem;
+}
+
+@keyframes shake {
+  from {
+    transform: rotate(15deg);
+  }
+  to {
+    transform: rotate(-15deg);
+    transform-origin: center center;
+  }
+}
+
+.detele-btn:hover svg {
+  animation: shake 0.1s ease-in-out 0.1s infinite alternate;
+}
+
 .form-link > h3,
 .pro-link > h3 {
   margin-bottom: 0;
