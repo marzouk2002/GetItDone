@@ -17,7 +17,7 @@ const projectSchema = new mongoose.Schema({
     },
     managers: [Object],
     developers: [Object],
-    files: [String],
+    files: [Object],
     branchs: [Object],
     comments: [Object]
 })

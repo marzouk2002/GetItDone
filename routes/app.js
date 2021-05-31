@@ -3,11 +3,12 @@ const multer = require('multer')
 const passport = require('passport')
 const utils = require('../lib/utils')
 
-// pipeline
+// fileSystem and pipeline ...
 const fs = require("fs");
 const path = require("path")
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
+const FileType = require('file-type');
 
 // models DB
 const Users = require('../models/Users')
@@ -130,7 +131,8 @@ router.post('/addproject', passport.authenticate('jwt', { session: false }), upl
                 file.stream,
                 fs.createWriteStream(path.join(__dirname, '..', 'files', baseName, fileName))
             );
-            filesArr.push(path.join(baseName, fileName))
+            const extention = path.extname(fileName).toLocaleLowerCase()
+            filesArr.push({path :path.join(baseName, fileName), name: fileName, extention})
     }));
 
     newProject.files = [...filesArr]
