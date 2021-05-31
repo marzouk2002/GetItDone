@@ -2,14 +2,13 @@ import React from 'react'
 
 function About() {
     return (
-        <>
-        <main>
-            <header className="major" style={titleStyle}>
-                    <h1>About</h1>
-            </header>
-        </main>
-        
-    </>
+        <React.Fragment>
+            <main>
+                <header className="major" style={titleStyle}>
+                        <h1>About</h1>
+                </header>
+            </main>
+        </React.Fragment>
     )
 }
 

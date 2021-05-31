@@ -42,8 +42,7 @@ function Contact() {
         sendFeedback(serviceID, templateId, { from_name: name, message, from_email: email, to_name: 'youssouf' })
     }
 
-    return (
-        <>
+    return (<React.Fragment>
             <header className="major" style={titleStyle}>
                 <h1>Reach out to us</h1>
             </header>
@@ -99,7 +98,7 @@ function Contact() {
                 </div>
             </section>
             <Footer/>
-        </>
+        </React.Fragment>
     )
 }
 
