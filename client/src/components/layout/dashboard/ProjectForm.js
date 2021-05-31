@@ -68,13 +68,14 @@ function ProjectForm({ projects, setProjects, setLoading }) {
     }
 
     const handleSelectChange = (e) => {
+        const name = e.target.getAttribute('name')
         const input = e.target.previousElementSibling
         const inputId = input.getAttribute('value')
         const inputType = input.getAttribute('name')
         if(inputType === 'manager') {
-            setSelectedMang({...selectedMang, [inputId] : !selectedMang[inputId]})
+            setSelectedMang({...selectedMang, [inputId] : {state: !selectedMang[inputId]?.state, name}})
         } else {
-            setSelectedDev({...selectedDev, [inputId] : !selectedDev[inputId]})
+            setSelectedDev({...selectedDev, [inputId] : {state: !selectedDev[inputId]?.state, name}})
         }
     }
 
@@ -104,15 +105,15 @@ function ProjectForm({ projects, setProjects, setLoading }) {
         _.forEach(filesInpu, file => {
             formData.append('files', file);
         });
+
         formData.append('managers', [])
         formData.append('developers', [])
-
         Object.entries(selectedMang).forEach(mang => {
-            if(mang[1]) return formData.append('managers', mang[0])
+            if(mang[1].state) return formData.append('managers', JSON.stringify({ id: mang[0], name: mang[1].name}))
         })
         
         Object.entries(selectedDev).forEach(dev => {
-            if(dev[1]) return formData.append('developers', dev[0])
+            if(dev[1].state) return formData.append('developers', JSON.stringify({ id: dev[0], name: dev[1].name }))
         })
         
 
@@ -158,8 +159,8 @@ function ProjectForm({ projects, setProjects, setLoading }) {
                                         
                                         managers.map((mang, i) => {
                                             return (<div key={i} className="field">
-                                                <input type="checkbox" value={mang._id} name="manager" checked={selectedMang[mang._id]}/>
-                                                <label htmlFor="manager" onClick={handleSelectChange}>{mang.name}</label>
+                                                <input type="checkbox" value={mang._id} name="manager" checked={selectedMang[mang._id]?.state}/>
+                                                <label htmlFor="manager" name={mang.name} onClick={handleSelectChange}>{mang.name}</label>
                                             </div>)
                                         })
                                     }
@@ -170,8 +171,8 @@ function ProjectForm({ projects, setProjects, setLoading }) {
                                     {
                                         developers.map((dev, i) => {
                                             return (<div key={i} className="field">
-                                                <input type="checkbox" value={dev._id} name='developer' checked={selectedDev[dev._id]}/>
-                                                <label htmlFor='developer' onClick={handleSelectChange}>{dev.name}</label>
+                                                <input type="checkbox" value={dev._id} name='developer' checked={selectedDev[dev._id]?.state}/>
+                                                <label htmlFor='developer' name={dev.name} onClick={handleSelectChange}>{dev.name}</label>
                                             </div>)})
                                     }
                                    

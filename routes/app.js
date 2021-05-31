@@ -101,8 +101,8 @@ router.post('/addproject', passport.authenticate('jwt', { session: false }), upl
     let { title, description, managers, developers } = req.body
     const files = req.files
 
-    managers = managers.slice(1)
-    developers = developers.slice(1)
+    managers = managers.slice(1).map(mang=> JSON.parse(mang))
+    developers = developers.slice(1).map(dev=> JSON.parse(dev))
 
     const newProject = new Project({ adminId: _id, serverId, title, description, managers, developers })
 
