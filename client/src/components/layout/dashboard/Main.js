@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 //components 
 import ProjectForm from './ProjectForm'
 import Loading from '../Loading'
+import ProjectShow from './ProjectShow'
 
 export default function Main({ projects, selectedIndex, setProjects }) {
-    const projectSelect = projects[selectedIndex]
+    const projectSelected = projects[selectedIndex]
     const [loading, setLoading] = useState(false)
+
     return (
         <div className="major pro-main">
             {
-                projectSelect ? <><h1>{projectSelect.title}</h1><h4>{projectSelect.description}</h4> </>
+                projectSelected ? <ProjectShow projectSelected={projectSelected}/>
                 : <ProjectForm  projects={projects} setProjects={setProjects}  setLoading={setLoading}/>
             }
             {loading && <Loading/>}
