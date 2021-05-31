@@ -101,8 +101,11 @@ router.post('/addproject', passport.authenticate('jwt', { session: false }), upl
     let { title, description, managers, developers } = req.body
     const files = req.files
 
-    managers = managers.slice(1).map(mang=> JSON.parse(mang))
-    developers = developers.slice(1).map(dev=> JSON.parse(dev))
+    managers = managers.slice(1)
+    developers = developers.slice(1)
+
+    if(managers.length) managers = managers.map(mang=> JSON.parse(mang))
+    if(developers.length) developers = developers.map(dev=> JSON.parse(dev))
 
     const newProject = new Project({ adminId: _id, serverId, title, description, managers, developers })
 
@@ -131,7 +134,7 @@ router.post('/addproject', passport.authenticate('jwt', { session: false }), upl
     newProject.files = [...filesArr]
     newProject.save()
         .then(project => {
-            res.json({message: 'succes', project})
+            res.json({message: 'succes'})
         })
         .catch(err => {
             console.log(err)
