@@ -1,5 +1,9 @@
 import React from 'react'
+// html parser
 import parse from 'html-react-parser'
+// fontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 function ProjectShow ({ projectSelected }) {
     const { title, description, managers, developers } = projectSelected
@@ -7,7 +11,13 @@ function ProjectShow ({ projectSelected }) {
     console.log(projectSelected)
     return (
         <div>
+            <div className="project-header">
             <h1>{title}</h1>
+            <div className='detele-btn'>
+                <FontAwesomeIcon icon={faTrashAlt}/>
+            </div>
+            </div>
+            
             <div className='project-wrap'>
                 <div className='row'>
                     <div className='col-7 col-12-medium'>

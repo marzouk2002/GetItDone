@@ -134,7 +134,7 @@ function ProjectForm({ projects, setProjects, setLoading }) {
     return (
         <div>
             <h1>Start a Project</h1>
-            <div style={{width: '82%', margin: '2rem 0 0 5%'}}>
+            <div style={{ margin: '2rem 4%' }}>
                 <form onSubmit={handleSubmit} className='project-form'>
                     <div className="field">
                         <label htmlFor="title">Title</label>
