@@ -15,6 +15,7 @@ function Dashboard() {
     //state
     const [ projects, setProjects ] = useState([])
     const [ selectedIndex, setIndex ] = useState(0)
+    const [ upDate, setUpDate ] = useState(0)
 
     const token = localStorage.getItem('token')
     
@@ -26,7 +27,7 @@ function Dashboard() {
             .then(data => {
                 setProjects(data.projects)
             })
-    }, [ token ])
+    }, [ token, upDate ])
 
     return (
         <div className="dashbord-container">
@@ -34,7 +35,7 @@ function Dashboard() {
             <SideMenu/>
             <div className="main">
                 <ProjectsMenu projects={projects} setIndex={setIndex}/>
-                <Main projects={projects} setProjects={setProjects} selectedIndex={selectedIndex}/>
+                <Main projects={projects} setProjects={setProjects} setUpDate={setUpDate}  setIndex={setIndex} selectedIndex={selectedIndex}/>
             </div>
             <Texting/>
         </div>

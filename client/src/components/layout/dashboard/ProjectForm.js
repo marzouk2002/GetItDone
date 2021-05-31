@@ -13,7 +13,7 @@ import axios from 'axios'
 // lodash
 import _ from 'lodash'
 
-function ProjectForm({ projects, setProjects, setLoading }) {
+function ProjectForm({ setUpDate, setLoading }) {
     const [ developers, setDevelopers ] = useState([])
     const [ managers, setManagers ] = useState([])
     const [ formState, setFormState ] = useState({
@@ -124,9 +124,8 @@ function ProjectForm({ projects, setProjects, setLoading }) {
                 return loaded < total ? setLoading(true) : setLoading(false)
             }
         })
-            .then(res=>{
-                const { project } = res.data
-                setProjects([...projects, project])
+            .then(res => {
+                setUpDate(Math.random()*10000)
             })
             .catch(err=>console.error(err))
     }

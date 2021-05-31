@@ -7,19 +7,34 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 // redux
 import { useSelector } from 'react-redux'
 
-function ProjectShow ({ projectSelected }) {
+function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
     const { title, description, managers, developers } = projectSelected
 
     const userInfo = useSelector(state => state.userInfo) 
 
     console.log(projectSelected)
+
+    const token = localStorage.getItem('token')
+
+    const deletePro = (e) => {
+        const id = projectSelected._id
+        fetch('http://localhost:5000/app/deletepro?pro_id='+id, {
+            method: 'DELETE',
+            headers : { Authorization: token },
+            body: {id}
+        }).then(res => {
+            setUpDate(Math.random()*10000)
+            setIndex(selectedIndex ? selectedIndex-1 : selectedIndex)
+        })
+        .catch(err => console.log(err))
+    }
     return (
         <div>
             <div className="project-header">
             <h1>{title}</h1>
             {
             userInfo.role === 'admin' && 
-                <div className='detele-btn' title='delete this project'>
+                <div className='detele-btn' title='delete this project' onClick={deletePro}>
                     <FontAwesomeIcon icon={faTrashAlt}/>
                 </div>
             }
