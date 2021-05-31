@@ -24,7 +24,7 @@ function ProjectShow ({ projectSelected }) {
                                 <ul>
                                 {
                                     managers.map((mang, i) => {
-                                        return (<li key={i} style={{marginLeft: '5px'}}>
+                                        return (<li key={i} style={{marginLeft: '3px', paddingLeft:'0'}}>
                                             {mang.name}
                                         </li>)
                                     })
@@ -38,7 +38,7 @@ function ProjectShow ({ projectSelected }) {
                                 <ul>
                                 {
                                     developers.map((dev, i) => {
-                                        return (<li key={i} style={{marginLeft: '5px'}}>
+                                        return (<li key={i} style={{marginLeft: '3px', paddingLeft:'0'}}>
                                             {dev.name}
                                         </li>)
                                     })
