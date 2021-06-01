@@ -25,8 +25,7 @@ function DispalyFiles({ files, projectId, setUpDate }) {
             method: 'DELETE',
             body: JSON.stringify({ file, projectId }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
-        }).then(res => res.json())
-        .then(data => console.log(data))
+        }).then(res => setUpDate(Math.random() * 10000))
         .catch(err => console.error(err))
 
     }
