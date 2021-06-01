@@ -33,10 +33,12 @@ function DispalyFiles({ files }) {
                     const isImage = filetypes.test(file.extention)
                     return (<div className="file-card" key={i}>
                         {isImage ? <img src={'http://localhost:5000/' + file.path} alt={file.name} /> : '' }
-                        <h4>{file.name}</h4>
-                        <div className='btns'>
-                            <FontAwesomeIcon icon={faTrashAlt}/>
-                            <FontAwesomeIcon icon={faDownload}/>
+                        <div className="content">
+                            <h4>{file.name}</h4>
+                            <div className='btns'>
+                                <FontAwesomeIcon icon={faTrashAlt}/>
+                                <FontAwesomeIcon icon={faDownload}/>
+                            </div>
                         </div>
                     </div>)
                 })
