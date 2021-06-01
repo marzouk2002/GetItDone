@@ -5,6 +5,8 @@ import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
+// axios 
+import axios from 'axios'
 
 function DispalyFiles({ files, projectId, setUpDate }) {
     const [ filesInpu, setFilesInput ] = useState([])
@@ -30,6 +32,23 @@ function DispalyFiles({ files, projectId, setUpDate }) {
 
     }
 
+    const submitFiles = () => {
+        const formData = new FormData()
+
+        _.forEach(filesInpu, file => {
+            formData.append('files', file);
+        });
+
+        axios.post("http://localhost:5000/app/projectfile", formData,{
+            headers: { Authorization: token },
+        })
+        .then(res => {
+            console.log(res)
+            setUpDate(Math.random()*10000)
+        })
+        .catch(err=>console.error(err))
+    }
+
     return (
         <div>
         <label>Files</label>
@@ -38,7 +57,7 @@ function DispalyFiles({ files, projectId, setUpDate }) {
                 <input type="file" name="files" onChange={handleInputFileChange} multiple/>
                 { filesInpu.length ? <motion.input initial={{opacity:0, y: '100%'}}
                     animate={{opacity: 1, y:0}}
-                    transition={{delay: 0.4, duration: 0.8}} type='submit' value='Submit' className='btn primary'/> : ''} 
+                    transition={{delay: 0.4, duration: 0.8}} type='submit' value='Submit' onClick={submitFiles} className='btn primary'/> : ''} 
             </div>
             {
                 files.map((file, i) => {

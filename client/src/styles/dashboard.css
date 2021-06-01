@@ -322,6 +322,7 @@ hr {
 
 .display-files .inputs {
   width: 8rem;
+  position: relative;
 }
 
 .display-files input[type='file'] {
@@ -358,6 +359,7 @@ hr {
   position: absolute;
   width: 8rem;
   bottom: 0;
+  left: 0;
   line-height: normal;
 }
 
