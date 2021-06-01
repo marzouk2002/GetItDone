@@ -150,7 +150,6 @@ router.post('/addproject', passportCheck, upload.array('files', 100), async (req
         })
 })
 
-
 router.delete('/projectfile', passportCheck, async (req, res) => {
     const { file, projectId } = req.body
 
@@ -169,6 +168,38 @@ router.delete('/projectfile', passportCheck, async (req, res) => {
         console.log(err)
         res.status(500).json({message: 'something went wrong', err})
     }
+
+})
+
+router.post('/projectfile', passportCheck,  upload.array('files'), async (req, res) => {
+    const { files } = req
+    const { projectId } = req.body
+    const { serverId } = req.user
+
+    try {
+        let filesArr = []
+        const baseName = path.join('servers', serverId, projectId)
+        await Promise.all(
+            files.map(async file => {
+                const fileName = file.originalName;
+                await pipeline(
+                    file.stream,
+                    fs.createWriteStream(path.join(__dirname, '..', 'files', baseName, fileName))
+                );
+                const extention = path.extname(fileName).toLocaleLowerCase()
+                filesArr.push({path :path.join(baseName, fileName), name: fileName, extention})
+        }));
+
+        const project = await Project.findById(projectId)
+        project.files.unshift(...filesArr)
+        project.save()
+        res.status(200).json({message: 'success'})
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'failed', err })
+    }
+
 
 })
 

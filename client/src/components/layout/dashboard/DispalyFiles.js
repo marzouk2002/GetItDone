@@ -39,11 +39,13 @@ function DispalyFiles({ files, projectId, setUpDate }) {
             formData.append('files', file);
         });
 
+        formData.append('projectId', projectId);
+
         axios.post("http://localhost:5000/app/projectfile", formData,{
-            headers: { Authorization: token },
+            headers : { "Authorization": token}
         })
         .then(res => {
-            console.log(res)
+            setFilesInput([])
             setUpDate(Math.random()*10000)
         })
         .catch(err=>console.error(err))
