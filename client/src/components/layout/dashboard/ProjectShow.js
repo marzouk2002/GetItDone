@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import DisplayFiles from './DispalyFiles'
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
-    const { title, description, managers, developers, files } = projectSelected
+    const { title, description, managers, developers, files, _id } = projectSelected
 
     const userInfo = useSelector(state => state.userInfo) 
 
@@ -83,7 +83,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                         </div>
                     </div>
                 </div>
-                <DisplayFiles files={files}/>
+                <DisplayFiles files={files} projectId={_id} setUpDate={setUpDate}/>
             </div>
         </div>
     )

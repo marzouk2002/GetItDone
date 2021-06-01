@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 
-function DispalyFiles({ files }) {
+function DispalyFiles({ files, projectId, setUpDate }) {
     const [ filesInpu, setFilesInput ] = useState([])
 
     const handleInputFileChange = (e) => {
@@ -16,6 +16,20 @@ function DispalyFiles({ files }) {
             if(file) fileArr.push(file)
         });
         setFilesInput([...fileArr])
+    }
+
+    const token = localStorage.getItem('token')
+
+    const deleteFile = (file) => {
+        console.log(file)
+        fetch('http://localhost:5000/app/projectfile', {
+            method: 'DELETE',
+            body: JSON.stringify({ file, projectId }),
+            headers : { Authorization: token }
+        }).then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.error(err))
+
     }
 
     return (
@@ -36,8 +50,8 @@ function DispalyFiles({ files }) {
                         <div className="content">
                             <h4>{file.name}</h4>
                             <div className='btns'>
-                                <FontAwesomeIcon icon={faTrashAlt}/>
                                 <FontAwesomeIcon icon={faDownload}/>
+                                <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteFile(file)}/>
                             </div>
                         </div>
                     </div>)
