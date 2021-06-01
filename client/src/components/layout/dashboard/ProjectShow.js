@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // html parser
 import parse from 'html-react-parser'
 // fontAwesome
@@ -8,13 +8,24 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 // components
 import DisplayFiles from './DispalyFiles'
+// motion
+import { motion } from 'framer-motion'
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
-    const { title, description, managers, developers, files, _id } = projectSelected
-
+    const { title, description, managers, developers, files, _id, completion } = projectSelected
+    // const [percentage, setPercentage ] = useState(0)
     const userInfo = useSelector(state => state.userInfo) 
 
     console.log(projectSelected)
+
+    // useEffect(() => {
+    //     for(let i =0; i<=completion; i++) {
+    //         setTimeout(()=>{
+    //             setPercentage(percentage++)
+    //         }, i*1000)
+    //     }
+    // }, ["input"])
+
 
     const token = localStorage.getItem('token')
 
@@ -83,6 +94,12 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                     </div>
                 </div>
                 <DisplayFiles files={files} projectId={_id} setUpDate={setUpDate}/>
+                <div className="completion">
+                    <label>Completion</label>
+                    <div className='progress'>
+                        <motion.div intiale={{scaley: 0}}></motion.div>
+                    </div>
+                </div>
             </div>
         </>
     )
