@@ -71,7 +71,7 @@ function DispalyFiles({ files, projectId, setUpDate }) {
                         <div className="content">
                             <h4>{file.name}</h4>
                             <div className='btns'>
-                                <FontAwesomeIcon icon={faDownload}/>
+                                <a href={'http://localhost:5000/' + file.path} download rel="noopener noreferrer" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
                                 <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteFile(file)}/>
                             </div>
                         </div>

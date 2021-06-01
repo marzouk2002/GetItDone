@@ -357,7 +357,7 @@ hr {
 
 .display-files input[type='submit'] {
   position: absolute;
-  width: 8rem;
+  width: 100%;
   bottom: 0;
   left: 0;
   line-height: normal;
@@ -372,30 +372,36 @@ hr {
 .project-form .files {
   position: relative;
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
 }
 
 .display-files .file-card {
   width: 8rem;
   height: 8rem;
+  display: block;
   position: relative;
+  flex-shrink: 0;
 }
 
 .display-files .file-card img {
   object-fit: cover;
-  width: 8rem;
-  height: 8rem;
+  width: 100%;
+  height: 100%;
 }
 
 .display-files .file-card .content {
   position: absolute;
   top: 0;
   left: 0;
-  width: 8rem;
-  height: 8rem;
+  width: 100%;
+  height: 100%;
   display: grid;
   place-items: center;
+}
+
+.display-files .file-card .content h4 {
+  word-break: break-all;
 }
 
 .display-files .file-card .content .btns {
@@ -421,6 +427,10 @@ hr {
 .display-files .file-card .content .btns svg {
   cursor: pointer;
   transition: 0.25s ease-in-out transform;
+}
+
+.display-files .file-card .content .btns a {
+  border-bottom: none;
 }
 
 .display-files .file-card .content .btns svg:hover {
