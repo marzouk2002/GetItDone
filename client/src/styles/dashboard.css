@@ -10,6 +10,7 @@ hr {
   display: flex;
   overflow-x: hidden;
   min-height: 94vh;
+  width: 100%;
 }
 
 .band-wrapper {
@@ -38,7 +39,7 @@ hr {
 }
 
 .main {
-  flex: 100% 1 1;
+  width: 98%;
   transform: translateX(60px);
   background-color: #242943;
   z-index: 4;
@@ -149,7 +150,7 @@ hr {
 }
 
 .project-wrap {
-  width: 100%;
+  width: 95%;
   margin: 2rem 0px 0px 5%;
 }
 
@@ -272,7 +273,7 @@ hr {
 
 .pro-main {
   padding: 1rem 2rem;
-  width: calc(100% - 55px - 4rem);
+  width: 90%;
 }
 
 .pro-main h1 {
@@ -319,10 +320,15 @@ hr {
   position: relative;
 }
 
+.display-files .inputs {
+  width: 8rem;
+}
+
 .display-files input[type='file'] {
   width: 8rem;
   height: 8rem;
   background-color: black;
+  flex: 100% 0 1;
 }
 
 .display-files input[type='file']::-webkit-file-upload-button,
@@ -366,10 +372,6 @@ hr {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-}
-
-.display-files {
-  width: 90%;
 }
 
 .display-files .file-card {

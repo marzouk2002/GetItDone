@@ -101,7 +101,7 @@ router.delete('/deletepro', passportCheck, async (req, res) => {
     res.status(200).json({msg: 'complited'})
 })
 
-router.post('/addproject', passportCheck, upload.array('files'), async (req, res) => {
+router.post('/addproject', passportCheck, upload.array('files', 100), async (req, res) => {
     const { _id, serverId } = req.user
     let { title, description, managers, developers } = req.body
     const files = req.files

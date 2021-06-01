@@ -34,10 +34,12 @@ function DispalyFiles({ files, projectId, setUpDate }) {
         <div>
         <label>Files</label>
         <div className="display-files">
-            <input type="file" name="files" onChange={handleInputFileChange} multiple/>
-            { filesInpu.length ? <motion.input initial={{opacity:0, y: '100%'}}
-                animate={{opacity: 1, y:0}}
-                transition={{delay: 0.4, duration: 0.8}} type='submit' value='Submit' className='btn primary'/> : ''} 
+            <div className='inputs'>
+                <input type="file" name="files" onChange={handleInputFileChange} multiple/>
+                { filesInpu.length ? <motion.input initial={{opacity:0, y: '100%'}}
+                    animate={{opacity: 1, y:0}}
+                    transition={{delay: 0.4, duration: 0.8}} type='submit' value='Submit' className='btn primary'/> : ''} 
+            </div>
             {
                 files.map((file, i) => {
                     const filetypes= /jpeg|jpg|png|gif/

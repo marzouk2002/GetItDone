@@ -179,7 +179,7 @@ function ProjectForm({ setUpDate, setLoading }) {
                             </div> 
                         </div>
                     </div>
-                    <div className='files'  style={{marginTop: '1.5rem'}}>
+                    <div className='files'  style={{marginTop: '1.5rem', width: '90%'}}>
                         <div className="field">
                             <label htmlFor="files">Files</label>
                             <input type="file" name="files" multiple onChange={handleFileChange}/>

@@ -30,7 +30,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
         .catch(err => console.log(err))
     }
     return (
-        <div>
+        <>
             <div className="project-header">
             <h1>{title}</h1>
             {
@@ -84,7 +84,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                 </div>
                 <DisplayFiles files={files} projectId={_id} setUpDate={setUpDate}/>
             </div>
-        </div>
+        </>
     )
 }
 export default ProjectShow
