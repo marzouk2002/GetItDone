@@ -22,8 +22,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
         const id = projectSelected._id
         fetch('http://localhost:5000/app/deletepro?pro_id='+id, {
             method: 'DELETE',
-            headers : { Authorization: token },
-            body: {id}
+            headers : { Authorization: token }
         }).then(res => {
             setUpDate(Math.random()*10000)
             setIndex(selectedIndex ? selectedIndex-1 : selectedIndex)

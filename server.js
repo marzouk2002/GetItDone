@@ -12,13 +12,13 @@ mongoose.connect(process.env.DB_URI)
 
 app.use(cors())
 
-// passport 
-require('./config/passport')(passport);
-app.use(passport.initialize());
-
 // Express parser middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// passport 
+require('./config/passport')(passport);
+app.use(passport.initialize());
 
 // Users router
 app.use('/users', require('./routes/users'))

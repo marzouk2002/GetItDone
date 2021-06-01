@@ -21,11 +21,10 @@ function DispalyFiles({ files, projectId, setUpDate }) {
     const token = localStorage.getItem('token')
 
     const deleteFile = (file) => {
-        console.log(file)
         fetch('http://localhost:5000/app/projectfile', {
             method: 'DELETE',
             body: JSON.stringify({ file, projectId }),
-            headers : { Authorization: token }
+            headers : { "Authorization": token, "Content-Type" : "application/json" }
         }).then(res => res.json())
         .then(data => console.log(data))
         .catch(err => console.error(err))

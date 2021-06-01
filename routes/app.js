@@ -2,6 +2,7 @@ const express = require('express')
 const multer = require('multer')
 const passport = require('passport')
 const utils = require('../lib/utils')
+const _ = require('lodash')
 
 // fileSystem and pipeline ...
 const fs = require("fs");
@@ -20,9 +21,12 @@ const router = express.Router()
 // init multer
 const upload = multer();
 
-router.get('/serverinfo', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    const { serverId } = req.user
+// passport check
+const passportCheck = passport.authenticate('jwt', { session: false })
 
+router.get('/serverinfo', passportCheck, async (req, res) => {
+    const { serverId } = req.user
+    
     let server = await Server.findOne({ _id: serverId })
     let { developers, managers } = server
     
@@ -64,7 +68,7 @@ router.get('/serverinfo', passport.authenticate('jwt', { session: false }), asyn
     res.json({serverInfo})
 })
 
-router.get('/projects', passport.authenticate('jwt', { session: false }), async (req, res)=> {
+router.get('/projects', passportCheck, async (req, res)=> {
     const { serverId, role, _id } = req.user
     const projectsFromDB = await Project.find({ serverId: serverId })
 
@@ -82,7 +86,7 @@ router.get('/projects', passport.authenticate('jwt', { session: false }), async 
     res.json({projects})
 })
 
-router.delete('/deletepro', passport.authenticate('jwt', { session: false }), async (req, res) => {
+router.delete('/deletepro', passportCheck, async (req, res) => {
     const pro_id = req.query.pro_id
     const { serverId } = req.user
     await Project.deleteOne({_id: pro_id})
@@ -91,13 +95,13 @@ router.delete('/deletepro', passport.authenticate('jwt', { session: false }), as
         path.join(__dirname, '..', 'files', 'servers', serverId, pro_id), 
         {recursive: true},
          err=> {
-             if(err) throw err
+             if(err) return console.log(err)
              console.log('folder deleted')
          })
     res.status(200).json({msg: 'complited'})
 })
 
-router.post('/addproject', passport.authenticate('jwt', { session: false }), upload.array('files'), async (req, res) => {
+router.post('/addproject', passportCheck, upload.array('files'), async (req, res) => {
     const { _id, serverId } = req.user
     let { title, description, managers, developers } = req.body
     const files = req.files
@@ -144,6 +148,28 @@ router.post('/addproject', passport.authenticate('jwt', { session: false }), upl
             console.log(err)
             res.json({err}).status(400)
         })
+})
+
+
+router.delete('/projectfile', passportCheck, async (req, res) => {
+    const { file, projectId } = req.body
+
+    try {
+        // DB stuf
+        const project = await Project.findById(projectId)
+        project.files = project.files.filter(fileDb => !_.isEqual(fileDb, file))
+        project.save()
+
+        // file stuf
+        fs.unlinkSync(path.join(__dirname, '..', 'files', file.path))
+        
+        res.json({message: 'done'})
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'something went wrong', err})
+    }
+
 })
 
 module.exports = router
