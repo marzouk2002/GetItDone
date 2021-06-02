@@ -13,7 +13,7 @@ import Branchs from './Branchs';
 import { motion } from 'framer-motion'
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
-    const { title, description, managers, developers, files, _id, completion } = projectSelected
+    const { title, description, managers, developers, files, _id, completion, branchs } = projectSelected
     const { role } = useSelector(state => state.userInfo) 
 
     console.log(projectSelected)
@@ -97,7 +97,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                     </div>
                     <div><p>{completion}%</p></div>
                 </div>
-                <Branchs/>
+                <Branchs projectId={_id} setUpDate={setUpDate} branchs={branchs}/>
             </div>
         </>
     )
