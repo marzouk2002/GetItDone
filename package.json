@@ -16,6 +16,7 @@
     "@ckeditor/ckeditor5-react": "^3.0.2",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
+    "content-disposition": "^0.5.3",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",

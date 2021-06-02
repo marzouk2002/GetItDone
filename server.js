@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const passport = require('passport');
+const contentDisposition = require('content-disposition')
 
 const app = express()
 
@@ -27,7 +28,11 @@ app.use('/users', require('./routes/users'))
 app.use('/app', require('./routes/app'))
 
 // serving files
-app.use(express.static('./files'))
+app.use(express.static('./files', {
+    setHeaders: function(res, path, stat) {
+      res.set("Content-Disposition", contentDisposition(path))
+    }
+}))
 
 const PORT = process.env.PORT || 5000
 
