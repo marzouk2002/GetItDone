@@ -87,8 +87,14 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                 <div className="completion">
                     <label>Completion</label>
                     <div className='progress'>
-                        <motion.div className={completion<25 ? 'red' : completion<70 ? 'yellow' : 'green'}></motion.div>
+                        <motion.div 
+                        initial={{scaleX: 0}}
+                        animate={{scaleX: completion/100}}
+                        transition={{delay:0.4, duration:1}}
+                        className={completion<25 ? 'red' : completion<70 ? 'yellow' : 'green'}
+                        ></motion.div>
                     </div>
+                    <div><p>{completion}%</p></div>
                 </div>
             </div>
         </>

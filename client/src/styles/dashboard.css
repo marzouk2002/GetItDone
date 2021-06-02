@@ -372,7 +372,7 @@ hr {
 .project-form .files {
   position: relative;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
 }
 
@@ -504,11 +504,16 @@ hr {
 
 .completion {
   margin-top: 2rem;
+  width: 100%;
 }
 
 .progress {
-  width: 90%;
-  margin: 1rem 5%;
+  width: 80%;
+  margin: 1rem 10%;
+  outline-color: #181b2c;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: 2px;
 }
 
 .progress > div {
@@ -516,6 +521,16 @@ hr {
   height: 5px;
   border-radius: 100vmax;
   background-color: red;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.completion > div {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 @keyframes toYellow {
