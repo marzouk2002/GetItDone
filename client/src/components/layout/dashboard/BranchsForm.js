@@ -6,6 +6,20 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function BranchsForm() {
     const [ newTask, setNewTask ] = useState('')
     const [ tasksArr, setTaskArr ] = useState([])
+    const [ formState, setFormState ] = useState({
+        title: '',
+        description: ''
+    })
+
+    const handleTextChange = (event, editor) => {
+        if(editor) {
+            const data = editor.getData()
+            setFormState({...formState, description: data})
+        } else {
+            const data = event.target.value
+            setFormState({...formState, title: data})
+        }
+    }
 
     const handleNewTask = (e) => {
         setNewTask(e.target.value)
@@ -25,15 +39,17 @@ function BranchsForm() {
     return (
         <div className="center_stuf">
             <h4>Add a branch</h4>
-            <form style={{width: '80%'}}>
+            <form style={{width: '50vmax'}}>
                 <div className="field" style={{marginBottom: '1.5rem'}}>
                     <label htmlFor="title">Title</label>
-                    <input type="text" name="title" required/>
+                    <input type="text" name="title" onChange={handleTextChange} required/>
                 </div>
                 <div className="field" style={{marginBottom: '1.5rem'}}>
                     <label htmlFor="description">Description</label>
                     <CKEditor
                         editor={ ClassicEditor }
+                        data={formState.description}
+                        onChange={handleTextChange}
                         />
                 </div>  
                 <div className="field" style={{marginBottom: '2rem'}}>
