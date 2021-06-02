@@ -8,6 +8,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 // components
 import DisplayFiles from './DispalyFiles'
+import Branchs from './Branchs';
 // motion
 import { motion } from 'framer-motion'
 
@@ -96,6 +97,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                     </div>
                     <div><p>{completion}%</p></div>
                 </div>
+                <Branchs/>
             </div>
         </>
     )
