@@ -20,7 +20,7 @@ const router = express.Router()
 const upload = multer();
 
 // token test
-router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/protected', utils.passportCheck, (req, res) => {
     res.status(200).json({ success: true, msg: "You are successfully authenticated to this route!"});
 });
 
@@ -153,11 +153,11 @@ router.post('/login', upload.single('file'), async (req, res) => {
     }
 })
 
-router.get('/valideToken', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/valideToken', utils.passportCheck, (req, res) => {
     res.json({user: req.user})
 })
 
-router.post('/update', passport.authenticate('jwt', { session: false }), upload.single('file'), async (req, res) => {
+router.post('/update', utils.passportCheck, upload.single('file'), async (req, res) => {
     const user = req.user
     const body = req.body
     const file = req.file
@@ -223,7 +223,7 @@ router.post('/update', passport.authenticate('jwt', { session: false }), upload.
         .catch(err => console.log(err))
 })
 
-router.put('/newuser', passport.authenticate('jwt', { session: false }), async (req, res) => {
+router.put('/newuser', utils.passportCheck, async (req, res) => {
     const user_id = req.query.user_id
     const server_id = req.user.serverId
 
@@ -240,7 +240,7 @@ router.put('/newuser', passport.authenticate('jwt', { session: false }), async (
     res.status(200).json({msg: 'complited'})
 })
 
-router.delete('/newuser', passport.authenticate('jwt', { session: false }), async (req, res) => {
+router.delete('/newuser', utils.passportCheck, async (req, res) => {
     const user_id = req.query.user_id
     const server_id = req.user.serverId
 

@@ -21,10 +21,7 @@ const router = express.Router()
 // init multer
 const upload = multer();
 
-// passport check
-const passportCheck = passport.authenticate('jwt', { session: false })
-
-router.get('/serverinfo', passportCheck, async (req, res) => {
+router.get('/serverinfo', utils.passportCheck, async (req, res) => {
     const { serverId } = req.user
     
     let server = await Server.findOne({ _id: serverId })
@@ -68,7 +65,7 @@ router.get('/serverinfo', passportCheck, async (req, res) => {
     res.json({serverInfo})
 })
 
-router.get('/projects', passportCheck, async (req, res)=> {
+router.get('/projects', utils.passportCheck, async (req, res)=> {
     const { serverId, role, _id } = req.user
     const projectsFromDB = await Project.find({ serverId: serverId })
 
@@ -86,7 +83,7 @@ router.get('/projects', passportCheck, async (req, res)=> {
     res.json({projects})
 })
 
-router.delete('/deletepro', passportCheck, async (req, res) => {
+router.delete('/deletepro', utils.passportCheck, async (req, res) => {
     const pro_id = req.query.pro_id
     const { serverId } = req.user
     await Project.deleteOne({_id: pro_id})
@@ -101,7 +98,7 @@ router.delete('/deletepro', passportCheck, async (req, res) => {
     res.status(200).json({msg: 'complited'})
 })
 
-router.post('/addproject', passportCheck, upload.array('files', 100), async (req, res) => {
+router.post('/addproject', utils.passportCheck, upload.array('files', 100), async (req, res) => {
     const { _id, serverId } = req.user
     let { title, description, managers, developers } = req.body
     const files = req.files
@@ -150,7 +147,7 @@ router.post('/addproject', passportCheck, upload.array('files', 100), async (req
         })
 })
 
-router.delete('/projectfile', passportCheck, async (req, res) => {
+router.delete('/projectfile', utils.passportCheck, async (req, res) => {
     const { file, projectId } = req.body
 
     try {
@@ -171,7 +168,7 @@ router.delete('/projectfile', passportCheck, async (req, res) => {
 
 })
 
-router.post('/projectfile', passportCheck,  upload.array('files'), async (req, res) => {
+router.post('/projectfile', utils.passportCheck,  upload.array('files'), async (req, res) => {
     const { files } = req
     const { projectId } = req.body
     const { serverId } = req.user
