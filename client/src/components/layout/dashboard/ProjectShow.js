@@ -14,7 +14,7 @@ import { motion } from 'framer-motion'
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
     const { title, description, managers, developers, files, _id, completion } = projectSelected
-    const userInfo = useSelector(state => state.userInfo) 
+    const { role } = useSelector(state => state.userInfo) 
 
     console.log(projectSelected)
 
@@ -36,7 +36,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
             <div className="project-header">
             <h1>{title}</h1>
             {
-            userInfo.role === 'admin' && 
+            role === 'admin' && 
                 <div className='detele-btn' title='delete this project' onClick={deletePro}>
                     <FontAwesomeIcon icon={faTrashAlt}/>
                 </div>
