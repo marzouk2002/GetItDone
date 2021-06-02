@@ -279,6 +279,16 @@ hr {
 .pro-main h1 {
   line-height: normal;
   margin-bottom: 0;
+  width: max-content;
+}
+
+.pro-main h1::after {
+  content: '';
+  background-color: #ffffff;
+  display: block;
+  height: 2px;
+  margin: 0.1em 0 0.3em 0;
+  width: 100%;
 }
 
 .ck-editor__main * {

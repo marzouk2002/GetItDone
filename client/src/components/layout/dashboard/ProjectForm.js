@@ -131,7 +131,7 @@ function ProjectForm({ setUpDate, setLoading }) {
     }
 
     return (
-        <div>
+        <>
             <h1>Start a Project</h1>
             <div style={{ margin: '2rem 4%' }}>
                 <form onSubmit={handleSubmit} className='project-form'>
@@ -208,7 +208,7 @@ function ProjectForm({ setUpDate, setLoading }) {
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     )
 }
 
