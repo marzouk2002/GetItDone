@@ -25,7 +25,6 @@ function Branchs({ branchs, projectId, setUpDate }) {
         <div className="branchs">
             <label>Branchs</label>
             <div className="branch-container">
-
             {
                 branchs.map((branch, i) => {
                     return (
