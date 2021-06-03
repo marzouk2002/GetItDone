@@ -204,7 +204,7 @@ router.post('/branchs', utils.passportCheck, async (req, res) => {
     const newBranch = new Branch(title, description, tasks)
 
     try {
-        const project = await Project.findById(projectId)
+        let project = await Project.findById(projectId)
         
         project.branchs.push(newBranch)
         project = utils.computateComp(project)
@@ -223,7 +223,7 @@ router.delete('/branchs', utils.passportCheck, async (req, res) => {
 
     try {
         const project = await Project.findById(projectId)
-        
+
         project.branchs = project.branchs.filter(branch => branch.id !== branchId)
         project = utils.computateComp(project)
 

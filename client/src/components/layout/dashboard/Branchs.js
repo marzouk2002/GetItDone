@@ -22,18 +22,23 @@ function Branchs({ branchs, projectId, setUpDate }) {
     }
 
     return (
-        <div>
+        <div className="branchs">
             <label>Branchs</label>
+            <div className="branch-container">
+
             {
                 branchs.map((branch, i) => {
-                    return (<div key={i} className="branch-card">
+                    return (
+                    <div key={i} className="branch-card">
                         <h4>{branch.title}</h4>
                         { role!=='developer' && <div className="delete-btn" title='delete branch' onClick={()=>deleteBranch(branch.id)}>
                             <FontAwesomeIcon icon={faTimes}/>
                         </div>}
-                    </div>)
+                    </div>
+                    )
                 })
             }
+            </div>
             { role==='manager' && <BranchsForm projectId={projectId} setUpDate={setUpDate}/> }
         </div>
     )

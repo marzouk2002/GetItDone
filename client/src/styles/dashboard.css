@@ -584,13 +584,25 @@ hr {
   border-radius: 1rem;
 }
 
-.branch-card {
+.branch-container {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  grid-gap: 3vmax;
+  margin-bottom: 2rem;
+}
+
+.branch-card {
+  flex: 50% 1 1;
+  background-color: #1c203a;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  position: relative;
 }
 
 .branch-card .delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
   padding: 0.2rem;
   font-size: 1.4rem;
   color: #161824;
@@ -604,4 +616,19 @@ hr {
 .branch-card .delete-btn:hover {
   color: red;
   transform: scale(1.3);
+}
+
+.branchs h4 {
+  text-transform: uppercase;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.branchs h4::after {
+  content: '';
+  background-color: #ffffff;
+  display: block;
+  height: 2px;
+  margin: 0.1em 0 0.2em 0;
+  width: 100%;
 }
