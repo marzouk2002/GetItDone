@@ -37,9 +37,9 @@ function BranchsForm({ projectId, setUpDate }) {
     }
 
     return (
-        <div className="center_stuf">
+        <div className="center_stuf branch-form">
             <h4>Add a branch</h4>
-            <form style={{width: '50vmax'}}>
+            <form style={{width: '45vmax'}}>
                 <div className="field" style={{marginBottom: '1.5rem'}}>
                     <label htmlFor="title">Title</label>
                     <input type="text" name="title" onChange={handleTextChange} required/>

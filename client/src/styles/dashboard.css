@@ -575,3 +575,11 @@ hr {
 .progress > .yellow {
   animation: toYellow 1s 0.4s ease-in-out forwards;
 }
+
+.branch-form {
+  padding: 1rem;
+  background-color: #1c203a;
+  width: 50vmax;
+  margin: auto;
+  border-radius: 1rem;
+}
