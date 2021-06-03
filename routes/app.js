@@ -155,7 +155,7 @@ router.delete('/projectfile', utils.passportCheck, async (req, res) => {
         // DB stuf
         const project = await Project.findById(projectId)
         project.files = project.files.filter(fileDb => !_.isEqual(fileDb, file))
-        project.save()
+        await project.save()
 
         // file stuf
         fs.unlinkSync(path.join(__dirname, '..', 'files', file.path))
@@ -190,7 +190,7 @@ router.post('/projectfile', utils.passportCheck,  upload.array('files'), async (
 
         const project = await Project.findById(projectId)
         project.files.unshift(...filesArr)
-        project.save()
+        await project.save()
         res.status(200).json({message: 'success'})
     }
     catch (err) {
@@ -209,6 +209,22 @@ router.post('/branchs', utils.passportCheck, async (req, res) => {
         project.branchs.push(newBranch)
 
         await project.save()
+        res.json({message: 'success'})
+    }
+    catch (err) {
+        console.log(err)
+        res.json({message: 'failed', err})
+    }
+})
+
+router.delete('/branchs', utils.passportCheck, async (req, res) => {
+    const { branchId, projectId } = req.body
+
+    try {
+        const project = await Project.findById(projectId)
+        project.branchs = project.branchs.filter(branch => branch.id !== branchId)
+        await project.save()
+
         res.json({message: 'success'})
     }
     catch (err) {

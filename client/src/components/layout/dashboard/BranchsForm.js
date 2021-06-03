@@ -57,7 +57,7 @@ function BranchsForm({ projectId, setUpDate }) {
             body: JSON.stringify({ ...data }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
         })
-        .then(res => setUpDate(Math.random * 10000))
+        .then(res => setUpDate(Math.random() * 10000))
         .catch(err => console.log(err))
     }
 
@@ -68,7 +68,7 @@ function BranchsForm({ projectId, setUpDate }) {
             <form style={{width: '45vmax'}} onSubmit={handleSubmit}>
                 <div className="field" style={{marginBottom: '1.5rem'}}>
                     <label htmlFor="title">Title</label>
-                    <input type="text" name="title" onChange={handleTextChange} required/>
+                    <input type="text" name="title" onChange={handleTextChange} value={formState.title} required/>
                 </div>
                 <div className="field" style={{marginBottom: '1.5rem'}}>
                     <label htmlFor="description">Description</label>

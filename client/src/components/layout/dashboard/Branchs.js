@@ -10,6 +10,16 @@ import { motion } from 'framer-motion'
 
 function Branchs({ branchs, projectId, setUpDate }) {
     const { role } = useSelector(state => state.userInfo)
+    const token = localStorage.getItem('token')
+
+    const deleteBranch = (branchId) => {
+        fetch('http://localhost:5000/app/branchs', {
+            method: 'DELETE',
+            body: JSON.stringify({ branchId, projectId }),
+            headers : { "Authorization": token, "Content-Type" : "application/json" }
+        }).then(res => setUpDate(Math.random() * 10000))
+        .catch(err => console.error(err))
+    }
 
     return (
         <div>
@@ -18,9 +28,9 @@ function Branchs({ branchs, projectId, setUpDate }) {
                 branchs.map((branch, i) => {
                     return (<div key={i} className="branch-card">
                         <h4>{branch.title}</h4>
-                        <div className="delete-btn" title='delete branch'>
+                        { role!=='developer' && <div className="delete-btn" title='delete branch' onClick={()=>deleteBranch(branch.id)}>
                             <FontAwesomeIcon icon={faTimes}/>
-                        </div>
+                        </div>}
                     </div>)
                 })
             }
