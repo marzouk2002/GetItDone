@@ -579,7 +579,29 @@ hr {
 .branch-form {
   padding: 1rem;
   background-color: #1c203a;
-  width: 50vmax;
+  width: 60vmax;
   margin: auto;
   border-radius: 1rem;
+}
+
+.branch-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.branch-card .delete-btn {
+  padding: 0.2rem;
+  font-size: 1.4rem;
+  color: #161824;
+  display: grid;
+  place-items: center;
+  height: 1.8rem;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.branch-card .delete-btn:hover {
+  color: red;
+  transform: scale(1.3);
 }
