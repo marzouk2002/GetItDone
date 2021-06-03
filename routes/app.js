@@ -2,6 +2,7 @@ const express = require('express')
 const multer = require('multer')
 const passport = require('passport')
 const utils = require('../lib/utils')
+const { Branch } = require('../lib/classes')
 const _ = require('lodash')
 
 // fileSystem and pipeline ...
@@ -199,7 +200,8 @@ router.post('/projectfile', utils.passportCheck,  upload.array('files'), async (
 })
 
 router.post('/branchs', utils.passportCheck, async (req, res) => {
-    const { projectId } = req.body
+    const { title, description, tasks, projectId } = req.body
+    res.json({msg: 'reseved', data: new Branch(title, description, tasks)})
 })
 
 module.exports = router

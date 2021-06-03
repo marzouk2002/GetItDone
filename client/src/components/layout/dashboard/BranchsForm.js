@@ -2,14 +2,21 @@ import React, { useState } from 'react'
 // CKEditor
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// components
+import  Alert from '../Alert'
 
 function BranchsForm({ projectId, setUpDate }) {
     const [ newTask, setNewTask ] = useState('')
     const [ tasksArr, setTaskArr ] = useState([])
+    const [msgs, setMsgs] = useState([])
     const [ formState, setFormState ] = useState({
         title: '',
         description: ''
     })
+
+    const deleteMsg = (target) => {
+        setMsgs(msgs.filter((msg, index)=>index!==target))
+    }
 
     const handleTextChange = (event, editor) => {
         if(editor) {
@@ -36,10 +43,29 @@ function BranchsForm({ projectId, setUpDate }) {
         setNewTask('')
     }
 
+    const token = localStorage.getItem('token')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if(!tasksArr.length) return setMsgs([{ text: "Sorry, you should provide a few tasks at least!", type:"danger"}])
+
+        const data = {tasks: tasksArr, projectId, ...formState}
+
+        fetch('http://localhost:5000/app/branchs', {
+            method: 'post',
+            body: JSON.stringify({ ...data }),
+            headers : { "Authorization": token, "Content-Type" : "application/json" }
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
     return (
         <div className="center_stuf branch-form">
             <h4>Add a branch</h4>
-            <form style={{width: '45vmax'}}>
+            { msgs.length ? <Alert msgs={msgs} deleteMsg={deleteMsg}/> : '' } 
+            <form style={{width: '45vmax'}} onSubmit={handleSubmit}>
                 <div className="field" style={{marginBottom: '1.5rem'}}>
                     <label htmlFor="title">Title</label>
                     <input type="text" name="title" onChange={handleTextChange} required/>
