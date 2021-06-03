@@ -201,7 +201,20 @@ router.post('/projectfile', utils.passportCheck,  upload.array('files'), async (
 
 router.post('/branchs', utils.passportCheck, async (req, res) => {
     const { title, description, tasks, projectId } = req.body
-    res.json({msg: 'reseved', data: new Branch(title, description, tasks)})
+    const newBranch = new Branch(title, description, tasks)
+
+    try {
+        const project = await Project.findById(projectId)
+        
+        project.branchs.push(newBranch)
+
+        await project.save()
+        res.json({message: 'success'})
+    }
+    catch (err) {
+        console.log(err)
+        res.json({message: 'failed', err})
+    }
 })
 
 module.exports = router

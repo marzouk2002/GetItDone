@@ -57,8 +57,8 @@ function BranchsForm({ projectId, setUpDate }) {
             body: JSON.stringify({ ...data }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => setUpDate(Math.random * 10000))
+        .catch(err => console.log(err))
     }
 
     return (
