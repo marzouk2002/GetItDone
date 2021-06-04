@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux'
 // motion & fontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+// animation
 import { motion } from 'framer-motion'
+import AnimatedNumber from "animated-number-react";
 // html parser
 import parse from 'html-react-parser'
 
@@ -51,11 +53,14 @@ function Branchs({ branchs, projectId, setUpDate }) {
                         <motion.div 
                         initial={{scaleX: 0}}
                         animate={{scaleX: branch.completion/100}}
-                        transition={{delay: 0.8 + 0.15*i, duration: 0.8}}
+                        transition={{ duration: 0.8}}
                         className={branch.completion<25 ? 'red' : branch.completion<70 ? 'yellow' : 'green'}
                         ></motion.div>
                         </div>
-                        <div style={{textAlign: 'center'}}><p>{branch.completion}%</p></div>
+                        <div style={{textAlign: 'center'}}><p><AnimatedNumber
+                        value={branch.completion}
+                        formatValue={value => Math.round(value)}
+                        duration={1000}/>%</p></div>
                         <div>
                                 {
                                     branch.tasks.map((task, i) => (<div id="task" key={i}>

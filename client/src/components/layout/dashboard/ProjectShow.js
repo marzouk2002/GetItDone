@@ -9,8 +9,9 @@ import { useSelector } from 'react-redux'
 // components
 import DisplayFiles from './DispalyFiles'
 import Branchs from './Branchs';
-// motion
+// animation
 import { motion } from 'framer-motion'
+import AnimatedNumber from "animated-number-react";
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
     const { title, description, managers, developers, files, _id, completion, branchs } = projectSelected
@@ -91,11 +92,16 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                         <motion.div 
                         initial={{scaleX: 0}}
                         animate={{scaleX: completion/100}}
-                        transition={{delay:0.4, duration:1}}
+                        transition={{ duration:1 }}
                         className={completion<25 ? 'red' : completion<70 ? 'yellow' : 'green'}
                         ></motion.div>
                     </div>
-                    <div><p>{completion}%</p></div>
+                    <div><p>
+                        <AnimatedNumber
+                        value={completion}
+                        formatValue={value => Math.round(value)}
+                        duration={1000}/>%
+                    </p></div>
                 </div>
                 <Branchs projectId={_id} setUpDate={setUpDate} branchs={branchs}/>
             </div>
