@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 // components
 import DisplayFiles from './DispalyFiles'
 import Branchs from './Branchs';
+import Comments from './Comments';
 // animation
 import { motion } from 'framer-motion'
 import AnimatedNumber from "animated-number-react";
@@ -104,6 +105,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                     </p></div>
                 </div>
                 <Branchs projectId={_id} setUpDate={setUpDate} branchs={branchs}/>
+                <Comments/>
             </div>
         </>
     )
