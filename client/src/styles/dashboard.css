@@ -594,7 +594,7 @@ hr {
 .branch-card {
   flex: 50% 1 1;
   background-color: #1c203a;
-  padding: 1rem 2rem;
+  padding: 1rem 4%;
   border-radius: 1rem;
   position: relative;
 }
@@ -631,4 +631,8 @@ hr {
   height: 2px;
   margin: 0.1em 0 0.2em 0;
   width: 100%;
+}
+
+.branch-card .progress {
+  margin: 0.2rem 5%;
 }

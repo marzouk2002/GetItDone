@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
+// html parser
+import parse from 'html-react-parser'
 
 function Branchs({ branchs, projectId, setUpDate }) {
     const { role } = useSelector(state => state.userInfo)
@@ -33,6 +35,25 @@ function Branchs({ branchs, projectId, setUpDate }) {
                         { role!=='developer' && <div className="delete-btn" title='delete branch' onClick={()=>deleteBranch(branch.id)}>
                             <FontAwesomeIcon icon={faTimes}/>
                         </div>}
+                        <div>
+                            <p>{parse(branch.description)}</p>
+                        </div>
+                        <div className='progress'>
+                        <motion.div 
+                        initial={{scaleX: 0}}
+                        animate={{scaleX: branch.completion/100}}
+                        transition={{delay: 0.8 + 0.15*i, duration: 0.8}}
+                        className={branch.completion<25 ? 'red' : branch.completion<70 ? 'yellow' : 'green'}
+                        ></motion.div>
+                        </div>
+                        <div style={{textAlign: 'center'}}><p>{branch.completion}%</p></div>
+                        <div>
+                            <ul>
+                                {
+                                    branch.tasks.map(task => <li>{task.task}</li>)
+                                }
+                            </ul>
+                        </div>
                     </div>
                     )
                 })
