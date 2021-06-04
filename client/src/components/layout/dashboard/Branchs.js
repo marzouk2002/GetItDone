@@ -24,7 +24,12 @@ function Branchs({ branchs, projectId, setUpDate }) {
     }
 
     const handleCheckTask = (index, branchId) => {
-        console.log(index, branchId)
+        fetch('http://localhost:5000/app/branchs', {
+            method: 'PUT',
+            body: JSON.stringify({ branchId, projectId, index }),
+            headers : { "Authorization": token, "Content-Type" : "application/json" }
+        }).then(res => setUpDate(Math.random() * 10000))
+        .catch(err => console.error(err))
     }
 
     return (
