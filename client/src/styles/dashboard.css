@@ -272,7 +272,7 @@ hr {
 }
 
 .pro-main {
-  padding: 1rem 2rem;
+  padding: 1rem 3%;
   width: 90%;
 }
 
@@ -587,13 +587,13 @@ hr {
 .branch-container {
   width: 100%;
   display: flex;
-  grid-gap: 3vmax;
+  gap: 3vmax;
   margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .branch-card {
-  flex: 1 1 48%;
+  flex: 1 1 250px;
   background-color: #1c203a;
   padding: 1rem 4%;
   border-radius: 1rem;
@@ -661,7 +661,7 @@ hr {
   height: var(--size);
   margin-right: var(--size);
   position: relative;
-  top: 0.1rem;
+  top: 0.12rem;
   cursor: pointer;
   border: 2px solid currentColor;
   border-radius: 50%;
@@ -696,7 +696,7 @@ hr {
   float: none;
   cursor: pointer;
   position: absolute;
-  top: 0.5rem;
+  top: 0.9rem;
   left: 0;
 }
 
