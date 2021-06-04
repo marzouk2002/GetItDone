@@ -589,10 +589,11 @@ hr {
   display: flex;
   grid-gap: 3vmax;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .branch-card {
-  flex: 50% 1 1;
+  flex: 1 1 48%;
   background-color: #1c203a;
   padding: 1rem 4%;
   border-radius: 1rem;

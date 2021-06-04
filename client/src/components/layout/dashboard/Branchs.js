@@ -34,13 +34,13 @@ function Branchs({ branchs, projectId, setUpDate }) {
             {
                 branchs.map((branch, i) => {
                     return (
-                    <div key={i} className="branch-card">
+                    <motion.div layout key={i} className="branch-card">
                         <h4>{branch.title}</h4>
                         { role!=='developer' && <div className="delete-btn" title='delete branch' onClick={()=>deleteBranch(branch.id)}>
                             <FontAwesomeIcon icon={faTimes}/>
                         </div>}
                         <div>
-                            <p>{parse(branch.description)}</p>
+                            {parse(branch.description)}
                         </div>
                         <div className='progress'>
                         <motion.div 
@@ -54,7 +54,7 @@ function Branchs({ branchs, projectId, setUpDate }) {
                         <div>
                                 {
                                     branch.tasks.map((task, i) => (<div id="task" key={i}>
-                                    <input type="checkbox"  className="done" onClick={()=>{handleCheckTask(i, branch.id)}}/>
+                                    <input type="checkbox"  className={task.status ? 'done' : ''} onClick={()=>{handleCheckTask(i, branch.id)}}/>
                                     <label>
                                         <span id="custom-checkbox"></span>
                                         {task.task}
@@ -62,7 +62,7 @@ function Branchs({ branchs, projectId, setUpDate }) {
                                     </div>))
                                 }
                         </div>
-                    </div>
+                    </motion.div>
                     )
                 })
             }
