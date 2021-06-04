@@ -23,6 +23,10 @@ function Branchs({ branchs, projectId, setUpDate }) {
         .catch(err => console.error(err))
     }
 
+    const handleCheckTask = (index, branchId) => {
+        console.log(index, branchId)
+    }
+
     return (
         <div className="branchs">
             <label>Branchs</label>
@@ -48,11 +52,15 @@ function Branchs({ branchs, projectId, setUpDate }) {
                         </div>
                         <div style={{textAlign: 'center'}}><p>{branch.completion}%</p></div>
                         <div>
-                            <ul>
                                 {
-                                    branch.tasks.map(task => <li>{task.task}</li>)
+                                    branch.tasks.map((task, i) => (<div id="task" key={i}>
+                                    <input type="checkbox"  className="done" onClick={()=>{handleCheckTask(i, branch.id)}}/>
+                                    <label>
+                                        <span id="custom-checkbox"></span>
+                                        {task.task}
+                                    </label>
+                                    </div>))
                                 }
-                            </ul>
                         </div>
                     </div>
                     )
