@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 // redux
 import { useSelector } from 'react-redux'
+// font awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function Comments({ comments, projectId, setUpDate}) {
     const [ formInput, setFormInput] = useState('')
@@ -23,6 +26,16 @@ function Comments({ comments, projectId, setUpDate}) {
         .catch(err => console.log(err))
         setFormInput('')
     }
+
+    const deleteComment = (commentId, projectId) => {
+        fetch('http://localhost:5000/app/comments', {
+            method: 'DELETE',
+            body: JSON.stringify({ commentId, projectId }),
+            headers : { "Authorization": token, "Content-Type" : "application/json" }
+        }).then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+    }
  
     return (
         <div className="comments-sec">
@@ -37,8 +50,20 @@ function Comments({ comments, projectId, setUpDate}) {
                 {
                     comments.map((comment, i) => (
                         <div key={i} className="comment">
-                            <h4>{comment.userName}</h4>
-                            <p>{comment.content}</p>
+                            <div className='image'>
+                            { comment.picture ? <img src={'http://localhost:5000' + comment.picture} alt="profile" /> :
+                            <FontAwesomeIcon className={`user-icon user-icon-small ${comment.role}`}  icon={faUserAlt}/>} 
+                            </div>
+                            <div>
+                                <h4>{comment.userName}</h4>
+                                <p>{comment.content}</p>
+                            </div>
+                            {
+                                _id === comment.userId &&
+                                <div className="delete-btn" title='delete comment' onClick={()=>deleteComment(comment.id, projectId)}>
+                                        <FontAwesomeIcon icon={faTimes}/>
+                                </div>
+                            }
                         </div>
                     ))
                 }
