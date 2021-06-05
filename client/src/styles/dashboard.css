@@ -742,3 +742,10 @@ hr {
   -webkit-transform-origin: left;
   transform-origin: left;
 }
+
+.comments-cont .field {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 2rem;
+  display: flex;
+}
