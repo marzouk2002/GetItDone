@@ -19,14 +19,13 @@ function Comments({ comments, projectId, setUpDate}) {
             method: 'POST',
             body: JSON.stringify({ formInput, projectId }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
-        }).then(res => res.json())
-        .then(data => console.log(data))
+        }).then(res => setUpDate(Math.random()*10000))
         .catch(err => console.log(err))
         setFormInput('')
     }
  
     return (
-        <div className="comments-cont">
+        <div className="comments-sec">
             <label>comments</label>
             <form onSubmit={handleSubmit}>
                 <div className="field">
@@ -34,6 +33,16 @@ function Comments({ comments, projectId, setUpDate}) {
                     <input className='btn primary' value="Add" type="submit"/>
                 </div>
             </form>
+            <div className="comments-cont">
+                {
+                    comments.map((comment, i) => (
+                        <div key={i} className="comment">
+                            <h4>{comment.userName}</h4>
+                            <p>{comment.content}</p>
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }

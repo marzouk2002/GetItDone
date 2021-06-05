@@ -744,13 +744,50 @@ hr {
   transform-origin: left;
 }
 
-.comments-cont .field {
+.comments-sec .field {
   width: 75%;
   margin: auto;
-  margin-bottom: 2rem;
   display: flex;
 }
 
-.comments-cont .field > input[type='text'] {
+.comments-sec .field > input[type='text'] {
   flex: 100% 1 1;
+}
+
+.comments-cont {
+  width: 85%;
+  margin: 2rem auto 1rem auto;
+  background-color: #1c203a;
+  padding: 1rem;
+  padding-top: 0rem;
+}
+
+.comment {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.comment::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -0.5em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.1;
+}
+
+.comment h4 {
+  padding-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.comment p {
+  margin-bottom: 0.2rem;
+  line-height: normal;
+  font-size: 800;
+  margin-left: 1rem;
 }
