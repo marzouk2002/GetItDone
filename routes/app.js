@@ -2,7 +2,7 @@ const express = require('express')
 const multer = require('multer')
 const passport = require('passport')
 const utils = require('../lib/utils')
-const { Branch } = require('../lib/classes')
+const { Branch, Comment } = require('../lib/classes')
 const _ = require('lodash')
 
 // fileSystem and pipeline ...
@@ -268,9 +268,9 @@ router.post('/comments', utils.passportCheck, async (req, res) => {
 
     try {
         let project = await Project.findById(projectId)
-
-        project.comments.unshift({userId: _id, picture, role, userName: name, content: formInput})
-        console.log(project)
+        const newComment = new Comment(_id, picture, role, name, formInput)
+        project.comments.unshift(newComment)
+        
         await project.save()
         res.json({message: 'success'})
     }
