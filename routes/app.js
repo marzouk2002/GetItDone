@@ -280,4 +280,21 @@ router.post('/comments', utils.passportCheck, async (req, res) => {
     }
 })
 
+router.delete('/comments', utils.passportCheck, async (req, res) => {
+    const { commentId, projectId } = req.body
+
+    try {
+        let project = await Project.findById(projectId)
+
+        project.comments = project.comments.filter(comment => comment.id !== commentId)
+        
+        await project.save()
+        res.json({message: 'success'})
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'failed', err })
+    }
+})
+
 module.exports = router
