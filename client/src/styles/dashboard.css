@@ -520,10 +520,9 @@ hr {
 .progress {
   width: 80%;
   margin: 1rem 10%;
-  outline-color: #181b2c;
-  outline-style: solid;
-  outline-width: 1px;
-  outline-offset: 2px;
+  border: 1px #181b2c solid;
+  border-radius: 100vmax;
+  padding: 1px 2px;
 }
 
 .progress > div {
@@ -799,5 +798,15 @@ hr {
   display: grid;
   place-items: center;
   margin-right: 1rem;
+}
+.comment .image svg {
   transform: scale(1.1);
+}
+
+.comment .image img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 50%;
+  transform: translateX(-3px);
 }
