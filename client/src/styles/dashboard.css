@@ -749,3 +749,7 @@ hr {
   margin-bottom: 2rem;
   display: flex;
 }
+
+.comments-cont .field > input[type='text'] {
+  flex: 100% 1 1;
+}
