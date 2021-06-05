@@ -262,4 +262,22 @@ router.put('/branchs', utils.passportCheck, async (req, res) => {
     }
 })
 
+router.post('/comments', utils.passportCheck, async (req, res) => {
+    const { formInput, projectId } = req.body
+    const { _id, picture, name, role } = req.user
+
+    try {
+        let project = await Project.findById(projectId)
+
+        project.comments.unshift({userId: _id, picture, role, userName: name, content: formInput})
+        console.log(project)
+        await project.save()
+        res.json({message: 'success'})
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'failed', err })
+    }
+})
+
 module.exports = router

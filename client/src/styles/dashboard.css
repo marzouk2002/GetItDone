@@ -581,6 +581,7 @@ hr {
   background-color: #1c203a;
   width: 60vmax;
   margin: auto;
+  margin-bottom: 2rem;
   border-radius: 1rem;
 }
 

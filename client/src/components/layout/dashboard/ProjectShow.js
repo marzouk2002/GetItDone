@@ -15,7 +15,7 @@ import { motion } from 'framer-motion'
 import AnimatedNumber from "animated-number-react";
 
 function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
-    const { title, description, managers, developers, files, _id, completion, branchs } = projectSelected
+    const { title, description, managers, developers, files, _id, completion, branchs, comments } = projectSelected
     const { role } = useSelector(state => state.userInfo) 
 
     console.log(projectSelected)
@@ -105,7 +105,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                     </p></div>
                 </div>
                 <Branchs projectId={_id} setUpDate={setUpDate} branchs={branchs}/>
-                <Comments/>
+                <Comments comments={comments} projectId={_id} setUpDate={setUpDate}/>
             </div>
         </>
     )
