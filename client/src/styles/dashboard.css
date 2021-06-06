@@ -148,8 +148,10 @@ hr {
   top: 0;
   right: 0;
   background-color: #181b2c;
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s transform ease-in-out;
   border-top-left-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .texting-cont.close {
