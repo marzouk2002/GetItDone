@@ -18,6 +18,10 @@ function Texting() {
                     </div>
                     <h2>Messages</h2>
                 </header>
+                <form>
+                    <input type="text" name='message'/>
+                    <input type="submit" value='Send' className='button primary'/>
+                </form>
             </div>
         </div>
     )
