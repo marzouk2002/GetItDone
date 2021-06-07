@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 // font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function Texting() {
+    const  [ msgInpu, setMsgInpu ] = useState('')
     const textContainer = document.querySelector('.texting-cont')
+
+    const handleChange = (e) => {
+        setMsgInpu(e.target.value)
+    }
 
     return (
         <div className='texting'>
@@ -19,7 +24,7 @@ function Texting() {
                     <h2>Messages</h2>
                 </header>
                 <form>
-                    <input type="text" name='message'/>
+                    <input type="text" name='message' value={msgInpu} onChange={handleChange}/>
                     <input type="submit" value='Send' className='button primary'/>
                 </form>
             </div>
