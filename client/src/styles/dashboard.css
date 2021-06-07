@@ -142,7 +142,7 @@ hr {
 }
 
 .texting-cont {
-  width: 300px;
+  width: 320px;
   height: 80vh;
   position: absolute;
   top: 0;
@@ -151,11 +151,11 @@ hr {
   transition: 0.5s transform ease-in-out;
   border-top-left-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .texting-cont.close {
-  transform: translateX(300px);
+  transform: translateX(320px);
 }
 
 .texting-cont > header {
@@ -166,6 +166,7 @@ hr {
   align-items: center;
   position: relative;
   height: 3.7rem;
+  width: 100%;
 }
 
 .texting-cont > header::after {
@@ -193,6 +194,20 @@ hr {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.texting-cont > form {
+  align-self: flex-end;
+  display: flex;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.texting-cont > form > input {
+  line-height: normal;
+  height: 35px;
+  padding: 0 0.4rem;
+  margin-left: 2px;
 }
 
 .pro-inner {
