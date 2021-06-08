@@ -68,7 +68,7 @@ function App() {
       dispatch(setUserInfo(user))
       dispatch(isLogged(true))
     }).catch(err => console.log(err))
-  })
+  }, [])
 
   return (
     <ErrorBoundary>

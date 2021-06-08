@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function Texting() {
-    const  [ msgInpu, setMsgInpu ] = useState('')
+    const [ msgInpu, setMsgInpu ] = useState('')
     const textContainer = document.querySelector('.texting-cont')
-
     const handleChange = (e) => {
         setMsgInpu(e.target.value)
     }
