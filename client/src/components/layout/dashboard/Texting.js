@@ -1,18 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+// redux
+import { useSelector } from 'react-redux'
 // font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments, faArrowLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faComments, faArrowLeft, faTimes, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Texting() {
+    const [ contacts, setContacts ] = useState([])
+    const [ selectedContact, setSelectCont ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
+    const userInfo = useSelector(state => state.userInfo)
+    const token = localStorage.getItem('token')
     const textContainer = document.querySelector('.texting-cont')
+
+    useEffect(() => {
+        fetch("http://localhost:5000/app/contacts", {
+            method: 'GET',
+            headers : { "Authorization": token }
+        })
+        .then(res => res.json())
+        .then(data => setContacts(data.contacts))
+        .catch(err => console.error(err))
+    }, [])
 
     const handleChange = (e) => {
         setMsgInpu(e.target.value)
     }
 
-    const openConv = () => {
+    const openConv = (index) => {
         document.querySelector('.conversation').classList.add('open')
+        setSelectCont(contacts[index])
     }
 
     const closeConv = () => {
@@ -33,16 +50,26 @@ function Texting() {
                 </header>
                 <main>
                     <div className="contacts">
-                        <h4 onClick={openConv}>contacts</h4>
+                        {
+                            contacts.map((contact, i) => (
+                                <div key={i} className="contact" onClick={() =>openConv(i)}>
+                                    { contact.picture ? <img src={'http://localhost:5000' + contact.picture} alt="profile" /> :
+                                    <FontAwesomeIcon className={`user-icon user-icon-small ${contact.role}`}  icon={faUserAlt}/>} 
+                                    <h4>{contact.name}</h4>
+                                </div>
+                            ))
+                        }
                     </div>
                     <div className="conversation">
                         <header>
                             <div className='btn' onClick={closeConv}>
                                 <FontAwesomeIcon icon={faArrowLeft}/>
                             </div>
-                            <div className='target-info'>
-
-                            </div>
+                            {selectedContact && <div className='target-info'>
+                                { selectedContact.picture ? <img src={'http://localhost:5000' + selectedContact.picture} alt="profile" /> :
+                                    <FontAwesomeIcon className={`user-icon user-icon-small ${selectedContact.role}`}  icon={faUserAlt}/>} 
+                                    <h4>{selectedContact.name}</h4>
+                            </div>}
                         </header>
                         <main>
 

@@ -297,7 +297,7 @@ router.delete('/comments', utils.passportCheck, async (req, res) => {
     }
 })
 
-router.get('/texting', utils.passportCheck, async (req, res) => {
+router.get('/contacts', utils.passportCheck, async (req, res) => {
     const { serverId, _id } = req.user
 
     try {

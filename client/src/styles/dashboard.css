@@ -209,6 +209,56 @@ hr {
   height: 100%;
 }
 
+.contacts {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.contacts .contact {
+  display: flex;
+  padding: 0.8rem 1rem;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.contacts .contact:hover {
+  background-color: #4255aa;
+}
+
+.contacts .contact::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.2;
+}
+
+.conversation .target-info img,
+.contacts .contact img {
+  width: 2.7rem;
+  height: 2.7rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.conversation .target-info svg,
+.contacts .contact svg {
+  margin: 0;
+}
+
+.conversation .target-info h4,
+.contacts .contact h4 {
+  margin: 0;
+  margin-left: 5%;
+  line-height: normal;
+  text-align: center;
+}
+
 .conversation {
   background-color: #181b2c;
   display: flex;
@@ -246,10 +296,6 @@ hr {
   border-right: 1px #666 solid;
 }
 
-.conversation header .target-info {
-  flex: 100% 1 1;
-}
-
 .conversation main {
   flex: 100% 1 1;
 }
@@ -268,9 +314,18 @@ hr {
   margin-left: 2px;
 }
 
-.contacts {
-  overflow-y: auto;
-  overflow-x: hidden;
+.conversation .target-info {
+  flex: 100% 1 1;
+  display: flex;
+  align-self: center;
+  padding: 0.5rem 1rem;
+}
+
+.conversation .target-info h4 {
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  margin-left: 6%;
 }
 
 .pro-inner {
