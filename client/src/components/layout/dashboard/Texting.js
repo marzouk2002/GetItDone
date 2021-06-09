@@ -48,7 +48,7 @@ function Texting() {
 
                         </main>
                         <form>
-                            <input type="text" name='message' value={msgInpu} onChange={handleChange}/>
+                            <input type="text" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
                             <input type="submit" value='Send' className='button primary'/>
                         </form>
                     </div>
