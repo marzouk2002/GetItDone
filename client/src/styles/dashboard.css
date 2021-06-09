@@ -124,7 +124,7 @@ hr {
   z-index: 6;
   position: fixed;
   right: 0;
-  top: 20%;
+  top: 30%;
 }
 
 .texting .btn {
@@ -143,7 +143,7 @@ hr {
 
 .texting-cont {
   width: 320px;
-  height: 80vh;
+  height: 70vh;
   position: absolute;
   top: 0;
   right: 0;
@@ -151,7 +151,7 @@ hr {
   transition: 0.5s transform ease-in-out;
   border-top-left-radius: 10px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .texting-cont.close {
@@ -167,6 +167,7 @@ hr {
   position: relative;
   height: 3.7rem;
   width: 100%;
+  overflow: hidden;
 }
 
 .texting-cont > header::after {
@@ -196,14 +197,37 @@ hr {
   left: 0;
 }
 
-.texting-cont > form {
+.texting-cont > main {
+  width: 200%;
+  flex: 100% 1 1;
+  overflow-x: hidden;
+  display: flex;
+}
+
+.texting-cont > main > div {
+  flex: 50% 1 1;
+  height: 100%;
+}
+
+.conversation {
+  background-color: #181b2c;
+  display: flex;
+  flex-wrap: wrap;
+  transition: 0.3s transform ease-in-out;
+}
+
+.conversation.open {
+  transform: translateX(-100%);
+}
+
+.conversation > form {
   align-self: flex-end;
   display: flex;
   width: 100%;
   margin-bottom: 2px;
 }
 
-.texting-cont > form > input {
+.conversation > form > input {
   line-height: normal;
   height: 35px;
   padding: 0 0.4rem;
