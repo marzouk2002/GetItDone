@@ -12,7 +12,11 @@ function Texting() {
     }
 
     const openConv = () => {
-        document.querySelector('.conversation').classList.toggle('open')
+        document.querySelector('.conversation').classList.add('open')
+    }
+
+    const closeConv = () => {
+        document.querySelector('.conversation').classList.remove('open')
     }
 
     return (
@@ -33,10 +37,16 @@ function Texting() {
                     </div>
                     <div className="conversation">
                         <header>
-                            <div className='btn' onClick={openConv}>
+                            <div className='btn' onClick={closeConv}>
                                 <FontAwesomeIcon icon={faArrowLeft}/>
                             </div>
+                            <div className='target-info'>
+
+                            </div>
                         </header>
+                        <main>
+
+                        </main>
                         <form>
                             <input type="text" name='message' value={msgInpu} onChange={handleChange}/>
                             <input type="submit" value='Send' className='button primary'/>

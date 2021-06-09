@@ -178,7 +178,7 @@ hr {
   bottom: 0;
   height: 1px;
   background: currentColor;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .texting-cont > header > h2 {
@@ -212,12 +212,46 @@ hr {
 .conversation {
   background-color: #181b2c;
   display: flex;
-  flex-wrap: wrap;
-  transition: 0.3s transform ease-in-out;
+  flex-direction: column;
+  transition: 0.35s transform ease-in-out;
 }
 
 .conversation.open {
   transform: translateX(-100%);
+}
+
+.conversation header {
+  height: max-content;
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.conversation header::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.conversation header .btn {
+  width: max-content;
+  background-color: #1c203a;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-right: 1px #666 solid;
+}
+
+.conversation header .target-info {
+  flex: 100% 1 1;
+}
+
+.conversation main {
+  flex: 100% 1 1;
 }
 
 .conversation > form {
