@@ -27,7 +27,6 @@ function ProjectForm({ setUpDate, setLoading }) {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
-    const once = 1
 
     useEffect(()=> {
         fetch('http://localhost:5000/app/serverinfo', {
@@ -40,7 +39,7 @@ function ProjectForm({ setUpDate, setLoading }) {
             setManagers(managers)
             dispatch(setServerInfo(data.serverInfo))
         })
-    }, [once, token, dispatch])
+    }, [])
 
     useEffect(() => {
         if (filesInpu.length === 0) {

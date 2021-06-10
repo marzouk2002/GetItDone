@@ -296,17 +296,4 @@ router.delete('/comments', utils.passportCheck, async (req, res) => {
     }
 })
 
-router.get('/contacts', utils.passportCheck, async (req, res) => {
-    const { serverId, _id } = req.user
-
-    try {
-        const contacts = await Users.find({ serverId: serverId, _id: { $ne: _id }}, {_id: 1, name: 1, picture: 1, role: 1})
-        res.json({contacts})
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json({ message: 'failed', err })
-    }
-})
-
 module.exports = router

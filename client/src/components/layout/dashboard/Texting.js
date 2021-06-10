@@ -12,22 +12,19 @@ function Texting() {
     const [ contacts, setContacts ] = useState([])
     const [ selectedContact, setSelectCont ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
-    const userInfo = useSelector(state => state.userInfo)
+    const {_id, serverId} = useSelector(state => state.userInfo)
     const token = localStorage.getItem('token')
     const textContainer = document.querySelector('.texting-cont')
 
     useEffect(() => {
-        // fetch("http://localhost:5000/app/contacts", {
-        //     method: 'GET',
-        //     headers : { "Authorization": token }
-        // })
-        // .then(res => res.json())
-        // .then(data => setContacts(data.contacts))
-        // .catch(err => console.error(err))
-        socket.emit('hello')
         socket.emit('admin')
-    }, [])
+        socket.emit('joinServer', {id: _id, serverId})
 
+        socket.on("get-contacts", ({ newContacts }) => {
+            setContacts(newContacts.filter(contact => contact._id!==_id))
+        })
+    }, [])
+    
     const handleChange = (e) => {
         setMsgInpu(e.target.value)
     }
