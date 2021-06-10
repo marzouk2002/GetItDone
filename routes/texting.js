@@ -10,8 +10,12 @@ module.exports = function (io) {
         socket.on('admin', function () {
             console.log('Successful Socket Test');
         });
+        socket.on("disconnect", () => {
+            console.log("Client disconnected");
+          });
 
         //End ON Events
     });
+
     return router
 };

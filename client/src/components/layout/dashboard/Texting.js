@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux'
 // font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faArrowLeft, faTimes, faUserAlt } from '@fortawesome/free-solid-svg-icons'
+// socket.io
+import socketIOClient from 'socket.io-client'
+const socket = socketIOClient("http://localhost:5000/texting");
 
 function Texting() {
     const [ contacts, setContacts ] = useState([])
@@ -21,6 +24,9 @@ function Texting() {
         .then(res => res.json())
         .then(data => setContacts(data.contacts))
         .catch(err => console.error(err))
+
+        
+
     }, [])
 
     const handleChange = (e) => {
