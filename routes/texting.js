@@ -3,7 +3,8 @@ const { getContacts } = require('../lib/socketUtils')
 
 const router = express.Router()
 
-const onlineUsers = {}
+let usersByServers = {}
+let usersOnline = []
 
 module.exports = function (io) {
     //Socket.IO
@@ -11,22 +12,31 @@ module.exports = function (io) {
         //ON Events
         // ON Joinning 
         socket.on('joinServer', async ({id, serverId}) => {
-            if(onlineUsers[serverId]) {
-                onlineUsers[serverId].push(id)
+            if(usersByServers[serverId]) {
+                usersByServers[serverId].push(id)
             } else {
-                onlineUsers[serverId] = [id]
+                usersByServers[serverId] = [id]
             }
-            
+            usersOnline.push({id, serverId, socketId: socket.id})
+
             socket.join(serverId)
 
-            const newContacts = await getContacts(serverId, onlineUsers[serverId])
+            const newContacts = await getContacts(serverId, usersByServers[serverId])
             
             io.in(serverId).emit("get-contacts", { newContacts });
         });
 
-        // socket.on("disconnect", () => {
-        //     console.log("Client disconnected");
-        // });
+        socket.on("disconnect", async () => {
+            const user = usersOnline.find(user => user.socketId === socket.id)
+            
+            if(user) {
+                const { serverId } = user
+                usersByServers[serverId] = usersByServers[serverId].filter(user_id => user_id !== user.id)
+                usersOnline = usersOnline.filter(({id}) => id !== user.id)
+                const newContacts = await getContacts(serverId, usersByServers[serverId])
+                io.in(serverId).emit("get-contacts", { newContacts });
+            }
+        });
     });
 
     return router
