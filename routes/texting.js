@@ -3,7 +3,7 @@ const { getContacts } = require('../lib/socketUtils')
 
 const router = express.Router()
 
-const onlineContacts = []
+const onlineUsers = {}
 
 module.exports = function (io) {
     //Socket.IO
@@ -11,10 +11,15 @@ module.exports = function (io) {
         //ON Events
         // ON Joinning 
         socket.on('joinServer', async ({id, serverId}) => {
-            onlineContacts.push(id)
+            if(onlineUsers[serverId]) {
+                onlineUsers[serverId].push(id)
+            } else {
+                onlineUsers[serverId] = [id]
+            }
+            
             socket.join(serverId)
 
-            const newContacts = await getContacts(serverId, onlineContacts)
+            const newContacts = await getContacts(serverId, onlineUsers[serverId])
             
             io.in(serverId).emit("get-contacts", { newContacts });
         });

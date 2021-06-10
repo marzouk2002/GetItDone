@@ -13,11 +13,9 @@ function Texting() {
     const [ selectedContact, setSelectCont ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
     const {_id, serverId} = useSelector(state => state.userInfo)
-    const token = localStorage.getItem('token')
     const textContainer = document.querySelector('.texting-cont')
 
     useEffect(() => {
-        socket.emit('admin')
         socket.emit('joinServer', {id: _id, serverId})
 
         socket.on("get-contacts", ({ newContacts }) => {
@@ -58,6 +56,7 @@ function Texting() {
                                     { contact.picture ? <img src={'http://localhost:5000' + contact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${contact.role}`}  icon={faUserAlt}/>} 
                                     <h4>{contact.name}</h4>
+                                    {contact.online && <div className='online-dot'></div>}
                                 </div>
                             ))
                         }
@@ -71,6 +70,7 @@ function Texting() {
                                 { selectedContact.picture ? <img src={'http://localhost:5000' + selectedContact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${selectedContact.role}`}  icon={faUserAlt}/>} 
                                     <h4>{selectedContact.name}</h4>
+                                    {selectedContact.online && <div className='online-dot'></div>}
                             </div>}
                         </header>
                         <main>

@@ -251,6 +251,17 @@ hr {
   margin: 0;
 }
 
+.conversation .target-info .online-dot,
+.contacts .contact .online-dot {
+  float: right;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: rgba(0, 255, 0, 0.7);
+  border-radius: 50%;
+  margin: auto;
+  margin-right: 0;
+}
+
 .conversation .target-info h4,
 .contacts .contact h4 {
   margin: 0;
