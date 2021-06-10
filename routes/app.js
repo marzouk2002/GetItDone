@@ -1,6 +1,5 @@
 const express = require('express')
 const multer = require('multer')
-const passport = require('passport')
 const utils = require('../lib/utils')
 const { Branch, Comment } = require('../lib/classes')
 const _ = require('lodash')

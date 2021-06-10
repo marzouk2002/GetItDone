@@ -1,7 +1,6 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
-const passport = require('passport')
 const utils = require('../lib/utils')
 
 // pipeline

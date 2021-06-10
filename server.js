@@ -1,11 +1,15 @@
 require('dotenv').config()
+const http = require('http')
 const express = require('express')
+const socketIo = require("socket.io");
+const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const passport = require('passport');
+const server = http.createServer(app)
+const io = socketIo(server, { cors: { origin: "*" } });
 const contentDisposition = require('content-disposition')
 
-const app = express()
 
 mongoose.connect(process.env.DB_URI)
     .then(() => console.log('Database connected...'))
@@ -34,6 +38,10 @@ app.use(express.static('./files', {
     }
 }))
 
+// socket.io
+const txtRoute = require('./routes/texting')(io)
+app.use('/', txtRoute)
+
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT,() => console.log(`Server running on port ${PORT}`))
+server.listen(PORT,() => console.log(`Server running on port ${PORT}`))

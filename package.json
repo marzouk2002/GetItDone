@@ -14,7 +14,6 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
     "@ckeditor/ckeditor5-react": "^3.0.2",
-    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "content-disposition": "^0.5.3",
     "cors": "^2.8.5",
@@ -28,7 +27,7 @@
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "react-html-parser": "^2.0.2",
+    "socket.io": "^4.1.2",
     "uuid": "^8.3.2"
   }
 }
