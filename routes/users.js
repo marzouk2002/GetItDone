@@ -9,9 +9,10 @@ const path = require('path')
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
 
-// models DB
+// models DB and Classes
 const Users = require('../models/Users')
 const Server = require('../models/Server')
+const { Conversation } = require('../lib/classes')
 
 const router = express.Router()
 
@@ -223,16 +224,36 @@ router.post('/update', utils.passportCheck, upload.single('file'), async (req, r
 })
 
 router.put('/newuser', utils.passportCheck, async (req, res) => {
-    const user_id = req.query.user_id
+    const { user_id } = req.query
     const server_id = req.user.serverId
 
     const server = await Server.findById(server_id)
+    // update auth
     const { role } = await Users.findById(user_id)
-    server[role + 's'].forEach(async user => {
+    server[role + 's'].forEach( user => {
         if(user.id === user_id) {
             user.auth = true
         }
     })
+
+    // add conversations
+    const newConvArr = []
+
+    newConvArr.push(new Conversation(user_id, server.admin))
+
+    server.managers.forEach(({auth, id}) => {
+        if(auth && id!==user_id) {
+            newConvArr.push(new Conversation(user_id, id))
+        }
+    })
+
+    server.developers.forEach(({auth, id}) => {
+        if(auth && id!==user_id) {
+            newConvArr.push(new Conversation(user_id, id))
+        }
+    })
+
+    server.conversations.push(...newConvArr)
     
     server.markModified(role + 's');
     await server.save()
