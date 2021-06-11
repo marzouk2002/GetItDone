@@ -32,7 +32,7 @@ function Texting() {
 
     useEffect(() => {
         setTargetCont(contacts.find(contact => contact._id === selectedId))
-        setTargetConv(conversations.find(contact => contact.userid === selectedId))
+        setTargetConv(conversations.find(contact => contact.targetId === selectedId))
     }, [ selectedId ])
     
     const handleChange = (e) => {

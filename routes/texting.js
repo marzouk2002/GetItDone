@@ -1,5 +1,5 @@
 const express = require('express')
-const { getContacts, saveMsgToDb } = require('../lib/socketUtils')
+const { getContacts, getConversations, saveMsgToDb } = require('../lib/socketUtils')
 
 const router = express.Router()
 
@@ -8,7 +8,7 @@ let usersOnline = []
 
 module.exports = function (io) {
     //Socket.IO
-    io.on('connection', function (socket) {
+    io.on('connection',  function (socket) {
         //ON Events
         // ON Joinning 
         socket.on('joinServer', async ({id, serverId}) => {
