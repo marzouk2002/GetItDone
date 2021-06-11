@@ -10,8 +10,8 @@ const socket = socketIOClient("http://localhost:5000");
 
 function Texting() {
     const [ contacts, setContacts ] = useState([])
-    // const [ conversations, setConversations ] = useState([])
-    // const [ selctedConv, setSelectConv ] = useState(null)
+    const [ conversations, setConversations ] = useState([])
+    const [ selectedConv, setSelectConv ] = useState([])
     const [ selectedContact, setSelectCont ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
     const {_id, serverId} = useSelector(state => state.userInfo)
@@ -24,8 +24,19 @@ function Texting() {
             setContacts(newContacts.filter(contact => contact._id!==_id))
         })
 
-        socket.on('reseve-msg', data => console.log(data))
+        socket.on('reseve-msg', ({ message }) => {
+            // setConversations({...conversations, [message.userId]:  [...conversations[message.userId], message]})
+            setSelectConv([...selectedConv, message])
+        })
     }, [])
+    
+    useEffect(() => {
+        const newConvs = {}
+        contacts.forEach(contact => {
+            newConvs[contact._id] = []
+        })
+        setConversations(newConvs)
+    }, [contacts])
     
     const handleChange = (e) => {
         setMsgInpu(e.target.value)
@@ -34,10 +45,12 @@ function Texting() {
     const openConv = (index) => {
         document.querySelector('.conversation').classList.add('open')
         setSelectCont(contacts[index])
+        // setSelectConv(conversations[contacts[index]._id])
     }
 
     const closeConv = () => {
         document.querySelector('.conversation').classList.remove('open')
+        // setSelectConv(null)
     }
 
     const sendMessage = (e) => {
@@ -85,7 +98,9 @@ function Texting() {
                             </div>}
                         </header>
                         <main>
+                            { selectedConv && selectedConv.map((msg, i) => <div>{msg.text}</div>)
 
+                            }
                         </main>
                         <form onSubmit={sendMessage}>
                             <input type="text" id="message" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
