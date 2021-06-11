@@ -10,8 +10,8 @@ const socket = socketIOClient("http://localhost:5000");
 
 function Texting() {
     const [ contacts, setContacts ] = useState([])
-    const [ conversations, setConversations ] = useState([])
-    const [ selctedConv, setSelectConv ] = useState(null)
+    // const [ conversations, setConversations ] = useState([])
+    // const [ selctedConv, setSelectConv ] = useState(null)
     const [ selectedContact, setSelectCont ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
     const {_id, serverId} = useSelector(state => state.userInfo)
@@ -42,8 +42,9 @@ function Texting() {
 
     const sendMessage = (e) => {
         e.preventDefault()
-        socket.emit('send-message', {sendTo: selectedContact._id, message: msgInpu})
+        socket.emit('send-message', {serverId, sentFrom: _id, sentTo: selectedContact._id, message: msgInpu})
         setMsgInpu('')
+        e.target.elements.message.focus()
     }
 
     return (
@@ -87,7 +88,7 @@ function Texting() {
 
                         </main>
                         <form onSubmit={sendMessage}>
-                            <input type="text" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
+                            <input type="text" id="message" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
                             <input type="submit" value='Send' className='button primary'/>
                         </form>
                     </div>

@@ -1,5 +1,5 @@
 const express = require('express')
-const { getContacts } = require('../lib/socketUtils')
+const { getContacts, saveMsgToDb } = require('../lib/socketUtils')
 
 const router = express.Router()
 
@@ -27,10 +27,14 @@ module.exports = function (io) {
         });
 
         // ON sending a msg  
-        socket.on('send-message', ({ sendTo, message }) => {
-            const { socketId } = usersOnline.find(user => user.id === sendTo)
-            console.log(usersOnline.find(user => user.id === sendTo))
-            io.to(socketId).emit("reseve-msg", {message: message});
+        socket.on('send-message', async ({serverId, sentFrom, sentTo, message }) => {
+            const targetUser = usersOnline.find(user => user.id === sentTo)
+
+
+            const msg = await saveMsgToDb(serverId, sentFrom, sentTo, message)
+            
+            socket.emit("reseve-msg", {message: msg});
+            if(targetUser) io.to(targetUser.socketId).emit("reseve-msg", {message: msg})
         })
         // ON disconnect
         socket.on("disconnect", async () => {

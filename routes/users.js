@@ -269,6 +269,8 @@ router.delete('/newuser', utils.passportCheck, async (req, res) => {
 
     const role = user.role + 's'
     server[role]=server[role].filter(user => user.id !== user_id)
+
+    server.conversations = server.conversations.filter(conv => !conv.between.includes(user_id))
     
     server.markModified(role);
     await server.save()
