@@ -36,6 +36,10 @@ function Texting() {
         document.querySelector('.conversation').classList.remove('open')
     }
 
+    const sendMessage = () => {
+        socket.emit('send-message', {to: selectedContact._id, message: msgInpu})
+    }
+
     return (
         <div className='texting'>
             <div className='btn' onClick={()=>{textContainer.classList.remove('close')}} title='Messages'>
@@ -76,7 +80,7 @@ function Texting() {
                         <main>
 
                         </main>
-                        <form>
+                        <form onSubmit={sendMessage}>
                             <input type="text" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
                             <input type="submit" value='Send' className='button primary'/>
                         </form>
