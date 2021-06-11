@@ -16,6 +16,10 @@ const serverSchema = mongoose.Schema({
     projects: {
         type: Array,
         default: []
+    },
+    conversations: {
+        type: Array,
+        default: []
     }
 })
 

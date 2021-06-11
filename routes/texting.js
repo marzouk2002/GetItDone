@@ -26,6 +26,13 @@ module.exports = function (io) {
             io.in(serverId).emit("get-contacts", { newContacts });
         });
 
+        // ON sending a msg  
+        socket.on('send-message', ({ sendTo, message }) => {
+            const { socketId } = usersOnline.find(user => user.id === sendTo)
+            console.log(usersOnline.find(user => user.id === sendTo))
+            io.to(socketId).emit("reseve-msg", {message: message});
+        })
+        // ON disconnect
         socket.on("disconnect", async () => {
             const user = usersOnline.find(user => user.socketId === socket.id)
             
@@ -33,6 +40,7 @@ module.exports = function (io) {
                 const { serverId } = user
                 usersByServers[serverId] = usersByServers[serverId].filter(user_id => user_id !== user.id)
                 usersOnline = usersOnline.filter(({id}) => id !== user.id)
+
                 const newContacts = await getContacts(serverId, usersByServers[serverId])
                 io.in(serverId).emit("get-contacts", { newContacts });
             }

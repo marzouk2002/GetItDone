@@ -10,6 +10,8 @@ const socket = socketIOClient("http://localhost:5000");
 
 function Texting() {
     const [ contacts, setContacts ] = useState([])
+    const [ conversations, setConversations ] = useState([])
+    const [ selctedConv, setSelectConv ] = useState(null)
     const [ selectedContact, setSelectCont ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
     const {_id, serverId} = useSelector(state => state.userInfo)
@@ -21,6 +23,8 @@ function Texting() {
         socket.on("get-contacts", ({ newContacts }) => {
             setContacts(newContacts.filter(contact => contact._id!==_id))
         })
+
+        socket.on('reseve-msg', data => console.log(data))
     }, [])
     
     const handleChange = (e) => {
@@ -36,8 +40,10 @@ function Texting() {
         document.querySelector('.conversation').classList.remove('open')
     }
 
-    const sendMessage = () => {
-        socket.emit('send-message', {to: selectedContact._id, message: msgInpu})
+    const sendMessage = (e) => {
+        e.preventDefault()
+        socket.emit('send-message', {sendTo: selectedContact._id, message: msgInpu})
+        setMsgInpu('')
     }
 
     return (
