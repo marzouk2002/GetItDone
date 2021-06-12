@@ -36,10 +36,10 @@ module.exports = function (io) {
             const targetUser = usersOnline.find(user => user.id === sentTo)
 
 
-            const msg = await saveMsgToDb(serverId, sentFrom, sentTo, message)
+            const { toSender, toResever } = await saveMsgToDb(serverId, sentFrom, sentTo, message)
             
-            // socket.emit("reseve-msg", {message: msg});
-            // if(targetUser) io.to(targetUser.socketId).emit("reseve-msg", {message: msg})
+            socket.emit("get-conv", {conversations: toSender});
+            if(targetUser) io.to(targetUser.socketId).emit("get-conv", {conversations: toResever});
         })
         // ON disconnect
         socket.on("disconnect", async () => {

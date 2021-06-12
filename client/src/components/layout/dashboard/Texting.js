@@ -36,7 +36,7 @@ function Texting() {
     useEffect(() => {
         setTargetCont(contacts.find(contact => contact._id === selectedId))
         setTargetConv(conversations.find(contact => contact.targetId === selectedId))
-    }, [ selectedId ])
+    }, [ selectedId, conversations, contacts ])
     
     const handleChange = (e) => {
         setMsgInpu(e.target.value)
