@@ -13,7 +13,7 @@ function Texting() {
     const [ conversations, setConversations ] = useState([])
     const [ selectedId, setSelectedId ] = useState("")
     const [ targetContact, setTargetCont ] = useState(null)
-    const [ targetConv, setTargetConv ] = useState([])
+    const [ targetConv, setTargetConv ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
     const {_id, serverId} = useSelector(state => state.userInfo)
     const textContainer = document.querySelector('.texting-cont')
@@ -97,9 +97,13 @@ function Texting() {
                             </div>}
                         </header>
                         <main>
-                            {/* { selectedConv && selectedConv.map((msg, i) => <div>{msg.text}</div>)
+                            { targetConv && targetConv?.chat.map((msg, i) => (<div className={msg.userId===_id ? "msg mine" : "msg"}>
+                                <div>
+                                    <p>{msg.text}</p>
+                                    <span>{msg.date}</span>
+                                </div>
+                            </div>))}
 
-                            } */}
                         </main>
                         <form onSubmit={sendMessage}>
                             <input type="text" id="message" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
