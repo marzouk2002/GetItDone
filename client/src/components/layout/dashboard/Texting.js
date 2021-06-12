@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 // redux
 import { useSelector } from 'react-redux'
 // font-awesome
@@ -15,6 +15,8 @@ function Texting() {
     const [ targetContact, setTargetCont ] = useState(null)
     const [ targetConv, setTargetConv ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
+    const [ isTextOpen, setTextOpen ] = useState(false)
+    const [ unReadCount, setunReadCount ] = useState(1) 
     const {_id, serverId} = useSelector(state => state.userInfo)
     const textContainer = document.querySelector('.texting-cont')
 
@@ -42,6 +44,16 @@ function Texting() {
         setMsgInpu(e.target.value)
     }
 
+    const openTexting = () => {
+        textContainer.classList.remove('close')
+        setTextOpen(true)
+    }
+
+    const closeTexting = () => {
+        textContainer.classList.add('close')
+        setTextOpen(false)
+    }
+
     const openConv = (id) => {
         document.querySelector('.conversation').classList.add('open')
         setSelectedId(id)
@@ -59,14 +71,23 @@ function Texting() {
         e.target.elements.message.focus()
     }
 
+    const messagesEndRef = useRef(null)
+
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView(true)
+    }
+
+    useEffect(scrollToBottom, [targetConv]);
+
     return (
         <div className='texting'>
-            <div className='btn' onClick={()=>{textContainer.classList.remove('close')}} title='Messages'>
+            <div className='btn' onClick={openTexting} title='Messages'>
                 <FontAwesomeIcon icon={faComments} />
+                { unReadCount>0 ?  <div className="unread-notif">{unReadCount}</div> : "" }
             </div>
             <div className="texting-cont close">
                 <header>
-                    <div className='btn' onClick={()=>{textContainer.classList.add('close')}}>
+                    <div className='btn' onClick={closeTexting}>
                         <FontAwesomeIcon icon={faTimes} />
                     </div>
                     <h2>Messages</h2>
@@ -97,13 +118,13 @@ function Texting() {
                             </div>}
                         </header>
                         <main>
-                            { targetConv && targetConv?.chat.map((msg, i) => (<div className={msg.userId===_id ? "msg mine" : "msg"}>
+                            { targetConv && targetConv?.chat.map((msg, i) => (<div key={i} className={msg.userId===_id ? "msg mine" : "msg"}>
                                 <div>
                                     <p>{msg.text}</p>
                                     <span>{msg.date}</span>
                                 </div>
                             </div>))}
-
+                            <div ref={messagesEndRef} />
                         </main>
                         <form onSubmit={sendMessage}>
                             <input type="text" id="message" name='message' autoComplete='off' value={msgInpu} onChange={handleChange}/>
