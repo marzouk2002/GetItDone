@@ -1,5 +1,5 @@
 const express = require('express')
-const { getContacts, getConversations, saveMsgToDb } = require('../lib/socketUtils')
+const { getContacts, getConversations, saveMsgToDb, markAsRead } = require('../lib/socketUtils')
 
 const router = express.Router()
 
@@ -41,6 +41,14 @@ module.exports = function (io) {
             socket.emit("get-conv", {conversations: toSender});
             if(targetUser) io.to(targetUser.socketId).emit("get-conv", {conversations: toResever});
         })
+
+        // Mark as Read 
+        socket.on('mark-read', async ({serverId, user_id }) => {
+            const conversations = await markAsRead(serverId, user_id )
+
+            socket.emit("get-conv", {conversations});
+        })
+
         // ON disconnect
         socket.on("disconnect", async () => {
             const user = usersOnline.find(user => user.socketId === socket.id)
