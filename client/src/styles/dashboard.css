@@ -242,6 +242,10 @@ hr {
   background-color: #4255aa;
 }
 
+.contacts .contact.notif {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
 .contacts .contact::after {
   content: '';
   position: absolute;

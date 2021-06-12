@@ -93,7 +93,7 @@ function Texting() {
                     <div className="contacts">
                         {
                             contacts.map((contact, i) => (
-                                <div key={i} className="contact" onClick={() =>openConv(contact._id)}>
+                                <div key={i} className={ i===1 ? "contact notif" : "contact"} onClick={() =>openConv(contact._id)}>
                                     { contact.picture ? <img src={'http://localhost:5000' + contact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${contact.role}`}  icon={faUserAlt}/>} 
                                     <h4>{contact.name}</h4>
