@@ -142,6 +142,10 @@ hr {
   transform: scale(1.3);
 }
 
+.texting .btn:hover .unread-notif {
+  transform: scale(1.2);
+}
+
 .texting .unread-notif {
   position: absolute;
   bottom: 0.5rem;
@@ -154,6 +158,7 @@ hr {
   border-radius: 50%;
   display: grid;
   place-items: center;
+  transition: 0.2s ease-in transform;
 }
 
 .texting-cont {

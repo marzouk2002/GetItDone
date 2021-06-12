@@ -38,28 +38,37 @@ function Texting() {
         setTargetCont(contacts.find(contact => contact._id === selectedId))
         setTargetConv(conversations.find(contact => contact.targetId === selectedId))
     }, [ selectedId, conversations, contacts ])
+
+    useEffect(() => {
+        const notifCount = conversations.reduce((some, conv) => {
+            return !conv.viewed ? some + 1 : some 
+        }, 0)
+        setunReadCount(notifCount)
+
+    }, [conversations])
     
     const handleChange = (e) => {
         setMsgInpu(e.target.value)
     }
-
-    const openTexting = () => {
-        textContainer.classList.remove('close')
-    }
-
-    const closeTexting = () => {
-        textContainer.classList.add('close')
-    }
-
+    
     const openConv = (id) => {
         document.querySelector('.conversation').classList.add('open')
         socket.emit('mark-read', {serverId, userId: _id, toId: id})
         setSelectedId(id)
     }
-
+    
     const closeConv = () => {
         document.querySelector('.conversation').classList.remove('open')
         setSelectedId('')
+    }
+    
+    const openTexting = () => {
+        textContainer.classList.remove('close')
+    }
+    
+    const closeTexting = () => {
+        closeConv()
+        textContainer.classList.add('close')
     }
 
     const sendMessage = (e) => {
