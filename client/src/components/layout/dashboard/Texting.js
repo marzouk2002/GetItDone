@@ -102,14 +102,16 @@ function Texting() {
                 <main>
                     <div className="contacts">
                         {
-                            contacts.map((contact, i) => (
-                                <div key={i} className={ i===1 ? "contact notif" : "contact"} onClick={() =>openConv(contact._id)}>
+                            contacts.map((contact, i) => {
+                                const { viewed } = conversations.find(({ targetId }) => targetId === contact._id)
+    
+                                return (<div key={i} className={ viewed ? "contact" : "contact notif"} onClick={() =>openConv(contact._id)}>
                                     { contact.picture ? <img src={'http://localhost:5000' + contact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${contact.role}`}  icon={faUserAlt}/>} 
                                     <h4>{contact.name}</h4>
                                     {contact.online && <div className='online-dot'></div>}
-                                </div>
-                            ))
+                                </div>)
+                            })
                         }
                     </div>
                     <div className="conversation">
