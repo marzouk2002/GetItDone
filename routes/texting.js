@@ -32,15 +32,15 @@ module.exports = function (io) {
         })
 
         // ON sending a msg  
-        // socket.on('send-message', async ({serverId, sentFrom, sentTo, message }) => {
-        //     const targetUser = usersOnline.find(user => user.id === sentTo)
+        socket.on('send-message', async ({serverId, sentFrom, sentTo, message }) => {
+            const targetUser = usersOnline.find(user => user.id === sentTo)
 
 
-        //     const msg = await saveMsgToDb(serverId, sentFrom, sentTo, message)
+            const msg = await saveMsgToDb(serverId, sentFrom, sentTo, message)
             
-        //     socket.emit("reseve-msg", {message: msg});
-        //     if(targetUser) io.to(targetUser.socketId).emit("reseve-msg", {message: msg})
-        // })
+            // socket.emit("reseve-msg", {message: msg});
+            // if(targetUser) io.to(targetUser.socketId).emit("reseve-msg", {message: msg})
+        })
         // ON disconnect
         socket.on("disconnect", async () => {
             const user = usersOnline.find(user => user.socketId === socket.id)
