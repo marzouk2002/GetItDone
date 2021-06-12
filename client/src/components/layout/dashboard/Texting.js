@@ -15,8 +15,7 @@ function Texting() {
     const [ targetContact, setTargetCont ] = useState(null)
     const [ targetConv, setTargetConv ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
-    const [ isTextOpen, setTextOpen ] = useState(false)
-    const [ unReadCount, setunReadCount ] = useState(1) 
+    const [ unReadCount, setunReadCount ] = useState(28) 
     const {_id, serverId} = useSelector(state => state.userInfo)
     const textContainer = document.querySelector('.texting-cont')
 
@@ -46,12 +45,10 @@ function Texting() {
 
     const openTexting = () => {
         textContainer.classList.remove('close')
-        setTextOpen(true)
     }
 
     const closeTexting = () => {
         textContainer.classList.add('close')
-        setTextOpen(false)
     }
 
     const openConv = (id) => {
@@ -83,7 +80,7 @@ function Texting() {
         <div className='texting'>
             <div className='btn' onClick={openTexting} title='Messages'>
                 <FontAwesomeIcon icon={faComments} />
-                { unReadCount>0 ?  <div className="unread-notif">{unReadCount}</div> : "" }
+                { unReadCount>0 ?  <div className="unread-notif"><span>{unReadCount}</span></div> : "" }
             </div>
             <div className="texting-cont close">
                 <header>
