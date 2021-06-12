@@ -53,6 +53,7 @@ function Texting() {
 
     const openConv = (id) => {
         document.querySelector('.conversation').classList.add('open')
+        socket.emit('mark-read', {serverId, userId: _id, toId: id})
         setSelectedId(id)
     }
 

@@ -43,8 +43,8 @@ module.exports = function (io) {
         })
 
         // Mark as Read 
-        socket.on('mark-read', async ({serverId, user_id }) => {
-            const conversations = await markAsRead(serverId, user_id )
+        socket.on('mark-read', async ({serverId, userId, toId }) => {
+            const conversations = await markAsRead(serverId, userId, toId)
 
             socket.emit("get-conv", {conversations});
         })
