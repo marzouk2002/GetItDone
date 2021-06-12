@@ -20,10 +20,13 @@ function Texting() {
 
     useEffect(() => {
         socket.emit('joinServer', {id: _id, serverId})
+        socket.emit('req-conv', {id: _id, serverId})
 
         socket.on("get-contacts", ({ newContacts }) => {
             setContacts(newContacts.filter(contact => contact._id!==_id))
         })
+
+        socket.on("get-conv", ({ conversations}) => setConversations(conversations))
 
         socket.on('reseve-msg', ({ message }) => {
             console.log(message)
@@ -46,6 +49,7 @@ function Texting() {
 
     const closeConv = () => {
         document.querySelector('.conversation').classList.remove('open')
+        setSelectedId('')
     }
 
     const sendMessage = (e) => {

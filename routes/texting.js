@@ -26,16 +26,21 @@ module.exports = function (io) {
             io.in(serverId).emit("get-contacts", { newContacts });
         });
 
-        // ON sending a msg  
-        socket.on('send-message', async ({serverId, sentFrom, sentTo, message }) => {
-            const targetUser = usersOnline.find(user => user.id === sentTo)
-
-
-            const msg = await saveMsgToDb(serverId, sentFrom, sentTo, message)
-            
-            socket.emit("reseve-msg", {message: msg});
-            if(targetUser) io.to(targetUser.socketId).emit("reseve-msg", {message: msg})
+        socket.on('req-conv', async ({id, serverId}) => {
+            const conversations = await getConversations(serverId, id)
+            socket.emit('get-conv', { conversations })
         })
+
+        // ON sending a msg  
+        // socket.on('send-message', async ({serverId, sentFrom, sentTo, message }) => {
+        //     const targetUser = usersOnline.find(user => user.id === sentTo)
+
+
+        //     const msg = await saveMsgToDb(serverId, sentFrom, sentTo, message)
+            
+        //     socket.emit("reseve-msg", {message: msg});
+        //     if(targetUser) io.to(targetUser.socketId).emit("reseve-msg", {message: msg})
+        // })
         // ON disconnect
         socket.on("disconnect", async () => {
             const user = usersOnline.find(user => user.socketId === socket.id)
