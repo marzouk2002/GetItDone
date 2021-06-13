@@ -15,7 +15,7 @@ function Texting() {
     const [ targetContact, setTargetCont ] = useState(null)
     const [ targetConv, setTargetConv ] = useState(null)
     const [ msgInpu, setMsgInpu ] = useState('')
-    const [ unReadCount, setunReadCount ] = useState(28) 
+    const [ unReadCount, setunReadCount ] = useState(0) 
     const {_id, serverId} = useSelector(state => state.userInfo)
     const textContainer = document.querySelector('.texting-cont')
 

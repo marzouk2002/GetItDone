@@ -8,11 +8,8 @@ function Header() {
 
     useEffect(() => {
         const altBar = ['/dashboard', '/server']
-        if(altBar.includes(location.pathname)) {
-            setAlt(false)
-        } else {
-            setAlt(true)
-        }
+        setAlt(altBar.includes(location.pathname))
+
     }, [location])
 
     const showMenu = (e) => {
@@ -22,7 +19,7 @@ function Header() {
     }
 
     return (
-        <header id="header" className= { isAlt ? 'alt' : ''}>
+        <header id="header" className= { location.pathname==="/about" ? 'alt style2' : isAlt ? 'alt' : ''} style={location.pathname!=="/about" ? {backgroundColor:'#1c203a'} : {}}>
             <Link to='/' className="logo"><strong>Get</strong> <span>It done</span></Link>
             <nav>
                 <a onClick={showMenu} href="#menu">Menu</a>

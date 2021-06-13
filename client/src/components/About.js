@@ -2,19 +2,23 @@ import React from 'react'
 
 function About() {
     return (
-        <React.Fragment>
-            <main>
-                <header className="major" style={titleStyle}>
-                        <h1>About</h1>
-                </header>
-            </main>
-        </React.Fragment>
+        <>
+            <section id="banner" className="style2">
+                <div className="inner">
+                    <span className="image">
+                        <img src="images/pic07.jpg" alt="" />
+                    </span>
+                    <header className="major">
+                        <h1>Landing</h1>
+                    </header>
+                    <div className="content">
+                        <p>Lorem ipsum dolor sit amet nullam consequat<br />
+                        sed veroeros. tempus adipiscing nulla.</p>
+                    </div>
+                </div>
+            </section>
+        </>
     )
-}
-
-const titleStyle = {
-    margin: '5vmin auto',
-    textAlign: 'center'
 }
 
 export default About
