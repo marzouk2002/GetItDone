@@ -858,7 +858,7 @@ hr {
 }
 
 .branch-card {
-  flex: 1 1 250px;
+  flex: 1 0 300px;
   background-color: #1c203a;
   padding: 1rem 4%;
   border-radius: 1rem;
