@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
-    const [isAlt, setAlt] = useState(true)
+    const [classes, setClasses] = useState('')
 
     const location = useLocation()
 
     useEffect(() => {
-        const altBar = ['/dashboard', '/server']
-        setAlt(altBar.includes(location.pathname))
+        setClasses('')
+        const { pathname } = location
+        const altBar = ['/dashboard', '/server', '/about']
+        if (altBar.includes(pathname)) setClasses('alt')
 
+        if(pathname==="/about") setClasses('alt style2')
+
+        if(pathname==="/dashboard") setClasses('dashboard')
     }, [location])
 
     const showMenu = (e) => {
@@ -19,7 +24,7 @@ function Header() {
     }
 
     return (
-        <header id="header" className= { location.pathname==="/about" ? 'alt style2' : isAlt ? 'alt' : ''}>
+        <header id="header" className={classes}>
             <Link to='/' className="logo"><strong>Get</strong> <span>It done</span></Link>
             <nav>
                 <a onClick={showMenu} href="#menu">Menu</a>
