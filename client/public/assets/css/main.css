@@ -3356,6 +3356,10 @@ button:disabled,
   color: #8d82c4;
 }
 
+#header.dashboard {
+  background-color: #1c203a;
+}
+
 #header.alt.style3 .logo strong {
   color: #ec8d81;
 }
