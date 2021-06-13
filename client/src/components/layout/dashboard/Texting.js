@@ -73,6 +73,7 @@ function Texting() {
 
     const sendMessage = (e) => {
         e.preventDefault()
+        if(!msgInpu) return
         socket.emit('send-message', {serverId, sentFrom: _id, sentTo: selectedId, message: msgInpu})
         setMsgInpu('')
         e.target.elements.message.focus()
@@ -103,8 +104,8 @@ function Texting() {
                     <div className="contacts">
                         {
                             contacts.map((contact, i) => {
-                                const { viewed } = conversations.find(({ targetId }) => targetId === contact._id)
-    
+                                const conversation = conversations.find(({ targetId }) => targetId === contact._id)
+                                const viewed = conversation?.viewed
                                 return (<div key={i} className={ viewed ? "contact" : "contact notif"} onClick={() =>openConv(contact._id)}>
                                     { contact.picture ? <img src={'http://localhost:5000' + contact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${contact.role}`}  icon={faUserAlt}/>} 
