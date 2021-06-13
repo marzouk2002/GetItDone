@@ -66,16 +66,15 @@ router.get('/serverinfo', utils.passportCheck, async (req, res) => {
 })
 
 router.get('/projects', utils.passportCheck, async (req, res)=> {
-    const { serverId, role, _id } = req.user
+    const { serverId, role, _id, name } = req.user
     const projectsFromDB = await Project.find({ serverId: serverId })
-
     let projects = []
-
+    
     if(role === 'admin') {
         projects = [...projectsFromDB]
     } else {
         projects = projectsFromDB.filter( pro => {
-            const isIn = pro[role + 's'].includes(_id)
+            const isIn = pro[role + 's'].find(user => user.id ===String(_id))
             return isIn
         })
     }
