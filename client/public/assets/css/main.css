@@ -3819,6 +3819,7 @@ body.is-preload #banner > .inner {
 /* Wrapper */
 
 #wrapper {
+  overflow-x: hidden;
   -moz-transition: -moz-filter 0.35s ease, -webkit-filter 0.35s ease,
     opacity 0.375s ease-out;
   -webkit-transition: -webkit-filter 0.35s ease, -webkit-filter 0.35s ease,

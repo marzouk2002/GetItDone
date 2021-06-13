@@ -49,7 +49,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
                 <div className='row'>
                     <div className='col-7 col-12-medium'>
                         <label>Description</label>
-                        <div>
+                        <div style={{padding: '0 2%'}}>
                             {parse(description)}
                         </div>
                     </div>
