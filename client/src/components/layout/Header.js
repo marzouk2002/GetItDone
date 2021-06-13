@@ -19,7 +19,7 @@ function Header() {
     }
 
     return (
-        <header id="header" className= { location.pathname==="/about" ? 'alt style2' : isAlt ? 'alt' : ''} style={location.pathname!=="/about" ? {backgroundColor:'#1c203a'} : {}}>
+        <header id="header" className= { location.pathname==="/about" ? 'alt style2' : isAlt ? 'alt' : ''}>
             <Link to='/' className="logo"><strong>Get</strong> <span>It done</span></Link>
             <nav>
                 <a onClick={showMenu} href="#menu">Menu</a>
