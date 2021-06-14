@@ -9,17 +9,21 @@ function About() {
                         <img src="images/pic07.jpg" alt="" />
                     </span>
                     <header className="major">
-                        <h1>Landing</h1>
+                        <h1>About</h1>
                     </header>
+                    <div className="content">
+                        <p>here we talk about get it done<br />
+                        Its features, what it does, and how it works.</p>
+                    </div>
                 </div>
             </section>
             <div id="main">
                 <section id="one">
                     <div className="inner">
                         <header className="major">
-                            <h2>Sed amet aliquam</h2>
+                            <h2>What is Get It Done?</h2>
                         </header>
-                        <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+                        <p>Get It Done is a project management system. Its goal is to help teams getting work done as fast and effectively as possible. And it does that by letting each member know what he should do and when to do it. By giving employers and project managers the ability to assign tasks to developers and track their progress.</p>
                     </div>
                 </section>
 
