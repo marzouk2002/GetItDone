@@ -62,7 +62,7 @@ function About() {
                                 <header className="major">
                                     <h3>Start Projects</h3>
                                 </header>
-                                <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+                                <p>Only the admin can create and start projects by filling a simple form where they can choose a title and write down a description. Also, choose who is gonna work on that project (managers & developers). And add additional files no matter what their type.</p>
                             </div>
                         </div>
                     </section>
