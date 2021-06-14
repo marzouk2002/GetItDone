@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import Footer from './layout/Footer'
 
 function About() {
+
+    const topOfPage = useRef(null)
+
+    const scrollToBottom = () => {
+      topOfPage.current.scrollIntoView(true)
+    }
+
+    useEffect(scrollToBottom, []);
+
     return (
         <>
+            <div ref={topOfPage} />
             <section id="banner" className="style2">
                 <div className="inner">
                     <span className="image">
@@ -38,9 +50,6 @@ function About() {
                                     <h3>Orci maecenas</h3>
                                 </header>
                                 <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-                                <ul className="actions">
-                                    <li><a href="generic.html" className="button">Learn more</a></li>
-                                </ul>
                             </div>
                         </div>
                     </section>
@@ -54,9 +63,6 @@ function About() {
                                     <h3>Rhoncus magna</h3>
                                 </header>
                                 <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-                                <ul className="actions">
-                                    <li><a href="generic.html" className="button">Learn more</a></li>
-                                </ul>
                             </div>
                         </div>
                     </section>
@@ -70,26 +76,18 @@ function About() {
                                     <h3>Sed nunc ligula</h3>
                                 </header>
                                 <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-                                <ul className="actions">
-                                    <li><a href="generic.html" className="button">Learn more</a></li>
-                                </ul>
                             </div>
                         </div>
                     </section>
                 </section>
 
                 <section id="three">
-                    <div class="inner">
-                        <header class="major">
-                            <h2>Massa libero</h2>
-                        </header>
-                        <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-                        <ul class="actions">
-                            <li><a href="generic.html" class="button next">Get Started</a></li>
-                        </ul>
+                    <div class="inner center_stuf">
+                        <Link to="/register" class="button primary">Get Started</Link>
                     </div>
                 </section>
 			</div>
+            <Footer/>
         </>
     )
 }
