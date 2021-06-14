@@ -282,3 +282,7 @@ p {
   margin: 0 0 0.9em 1.8em;
   font-size: 1.1rem;
 }
+
+.about-img {
+  padding: 2%;
+}

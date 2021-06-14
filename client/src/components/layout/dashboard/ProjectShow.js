@@ -18,8 +18,6 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
     const { title, description, managers, developers, files, _id, completion, branchs, comments } = projectSelected
     const { role } = useSelector(state => state.userInfo) 
 
-    console.log(projectSelected)
-
     const token = localStorage.getItem('token')
 
     const deletePro = (e) => {

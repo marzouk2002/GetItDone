@@ -12,7 +12,7 @@ function Footer() {
                     <li><a href="!#" rel="noopener noreferrer" target="_blank" className="icon brands alt fa-linkedin-in"><span className="label">LinkedIn</span></a></li>
                 </ul>
                 <ul className="copyright">
-                    <li>&copy; Untitled</li><li>Design & Development : <a href="https://html5up.net" rel="noopener noreferrer" target="_blank">HTML5 UP</a> & <a href="https://github.com/marzouk2002" rel="noopener noreferrer" target="_blank">Youssouf MARZOUK</a></li>
+                    <li>&copy; Untitled</li><li>Development : <a href="https://github.com/marzouk2002" rel="noopener noreferrer" target="_blank">Youssouf MARZOUK</a></li>
                 </ul>
             </div>
         </footer>
