@@ -49,7 +49,7 @@ function About() {
                                 <header className="major">
                                     <h3>Resgiter & Login</h3>
                                 </header>
-                                <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+                                <p>To start, you need first to create an account, and for that, you got three options. Create an account as an admin or a manager, or a developer, this depends on your position. In case you want to create a manager or developer account, you will need the server Id of the admin. The opposite of if you create an admin account, you will be the admin of the server.</p>
                             </div>
                         </div>
                     </section>
