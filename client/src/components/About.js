@@ -80,7 +80,7 @@ function About() {
                         </div>
                     </section>
                     <section>
-                        <div className="image about-img message">
+                        <div className="image about-img">
                             <img src="images/messages.png" alt=""/>
                         </div>
                         <div className="content">
