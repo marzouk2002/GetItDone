@@ -54,8 +54,8 @@ function About() {
                         </div>
                     </section>
                     <section>
-                        <div className="image">
-                            <img src="images/pic09.jpg" alt="" data-position="top center" />
+                        <div className="image about-img">
+                            <img src="images/startProject.png" alt="" />
                         </div>
                         <div className="content">
                             <div className="inner">
@@ -67,8 +67,21 @@ function About() {
                         </div>
                     </section>
                     <section>
-                        <div className="image">
-                            <img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+                        <div className="image about-img">
+                            <img src="images/project.png" alt="" />
+                        </div>
+                        <div className="content">
+                            <div className="inner">
+                                <header className="major">
+                                    <h3>Sed nunc ligula</h3>
+                                </header>
+                                <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div className="image about-img message">
+                            <img src="images/messages.png" alt=""/>
                         </div>
                         <div className="content">
                             <div className="inner">
