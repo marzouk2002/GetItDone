@@ -75,7 +75,7 @@ function About() {
                                 <header className="major">
                                     <h3>Create Branchs And Track Progress</h3>
                                 </header>
-                                <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+                                <p>After the project creation, managers of that project can create branches of that project which are parts of the project. Each one has its title and description and more important, tasks. These tasks can be checked as done later by developers working on that project. And based on the number of done tasks the progress is calculated.</p>
                             </div>
                         </div>
                     </section>
@@ -86,9 +86,9 @@ function About() {
                         <div className="content">
                             <div className="inner">
                                 <header className="major">
-                                    <h3>Communicate and Chat in realtime</h3>
+                                    <h3>Communicate and Chat in real-time</h3>
                                 </header>
-                                <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+                                <p>Get It Done offers chats as well with all members on the server. Communication happens in real-time, and members can see if their fellow workers are online or not, and get notified when receiving a new message.</p>
                             </div>
                         </div>
                     </section>
