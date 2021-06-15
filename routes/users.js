@@ -66,10 +66,6 @@ router.post('/register', upload.single('file'), async (req, res) => {
     // img stuf
     if(file) {
         const fileName = newUser.id + file.detectedFileExtension;
-        // fs.open(fileName, 'w',async function (err, f) {
-        //     if (err) throw err;
-        //     console.log('Saved!');
-        // });
         await pipeline(
             file.stream,
             fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
