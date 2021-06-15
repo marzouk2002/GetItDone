@@ -54,13 +54,9 @@ const txtRoute = require('./routes/texting')(io)
 app.use('/texting', txtRoute)
 
 // static built file
-if(process.env.NODE_ENV == 'production') {
-  app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  })
-  
-  app.use(express.urlencoded({ extended: false }))
-}
+app.use(express.static('client/build'))
+
+app.use('/', express.static())
 
 const PORT = process.env.PORT || 5000
 
