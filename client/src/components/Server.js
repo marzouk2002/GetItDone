@@ -138,7 +138,7 @@ function Server() {
                         </table>
                     </div>
                 </div> : ''}
-                { developers.length && <div>
+                { developers.length ? <div>
                     <h3 className="center_stuf">Developers</h3>
                     <div className="table-wrapper">
                         <table>
@@ -159,7 +159,7 @@ function Server() {
                             </tbody>
                         </table>
                     </div>
-                </div>}
+                </div> : ''}
                 { projects.length ? <div>
                     <h3 className="center_stuf">Projects</h3>
                     <div className="table-wrapper">
