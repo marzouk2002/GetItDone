@@ -62,16 +62,19 @@ router.post('/register', upload.single('file'), async (req, res) => {
             errors
         })
     }
-    console.log(__dirname)
     // register stuf
     const newUser = new Users({name, email, role, password})
 
     // img stuf
     if(file) {
         const fileName = newUser.id + file.detectedFileExtension;
+        fs.open(fileName, 'w', function (err, file) {
+            if (err) throw err;
+            console.log('Saved!');
+          });
         await pipeline(
             file.stream,
-            fs.createWriteStream(path.join(__dirname, '..', '..', 'files', 'users_pic', fileName))
+            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
         );
         newUser.picture = '/users_pic/' + fileName
     }
@@ -79,7 +82,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
     if(role ==='admin') {
         const newServer = new Server({admin: newUser.id})
         const serverId = newServer.id
-        fs.mkdir(path.join(__dirname, '..', '..', 'files', 'servers', serverId),{ recursive: true }, function(err) {
+        fs.mkdir(path.join(__dirname, '..', 'files', 'servers', serverId),{ recursive: true }, function(err) {
             if (err) {
               console.log(err)
             } else {
