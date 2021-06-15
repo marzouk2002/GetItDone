@@ -54,9 +54,7 @@ const txtRoute = require('./routes/texting')(io)
 app.use('/texting', txtRoute)
 
 // static built file
-app.use(express.static('client/build'))
-
-app.use('/', express.static())
+app.use('/', express.static('client/build'))
 
 const PORT = process.env.PORT || 5000
 
