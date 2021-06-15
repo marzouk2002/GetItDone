@@ -42,7 +42,7 @@ app.use('/users', require('./routes/users'))
 app.use('/app', require('./routes/app'))
 
 // serving files
-app.use(express.static('./files', {
+app.use('/', express.static('./files', {
     setHeaders: function(res, path, stat) {
       res.set("Content-Disposition", contentDisposition(path))
     }
