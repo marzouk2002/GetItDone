@@ -62,7 +62,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
             errors
         })
     }
-
+    console.log(__dirname)
     // register stuf
     const newUser = new Users({name, email, role, password})
 
@@ -79,7 +79,6 @@ router.post('/register', upload.single('file'), async (req, res) => {
     if(role ==='admin') {
         const newServer = new Server({admin: newUser.id})
         const serverId = newServer.id
-        console.log(__dirname)
         fs.mkdir(path.join(__dirname, '..', '..', 'files', 'servers', serverId),{ recursive: true }, function(err) {
             if (err) {
               console.log(err)
