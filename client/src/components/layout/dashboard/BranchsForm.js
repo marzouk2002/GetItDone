@@ -52,7 +52,7 @@ function BranchsForm({ projectId, setUpDate }) {
 
         const data = {tasks: tasksArr, projectId, ...formState}
 
-        fetch('http://localhost:5000/app/branchs', {
+        fetch('/app/branchs', {
             method: 'post',
             body: JSON.stringify({ ...data }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }

@@ -18,7 +18,7 @@ function Comments({ comments, projectId, setUpDate}) {
         e.preventDefault()
 
         if(!formInput) return
-        fetch('http://localhost:5000/app/comments', {
+        fetch('/app/comments', {
             method: 'POST',
             body: JSON.stringify({ formInput, projectId }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
@@ -28,7 +28,7 @@ function Comments({ comments, projectId, setUpDate}) {
     }
 
     const deleteComment = (commentId, projectId) => {
-        fetch('http://localhost:5000/app/comments', {
+        fetch('/app/comments', {
             method: 'DELETE',
             body: JSON.stringify({ commentId, projectId }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
@@ -51,7 +51,7 @@ function Comments({ comments, projectId, setUpDate}) {
                         comments.map((comment, i) => (
                             <div key={i} className="comment">
                                 <div className='image'>
-                                { comment.picture ? <img src={'http://localhost:5000' + comment.picture} alt="profile" /> :
+                                { comment.picture ? <img src={comment.picture} alt="profile" /> :
                                 <FontAwesomeIcon className={`user-icon user-icon-small ${comment.role}`}  icon={faUserAlt}/>} 
                                 </div>
                                 <div>

@@ -23,7 +23,7 @@ function DispalyFiles({ files, projectId, setUpDate }) {
     const token = localStorage.getItem('token')
 
     const deleteFile = (file) => {
-        fetch('http://localhost:5000/app/projectfile', {
+        fetch('/app/projectfile', {
             method: 'DELETE',
             body: JSON.stringify({ file, projectId }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
@@ -41,7 +41,7 @@ function DispalyFiles({ files, projectId, setUpDate }) {
 
         formData.append('projectId', projectId);
 
-        axios.post("http://localhost:5000/app/projectfile", formData,{
+        axios.post("/app/projectfile", formData,{
             headers : { "Authorization": token}
         })
         .then(res => {
@@ -70,11 +70,11 @@ function DispalyFiles({ files, projectId, setUpDate }) {
                         animate={{opacity: 1, scale:1}}
                         transition={{delay: i*0.1+0.1, duration: 0.3}} 
                         className="file-card" key={i}>
-                            {isImage ? <img src={'http://localhost:5000/' + file.path} alt={file.name} /> : '' }
+                            {isImage ? <img src={'/' + file.path} alt={file.name} /> : '' }
                             <div className="content">
                                 <h4>{file.name}</h4>
                                 <div className='btns'>
-                                    <a href={'http://localhost:5000/' + file.path} download rel="noopener noreferrer" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
+                                    <a href={'/' + file.path} download rel="noopener noreferrer" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
                                     <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteFile(file)}/>
                                 </div>
                             </div>

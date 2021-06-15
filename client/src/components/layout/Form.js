@@ -68,7 +68,7 @@ function Form({ register, selectedTitle, setSelectedTitle, msgs, setMsgs }) {
         formData.append('role', seletected)
         formData.append('file', fileImg) 
 
-        axios.post(`http://localhost:5000/users/${route}`, formData)
+        axios.post(`/users/${route}`, formData)
         .then(res => {
             const data = res.data
             if(data.success) {

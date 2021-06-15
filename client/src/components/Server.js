@@ -16,7 +16,7 @@ function Server() {
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
-            fetch('http://localhost:5000/app/serverinfo', {
+            fetch('/app/serverinfo', {
                 headers : { Authorization: token }
             })
             .then(res => res.json())
@@ -32,7 +32,7 @@ function Server() {
 
     const accept = (e) => {
         const id = e.target.value
-        fetch('http://localhost:5000/users/newuser?user_id='+id, {
+        fetch('/users/newuser?user_id='+id, {
             method: 'PUT',
             headers : { Authorization: token },
         }).then(res => setUpdate(update+1))
@@ -42,7 +42,7 @@ function Server() {
 
     const rejectAndFire = (e) => {
         const id = e.target.value
-        fetch('http://localhost:5000/users/newuser?user_id='+id, {
+        fetch('/users/newuser?user_id='+id, {
             method: 'DELETE',
             headers : { Authorization: token },
             body: {id}
@@ -52,7 +52,7 @@ function Server() {
 
     const deletePro = (e) => {
         const id = e.target.value
-        fetch('http://localhost:5000/app/deletepro?pro_id='+id, {
+        fetch('/app/deletepro?pro_id='+id, {
             method: 'DELETE',
             headers : { Authorization: token },
             body: {id}

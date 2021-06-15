@@ -17,7 +17,7 @@ function Branchs({ branchs, projectId, setUpDate }) {
     const token = localStorage.getItem('token')
 
     const deleteBranch = (branchId) => {
-        fetch('http://localhost:5000/app/branchs', {
+        fetch('/app/branchs', {
             method: 'DELETE',
             body: JSON.stringify({ branchId, projectId }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }
@@ -26,7 +26,7 @@ function Branchs({ branchs, projectId, setUpDate }) {
     }
 
     const handleCheckTask = (index, branchId) => {
-        fetch('http://localhost:5000/app/branchs', {
+        fetch('/app/branchs', {
             method: 'PUT',
             body: JSON.stringify({ branchId, projectId, index }),
             headers : { "Authorization": token, "Content-Type" : "application/json" }

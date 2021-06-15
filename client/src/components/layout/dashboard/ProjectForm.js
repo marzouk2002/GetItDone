@@ -29,7 +29,7 @@ function ProjectForm({ setUpDate, setLoading }) {
     const token = localStorage.getItem('token')
 
     useEffect(()=> {
-        fetch('http://localhost:5000/app/serverinfo', {
+        fetch('/app/serverinfo', {
             headers : { Authorization: token }
         })
         .then(res => res.json())
@@ -117,7 +117,7 @@ function ProjectForm({ setUpDate, setLoading }) {
         })
         
 
-        axios.post("http://localhost:5000/app/addproject", formData,{
+        axios.post("/app/addproject", formData,{
             headers: { Authorization: token },
             onUploadProgress: progressEvent => {
                 const { loaded, total } = progressEvent

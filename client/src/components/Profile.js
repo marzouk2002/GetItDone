@@ -46,7 +46,7 @@ function Profile() {
  
         formData.append('file', fileImg) 
         const token = localStorage.getItem('token')
-        axios.post('http://localhost:5000/users/update', formData,{
+        axios.post('/users/update', formData,{
             headers: { Authorization: token }
         })
         .then(res => {
@@ -72,7 +72,7 @@ function Profile() {
                     <div className="col-6 col-12-small profile-pic">
                         <div className="img">
                             <form > 
-                            { userInfo.picture ? <img src={'http://localhost:5000' + userInfo.picture} alt="profile" /> :
+                            { userInfo.picture ? <img src={userInfo.picture} alt="profile" /> :
                             <FontAwesomeIcon className={`user-icon user-icon-large ${userInfo.role}`}  icon={faUserAlt}/>} 
                                 <input type="file" onChange={handleChangeForImg} accept='image/*'/>
                             </form>
