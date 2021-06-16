@@ -50,10 +50,8 @@ router.post('/register', upload.single('file'), async (req, res) => {
     })
 
     if (role !=='admin') {
-        Server.findOne({ _id: serverId })
-            .then(server => {
-                if(!server) errors.push({ text: 'Server Not Found', type: 'danger' })
-            })
+        const server = await Server.findById(serverId)
+        if(server == null) errors.push({ text: 'Server Not Found', type: 'danger' })
     }
 
     if(errors.length > 0) {
@@ -62,7 +60,6 @@ router.post('/register', upload.single('file'), async (req, res) => {
             errors
         })
     }
-
     // register stuf
     const newUser = new Users({name, email, role, password})
 
@@ -90,7 +87,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
         newServer.save()
     } else {
         newUser.serverId = serverId
-        const server = await Server.findOne({ _id: serverId })
+        const server = await Server.findById(serverId)
         server[role+"s"].push({id: newUser.id, auth: false})
         server.save()
     }

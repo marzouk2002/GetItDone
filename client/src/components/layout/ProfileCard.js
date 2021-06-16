@@ -13,7 +13,7 @@ function ProfileCard() {
         <>
         <Link to="/profile" className="button primary fit profile-card">
             <div className='image'>
-                { userInfo.picture ? <img src={'http://localhost:5000' + userInfo.picture} alt="profile" /> :
+                { userInfo.picture ? <img src={userInfo.picture} alt="profile" /> :
                  <FontAwesomeIcon className={`user-icon user-icon-small ${userInfo.role}`}  icon={faUserAlt}/>} 
             </div>
             <div className='name'>

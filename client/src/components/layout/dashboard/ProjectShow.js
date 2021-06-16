@@ -22,7 +22,7 @@ function ProjectShow ({ projectSelected, setIndex, selectedIndex, setUpDate }) {
 
     const deletePro = (e) => {
         const id = projectSelected._id
-        fetch('http://localhost:5000/app/deletepro?pro_id='+id, {
+        fetch('/app/deletepro?pro_id='+id, {
             method: 'DELETE',
             headers : { Authorization: token }
         }).then(res => {

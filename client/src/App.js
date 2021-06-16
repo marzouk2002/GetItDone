@@ -54,7 +54,7 @@ function App() {
   useEffect(()=> {
     const token = localStorage.getItem('token')
     if(!token) return
-    fetch('http://localhost:5000/users/valideToken', {
+    fetch('/users/valideToken', {
      headers: {
        "Authorization": token
      }

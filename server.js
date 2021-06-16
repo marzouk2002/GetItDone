@@ -11,9 +11,19 @@ const io = socketIo(server, { cors: { origin: "*" } });
 const contentDisposition = require('content-disposition')
 
 
-mongoose.connect(process.env.DB_URI)
-    .then(() => console.log('Database connected...'))
-    .catch(err => console.log('Something went wrong...\n'+err))
+const connectionParams={
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true 
+}
+
+mongoose.connect( process.env.DB_URI, connectionParams)
+  .then( () => {
+      console.log('Connected to database ')
+  })
+  .catch( (err) => {
+      console.error(`Error connecting to the database. \n${err}`);
+})
 
 app.use(cors())
 
@@ -32,7 +42,7 @@ app.use('/users', require('./routes/users'))
 app.use('/app', require('./routes/app'))
 
 // serving files
-app.use(express.static('./files', {
+app.use('/', express.static('./files', {
     setHeaders: function(res, path, stat) {
       res.set("Content-Disposition", contentDisposition(path))
     }
@@ -42,6 +52,9 @@ app.use(express.static('./files', {
 const txtRoute = require('./routes/texting')(io)
 
 app.use('/texting', txtRoute)
+
+// static built file
+app.use('/', express.static('client/build'))
 
 const PORT = process.env.PORT || 5000
 

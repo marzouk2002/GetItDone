@@ -20,7 +20,7 @@ function Dashboard() {
     const token = localStorage.getItem('token')
     
     useEffect(()=> {
-            fetch('http://localhost:5000/app/projects', {
+            fetch('/app/projects', {
                 headers : { Authorization: token }
             })
             .then(res => res.json())

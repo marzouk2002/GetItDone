@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faArrowLeft, faTimes, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 // socket.io
 import socketIOClient from 'socket.io-client'
-const socket = socketIOClient("http://localhost:5000");
+const socket = socketIOClient("");
 
 function Texting() {
     const [ contacts, setContacts ] = useState([])
@@ -107,7 +107,7 @@ function Texting() {
                                 const conversation = conversations.find(({ targetId }) => targetId === contact._id)
                                 const viewed = conversation?.viewed
                                 return (<div key={i} className={ viewed ? "contact" : "contact notif"} onClick={() =>openConv(contact._id)}>
-                                    { contact.picture ? <img src={'http://localhost:5000' + contact.picture} alt="profile" /> :
+                                    { contact.picture ? <img src={contact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${contact.role}`}  icon={faUserAlt}/>} 
                                     <h4>{contact.name}</h4>
                                     {contact.online && <div className='online-dot'></div>}
@@ -121,7 +121,7 @@ function Texting() {
                                 <FontAwesomeIcon icon={faArrowLeft}/>
                             </div>
                             {targetContact && <div className='target-info'>
-                                { targetContact.picture ? <img src={'http://localhost:5000' + targetContact.picture} alt="profile" /> :
+                                { targetContact.picture ? <img src={targetContact.picture} alt="profile" /> :
                                     <FontAwesomeIcon className={`user-icon user-icon-small ${targetContact.role}`}  icon={faUserAlt}/>} 
                                     <h4>{targetContact.name}</h4>
                                     {targetContact.online && <div className='online-dot'></div>}
