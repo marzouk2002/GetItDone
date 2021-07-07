@@ -1,5 +1,5 @@
 node_modules
 .env
 id_rsa_priv.pem
-/files/user_pic
-/files/servers
+files/user_pic
+files/servers
