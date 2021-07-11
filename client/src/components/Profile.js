@@ -72,7 +72,7 @@ function Profile() {
                     <div className="col-6 col-12-small profile-pic">
                         <div className="img">
                             <form > 
-                            { userInfo.picture ? <img src={'http://localhost:5000' + userInfo.picture} alt="profile" /> :
+                            { userInfo.picture ? <img src={userInfo.picture} alt="profile" /> :
                             <FontAwesomeIcon className={`user-icon user-icon-large ${userInfo.role}`}  icon={faUserAlt}/>} 
                                 <input type="file" onChange={handleChangeForImg} accept='image/*'/>
                             </form>
