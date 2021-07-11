@@ -69,7 +69,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
     // img stuf
     if(file) {
         const fileName = newUser.id + file.detectedFileExtension;
-        utils.uploadToS3(file, `users_pic/${fileName}`)
+        utils.uploadToS3(fs.createReadStream(file.path), `users_pic/${fileName}`)
         newUser.picture = process.env.AWS_URI + '/users_pic/' + fileName
     }
 
