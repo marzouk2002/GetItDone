@@ -76,13 +76,7 @@ router.post('/register', upload.single('file'), async (req, res) => {
     if(role ==='admin') {
         const newServer = new Server({admin: newUser.id})
         const serverId = newServer.id
-        fs.mkdir(path.join(__dirname, '..', 'files', 'servers', serverId),{ recursive: true }, function(err) {
-            if (err) {
-              console.log(err)
-            } else {
-              console.log("New directory successfully created.")
-            }
-        })
+        utils.openFolderAWS('servers/' + serverId)
         newUser.serverId = serverId
         newServer.save()
     } else {
