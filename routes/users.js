@@ -69,11 +69,8 @@ router.post('/register', upload.single('file'), async (req, res) => {
     // img stuf
     if(file) {
         const fileName = newUser.id + file.detectedFileExtension;
-        await pipeline(
-            file.stream,
-            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
-        );
-        newUser.picture = '/users_pic/' + fileName
+        utils.uploadToS3(file, `users_pic/${fileName}`)
+        newUser.picture = process.env.AWS_URI + '/users_pic/' + fileName
     }
 
     if(role ==='admin') {
