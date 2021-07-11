@@ -76,7 +76,6 @@ router.post('/register', upload.single('file'), async (req, res) => {
     if(role ==='admin') {
         const newServer = new Server({admin: newUser.id})
         const serverId = newServer.id
-        utils.openFolderAWS('servers/' + serverId)
         newUser.serverId = serverId
         newServer.save()
     } else {
@@ -185,10 +184,7 @@ router.post('/update', utils.passportCheck, upload.single('file'), async (req, r
 
     if(file) {
         const fileName = user._id + file.detectedFileExtension;
-        await pipeline(
-            file.stream,
-            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
-        );
+        utils.uploadToS3(fs.createReadStream(file.path), `users_pic/${fileName}`)
         user.picture = '/users_pic/' + fileName
     }
     Object.entries(body).map(item => {
@@ -262,7 +258,7 @@ router.delete('/newuser', utils.passportCheck, async (req, res) => {
     server[role]=server[role].filter(user => user.id !== user_id)
 
     server.conversations = server.conversations.filter(conv => !conv.between.includes(user_id))
-    
+
     server.markModified(role);
     await server.save()
 
