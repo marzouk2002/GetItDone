@@ -87,13 +87,7 @@ router.delete('/deletepro', utils.passportCheck, async (req, res) => {
     const { serverId } = req.user
     await Project.deleteOne({_id: pro_id})
 
-    fs.rmdir(
-        path.join(__dirname, '..', 'files', 'servers', serverId, pro_id), 
-        {recursive: true},
-         err=> {
-             if(err) return console.log(err)
-             console.log('folder deleted')
-         })
+    utils.deleteFromS3('servers' + serverId + pro_id)
     res.status(200).json({msg: 'complited'})
 })
 
