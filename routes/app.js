@@ -87,7 +87,7 @@ router.delete('/deletepro', utils.passportCheck, async (req, res) => {
     const { serverId } = req.user
     await Project.deleteOne({_id: pro_id})
 
-    utils.deleteFromS3('servers' + serverId + pro_id)
+    utils.deleteFromS3('servers/' + serverId + '/' + pro_id + '/')
     res.status(200).json({msg: 'complited'})
 })
 
@@ -140,8 +140,9 @@ router.delete('/projectfile', utils.passportCheck, async (req, res) => {
         await project.save()
 
         // file stuf
-        fs.unlinkSync(path.join(__dirname, '..', 'files', file.path))
-        
+        const path = `servers/${project.serverId}/${project._id}/${file.name}`
+        utils.deleteFromS3(path)
+
         res.json({message: 'done'})
     }
     catch (err) {
@@ -158,16 +159,13 @@ router.post('/projectfile', utils.passportCheck,  upload.array('files'), async (
 
     try {
         let filesArr = []
-        const baseName = `servers/${serverId}/${projectId}`
+        const baseName = `servers/${serverId}/${projectId}/`
         await Promise.all(
             files.map(async file => {
                 const fileName = file.originalName;
-                await pipeline(
-                    file.stream,
-                    fs.createWriteStream(path.join(__dirname, '..', 'files'))
-                );
+                utils.uploadToS3(fs.createReadStream(file.path), baseName+fileName)
                 const extention = path.extname(fileName).toLocaleLowerCase()
-                filesArr.push({path :path.join(baseName, fileName), name: fileName, extention})
+                filesArr.push({path : process.env.AWS_URI + '/'+ baseName + fileName, name: fileName, extention})
         }));
 
         const project = await Project.findById(projectId)
