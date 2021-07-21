@@ -185,7 +185,7 @@ router.post('/update', utils.passportCheck, upload.single('file'), async (req, r
     if(file) {
         const fileName = user._id + file.detectedFileExtension;
         utils.uploadToS3(fs.createReadStream(file.path), `users_pic/${fileName}`)
-        user.picture = '/users_pic/' + fileName
+        user.picture = process.env.AWS_URI + '/users_pic/' + fileName
     }
     Object.entries(body).map(item => {
         if(item[0]=='file' || item[0]=='confirm') return
