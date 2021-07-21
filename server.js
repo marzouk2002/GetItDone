@@ -38,6 +38,9 @@ app.use(express.static('./files', {
     }
 }))
 
+// UI
+app.use(express.static('./client/build'))
+
 // socket.io
 const txtRoute = require('./routes/texting')(io)
 

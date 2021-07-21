@@ -3,11 +3,8 @@ const bcrypt = require('bcryptjs')
 const multer = require('multer')
 const utils = require('../lib/utils')
 
-// pipeline
+// the fs module
 const fs = require("fs");
-const path = require('path')
-const { promisify } = require("util");
-const pipeline = promisify(require("stream").pipeline);
 
 // models DB and Classes
 const Users = require('../models/Users')
@@ -69,23 +66,13 @@ router.post('/register', upload.single('file'), async (req, res) => {
     // img stuf
     if(file) {
         const fileName = newUser.id + file.detectedFileExtension;
-        await pipeline(
-            file.stream,
-            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
-        );
-        newUser.picture = '/users_pic/' + fileName
+        utils.uploadToS3(fs.createReadStream(file.path), `users_pic/${fileName}`)
+        newUser.picture = process.env.AWS_URI + '/users_pic/' + fileName
     }
 
     if(role ==='admin') {
         const newServer = new Server({admin: newUser.id})
         const serverId = newServer.id
-        fs.mkdir(path.join(__dirname, '..', 'files', 'servers', serverId),{ recursive: true }, function(err) {
-            if (err) {
-              console.log(err)
-            } else {
-              console.log("New directory successfully created.")
-            }
-        })
         newUser.serverId = serverId
         newServer.save()
     } else {
@@ -194,11 +181,8 @@ router.post('/update', utils.passportCheck, upload.single('file'), async (req, r
 
     if(file) {
         const fileName = user._id + file.detectedFileExtension;
-        await pipeline(
-            file.stream,
-            fs.createWriteStream(path.join(__dirname, '..', 'files', 'users_pic', fileName))
-        );
-        user.picture = '/users_pic/' + fileName
+        utils.uploadToS3(fs.createReadStream(file.path), `users_pic/${fileName}`)
+        user.picture = process.env.AWS_URI + '/users_pic/' + fileName
     }
     Object.entries(body).map(item => {
         if(item[0]=='file' || item[0]=='confirm') return
@@ -271,7 +255,7 @@ router.delete('/newuser', utils.passportCheck, async (req, res) => {
     server[role]=server[role].filter(user => user.id !== user_id)
 
     server.conversations = server.conversations.filter(conv => !conv.between.includes(user_id))
-    
+
     server.markModified(role);
     await server.save()
 

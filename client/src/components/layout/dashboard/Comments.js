@@ -51,7 +51,7 @@ function Comments({ comments, projectId, setUpDate}) {
                         comments.map((comment, i) => (
                             <div key={i} className="comment">
                                 <div className='image'>
-                                { comment.picture ? <img src={'http://localhost:5000' + comment.picture} alt="profile" /> :
+                                { comment.picture ? <img src={comment.picture} alt="profile" /> :
                                 <FontAwesomeIcon className={`user-icon user-icon-small ${comment.role}`}  icon={faUserAlt}/>} 
                                 </div>
                                 <div>

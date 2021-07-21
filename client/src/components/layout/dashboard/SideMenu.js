@@ -31,7 +31,7 @@ function SideMenu() {
             <div onMouseEnter={mounseEntB1} onMouseLeave={mounseLeavB1} className="band-1">
                 <div className="band-1-content">
                     <div>
-                        { userInfo.picture ? <img src={"http://localhost:5000" + userInfo.picture} alt="profile" className="profile-pic"/> :
+                        { userInfo.picture ? <img src={ userInfo.picture} alt="profile" className="profile-pic"/> :
                         <FontAwesomeIcon className={`user-icon user-icon-small ${userInfo.role}`}  icon={faUserAlt}/>} 
                         <Link to='/profile'>Account</Link>
                     </div>
