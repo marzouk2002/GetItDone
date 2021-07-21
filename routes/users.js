@@ -3,11 +3,8 @@ const bcrypt = require('bcryptjs')
 const multer = require('multer')
 const utils = require('../lib/utils')
 
-// pipeline
+// the fs module
 const fs = require("fs");
-const path = require('path')
-const { promisify } = require("util");
-const pipeline = promisify(require("stream").pipeline);
 
 // models DB and Classes
 const Users = require('../models/Users')
