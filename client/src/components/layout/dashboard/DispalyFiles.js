@@ -70,11 +70,11 @@ function DispalyFiles({ files, projectId, setUpDate }) {
                         animate={{opacity: 1, scale:1}}
                         transition={{delay: i*0.1+0.1, duration: 0.3}} 
                         className="file-card" key={i}>
-                            {isImage ? <img src={'/' + file.path} alt={file.name} /> : '' }
+                            {isImage ? <img src={file.path} alt={file.name} /> : '' }
                             <div className="content">
                                 <h4>{file.name}</h4>
                                 <div className='btns'>
-                                    <a href={'/' + file.path} download rel="noopener noreferrer" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
+                                    <a href={file.path} download rel="noopener noreferrer" target="_blank"><FontAwesomeIcon icon={faDownload}/></a>
                                     <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteFile(file)}/>
                                 </div>
                             </div>
